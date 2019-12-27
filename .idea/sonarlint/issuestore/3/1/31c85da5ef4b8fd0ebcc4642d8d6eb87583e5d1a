@@ -1,0 +1,11 @@
+
+esquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(“˜“à8¹ûğÁô-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÙØ÷‚øÿÿÿÿ8³¥úÁô-
+msquid:S00100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûáşò8¹ûğÁô-
+jsquid:UselessImportCheck":Remove this unused import 'cucumber.api.PendingException'.( ’•Ûşÿÿÿÿ8°¸úÁô-
+esquid:S00112 "FDefine and throw a dedicated exception instead of using a generic one.(ûáşò8¹ûğÁô-
+[
+squid:S106""9Replace this use of System.out or System.err by a logger.(¼’âƒúÿÿÿÿ8°¸úÁô-
+msquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“˜“à8¹ûğÁô-
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ëãê”üÿÿÿÿ8Å™‰Áô-
