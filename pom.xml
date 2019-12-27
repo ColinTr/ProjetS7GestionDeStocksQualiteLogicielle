@@ -59,7 +59,24 @@
       <version>3.1.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-report-plugin</artifactId>
+      <version>3.0.0-M4</version>
+      <type>maven-plugin</type>
+    </dependency>
+
   </dependencies>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M4</version>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
