@@ -5,18 +5,12 @@ J
 .idea/libraries/junit4.xml,c\d\cda62b716ee9a2a67cd0791e2f0852107dae46dd
 T
 $GestionDeStocksQualiteLogicielle.iml,1\5\151c12fb1ee0aab7766621051b8f6a4be0608351
-T
-$src/main/java/modele/Calculator.java,8\1\8147763cb49e79b41b043b61b7d1d5572fe86f25
 L
 .idea/dictionaries/Colin.xml,f\6\f668c13fb5f36f1bef13d5e387c9d4af186fc577
 K
 src/main/java/vue/Main.java,f\b\fb1faa908bd280c2f0f8f118c5ad722666518176
-V
-&src/test/ressources/calculator.feature,c\2\c24da17c091b74e0f1b73a8e7aa7b61d5734d107
 j
 :target/surefire-reports/2019-12-27T23-36-45_851.dumpstream,5\8\5816ecefdddc210880b2676a79d9874b4a450690
-[
-+src/test/java/stepdefs/calculatorSteps.java,7\e\7e6ed380bf6346308afe08adf6b8dc3c85b1dad5
 M
 target/site/dependencies.html,f\2\f2e669c4038706898da7bf4694c1426e8b41ca69
 P

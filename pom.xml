@@ -65,6 +65,18 @@
       <type>maven-plugin</type>
     </dependency>
 
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.4.1.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.15</version>
+    </dependency>
+
   </dependencies>
 
   <reporting>
@@ -78,6 +90,7 @@
   </reporting>
 
   <build>
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -122,4 +135,5 @@
       </plugins>
     </pluginManagement>
   </build>
+
 </project>

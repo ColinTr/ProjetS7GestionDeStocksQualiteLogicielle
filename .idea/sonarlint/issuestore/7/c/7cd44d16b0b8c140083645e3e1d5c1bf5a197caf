@@ -1,2 +1,7 @@
 
-^squid:S2094"BRemove this empty class, write its code or make it an "interface".(ù—§Şşÿÿÿÿ
+Jsquid:S1068"'Remove this unused "nom" private field.(À³õåùÿÿÿÿ8èë¤ğô-
+Psquid:S1068"-Remove this unused "restreint" private field.(ä˜øòıÿÿÿÿ8èë¤ğô-
+Msquid:S1068"0Remove this unused "typeDeCompte" private field.(‚µç{8èë¤ğô-
+Lsquid:S1068".Remove this unused "motDePasse" private field.(ªŠ”8èë¤ğô-
+Hsquid:S1068"*Remove this unused "prenom" private field.(Í¤™ì8èë¤ğô-
+Rsquid:S1068"/Remove this unused "nomDeCompte" private field.(Àú¤Éûÿÿÿÿ8èë¤ğô-

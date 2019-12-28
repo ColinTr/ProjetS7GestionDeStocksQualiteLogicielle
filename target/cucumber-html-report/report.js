@@ -1,357 +1,4 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("calculator.feature");
-formatter.feature({
-  "line": 1,
-  "name": "Titre de la fonctionnalité",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité",
-  "keyword": "Feature"
-});
-formatter.scenarioOutline({
-  "line": 3,
-  "name": "Add two numbers \u003cnum1\u003e \u0026 \u003cnum2\u003e",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e",
-  "type": "scenario_outline",
-  "keyword": "Scenario Outline"
-});
-formatter.step({
-  "line": 4,
-  "name": "I have a calculator",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 5,
-  "name": "I add \u003cnum1\u003e and \u003cnum2\u003e",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 6,
-  "name": "the result should be \u003ctotal\u003e",
-  "keyword": "Then "
-});
-formatter.examples({
-  "line": 7,
-  "name": "",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;",
-  "rows": [
-    {
-      "cells": [
-        "num1",
-        "num2",
-        "total"
-      ],
-      "line": 8,
-      "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;1"
-    },
-    {
-      "cells": [
-        "-2",
-        "3",
-        "1"
-      ],
-      "line": 9,
-      "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;2"
-    },
-    {
-      "cells": [
-        "10",
-        "15",
-        "25"
-      ],
-      "line": 10,
-      "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;3"
-    },
-    {
-      "cells": [
-        "99",
-        "-99",
-        "0"
-      ],
-      "line": 11,
-      "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;4"
-    },
-    {
-      "cells": [
-        "-1",
-        "-10",
-        "-11"
-      ],
-      "line": 12,
-      "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;5"
-    }
-  ],
-  "keyword": "Examples"
-});
-formatter.scenario({
-  "line": 9,
-  "name": "Add two numbers -2 \u0026 3",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;2",
-  "type": "scenario",
-  "keyword": "Scenario Outline"
-});
-formatter.step({
-  "line": 4,
-  "name": "I have a calculator",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 5,
-  "name": "I add -2 and 3",
-  "matchedColumns": [
-    0,
-    1
-  ],
-  "keyword": "When "
-});
-formatter.step({
-  "line": 6,
-  "name": "the result should be 1",
-  "matchedColumns": [
-    2
-  ],
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "calculatorSteps.initializeCalculator()"
-});
-formatter.result({
-  "duration": 177774200,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "-2",
-      "offset": 6
-    },
-    {
-      "val": "3",
-      "offset": 13
-    }
-  ],
-  "location": "calculatorSteps.testAdd(int,int)"
-});
-formatter.result({
-  "duration": 1698999,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "1",
-      "offset": 21
-    }
-  ],
-  "location": "calculatorSteps.validateResult(int)"
-});
-formatter.result({
-  "duration": 2974000,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 10,
-  "name": "Add two numbers 10 \u0026 15",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;3",
-  "type": "scenario",
-  "keyword": "Scenario Outline"
-});
-formatter.step({
-  "line": 4,
-  "name": "I have a calculator",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 5,
-  "name": "I add 10 and 15",
-  "matchedColumns": [
-    0,
-    1
-  ],
-  "keyword": "When "
-});
-formatter.step({
-  "line": 6,
-  "name": "the result should be 25",
-  "matchedColumns": [
-    2
-  ],
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "calculatorSteps.initializeCalculator()"
-});
-formatter.result({
-  "duration": 33301,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "10",
-      "offset": 6
-    },
-    {
-      "val": "15",
-      "offset": 13
-    }
-  ],
-  "location": "calculatorSteps.testAdd(int,int)"
-});
-formatter.result({
-  "duration": 103699,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "25",
-      "offset": 21
-    }
-  ],
-  "location": "calculatorSteps.validateResult(int)"
-});
-formatter.result({
-  "duration": 70500,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 11,
-  "name": "Add two numbers 99 \u0026 -99",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;4",
-  "type": "scenario",
-  "keyword": "Scenario Outline"
-});
-formatter.step({
-  "line": 4,
-  "name": "I have a calculator",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 5,
-  "name": "I add 99 and -99",
-  "matchedColumns": [
-    0,
-    1
-  ],
-  "keyword": "When "
-});
-formatter.step({
-  "line": 6,
-  "name": "the result should be 0",
-  "matchedColumns": [
-    2
-  ],
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "calculatorSteps.initializeCalculator()"
-});
-formatter.result({
-  "duration": 32000,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "99",
-      "offset": 6
-    },
-    {
-      "val": "-99",
-      "offset": 13
-    }
-  ],
-  "location": "calculatorSteps.testAdd(int,int)"
-});
-formatter.result({
-  "duration": 125400,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "0",
-      "offset": 21
-    }
-  ],
-  "location": "calculatorSteps.validateResult(int)"
-});
-formatter.result({
-  "duration": 70801,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 12,
-  "name": "Add two numbers -1 \u0026 -10",
-  "description": "",
-  "id": "titre-de-la-fonctionnalité;add-two-numbers-\u003cnum1\u003e-\u0026-\u003cnum2\u003e;;5",
-  "type": "scenario",
-  "keyword": "Scenario Outline"
-});
-formatter.step({
-  "line": 4,
-  "name": "I have a calculator",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 5,
-  "name": "I add -1 and -10",
-  "matchedColumns": [
-    0,
-    1
-  ],
-  "keyword": "When "
-});
-formatter.step({
-  "line": 6,
-  "name": "the result should be -11",
-  "matchedColumns": [
-    2
-  ],
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "calculatorSteps.initializeCalculator()"
-});
-formatter.result({
-  "duration": 34200,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "-1",
-      "offset": 6
-    },
-    {
-      "val": "-10",
-      "offset": 13
-    }
-  ],
-  "location": "calculatorSteps.testAdd(int,int)"
-});
-formatter.result({
-  "duration": 168800,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "-11",
-      "offset": 21
-    }
-  ],
-  "location": "calculatorSteps.validateResult(int)"
-});
-formatter.result({
-  "duration": 104899,
-  "status": "passed"
-});
-formatter.uri("motDePasse.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("motDePasse.feature");
 formatter.feature({
   "line": 1,
   "name": "Ce mot de passe est-il acceptable",
@@ -1596,7 +1243,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 228000,
+  "duration": 306981800,
   "status": "passed"
 });
 formatter.scenario({
@@ -1637,7 +1284,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 79900,
+  "duration": 80300,
   "status": "passed"
 });
 formatter.match({
@@ -1650,14 +1297,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 86499,
+  "duration": 79200,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 30200,
+  "duration": 26400,
   "status": "passed"
 });
 formatter.match({
@@ -1670,7 +1317,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 256300,
+  "duration": 85000,
   "status": "passed"
 });
 formatter.background({
@@ -1695,7 +1342,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 84200,
+  "duration": 84000,
   "status": "passed"
 });
 formatter.scenario({
@@ -1736,7 +1383,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 75700,
+  "duration": 72800,
   "status": "passed"
 });
 formatter.match({
@@ -1749,14 +1396,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 1948901,
+  "duration": 6989900,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 30200,
+  "duration": 27500,
   "status": "passed"
 });
 formatter.match({
@@ -1769,7 +1416,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 85800,
+  "duration": 78500,
   "status": "passed"
 });
 formatter.background({
@@ -1794,7 +1441,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 92200,
+  "duration": 249900,
   "status": "passed"
 });
 formatter.scenario({
@@ -1835,7 +1482,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 80199,
+  "duration": 73300,
   "status": "passed"
 });
 formatter.match({
@@ -1848,14 +1495,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 134299,
+  "duration": 207400,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 15000,
+  "duration": 18600,
   "status": "passed"
 });
 formatter.match({
@@ -1868,7 +1515,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 175700,
+  "duration": 74500,
   "status": "passed"
 });
 formatter.background({
@@ -1893,7 +1540,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 84501,
+  "duration": 676600,
   "status": "passed"
 });
 formatter.scenario({
@@ -1934,7 +1581,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 103401,
+  "duration": 84700,
   "status": "passed"
 });
 formatter.match({
@@ -1947,14 +1594,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 67500,
+  "duration": 92900,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 18400,
+  "duration": 20500,
   "status": "passed"
 });
 formatter.match({
@@ -1967,7 +1614,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 286001,
+  "duration": 77000,
   "status": "passed"
 });
 });

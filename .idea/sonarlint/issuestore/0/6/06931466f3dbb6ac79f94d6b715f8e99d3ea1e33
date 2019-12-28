@@ -1,2 +1,5 @@
 
-^squid:S2094"BRemove this empty class, write its code or make it an "interface".(Ϊ»­οÿÿÿÿÿ
+Lsquid:S1068")Remove this unused "stock" private field.(±Σªωÿÿÿÿ8ιλ¤πτ-
+Ksquid:S1068"(Remove this unused "prix" private field.(δΙ©§ϋÿÿÿÿ8ιλ¤πτ-
+Qsquid:S1068".Remove this unused "nomProduit" private field.(Υ–¥΄ϊÿÿÿÿ8ιλ¤πτ-
+Msquid:S1068"0Remove this unused "reservations" private field.(–ή‘q8ιλ¤πτ-
