@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 /**
- * Cette classe permet d'effectuer tous les tests au sein de stepdefs
+ * Cette classe permet d'effectuer tous les tests au sein du dossier stepdefs
  */
 
 @RunWith(Cucumber.class)

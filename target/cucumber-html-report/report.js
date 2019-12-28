@@ -117,7 +117,7 @@ formatter.match({
   "location": "calculatorSteps.initializeCalculator()"
 });
 formatter.result({
-  "duration": 163878000,
+  "duration": 177774200,
   "status": "passed"
 });
 formatter.match({
@@ -134,7 +134,7 @@ formatter.match({
   "location": "calculatorSteps.testAdd(int,int)"
 });
 formatter.result({
-  "duration": 1650600,
+  "duration": 1698999,
   "status": "passed"
 });
 formatter.match({
@@ -147,7 +147,7 @@ formatter.match({
   "location": "calculatorSteps.validateResult(int)"
 });
 formatter.result({
-  "duration": 1888499,
+  "duration": 2974000,
   "status": "passed"
 });
 formatter.scenario({
@@ -184,7 +184,7 @@ formatter.match({
   "location": "calculatorSteps.initializeCalculator()"
 });
 formatter.result({
-  "duration": 53100,
+  "duration": 33301,
   "status": "passed"
 });
 formatter.match({
@@ -201,7 +201,7 @@ formatter.match({
   "location": "calculatorSteps.testAdd(int,int)"
 });
 formatter.result({
-  "duration": 103900,
+  "duration": 103699,
   "status": "passed"
 });
 formatter.match({
@@ -214,7 +214,7 @@ formatter.match({
   "location": "calculatorSteps.validateResult(int)"
 });
 formatter.result({
-  "duration": 70900,
+  "duration": 70500,
   "status": "passed"
 });
 formatter.scenario({
@@ -251,7 +251,7 @@ formatter.match({
   "location": "calculatorSteps.initializeCalculator()"
 });
 formatter.result({
-  "duration": 33901,
+  "duration": 32000,
   "status": "passed"
 });
 formatter.match({
@@ -268,7 +268,7 @@ formatter.match({
   "location": "calculatorSteps.testAdd(int,int)"
 });
 formatter.result({
-  "duration": 523701,
+  "duration": 125400,
   "status": "passed"
 });
 formatter.match({
@@ -281,7 +281,7 @@ formatter.match({
   "location": "calculatorSteps.validateResult(int)"
 });
 formatter.result({
-  "duration": 66899,
+  "duration": 70801,
   "status": "passed"
 });
 formatter.scenario({
@@ -318,7 +318,7 @@ formatter.match({
   "location": "calculatorSteps.initializeCalculator()"
 });
 formatter.result({
-  "duration": 33400,
+  "duration": 34200,
   "status": "passed"
 });
 formatter.match({
@@ -335,7 +335,7 @@ formatter.match({
   "location": "calculatorSteps.testAdd(int,int)"
 });
 formatter.result({
-  "duration": 100200,
+  "duration": 168800,
   "status": "passed"
 });
 formatter.match({
@@ -348,7 +348,7 @@ formatter.match({
   "location": "calculatorSteps.validateResult(int)"
 });
 formatter.result({
-  "duration": 75300,
+  "duration": 104899,
   "status": "passed"
 });
 formatter.uri("motDePasse.feature");
@@ -1596,7 +1596,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 168200,
+  "duration": 228000,
   "status": "passed"
 });
 formatter.scenario({
@@ -1637,7 +1637,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 3537101,
+  "duration": 79900,
   "status": "passed"
 });
 formatter.match({
@@ -1650,14 +1650,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 91300,
+  "duration": 86499,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 28500,
+  "duration": 30200,
   "status": "passed"
 });
 formatter.match({
@@ -1670,7 +1670,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 92000,
+  "duration": 256300,
   "status": "passed"
 });
 formatter.background({
@@ -1695,7 +1695,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 83100,
+  "duration": 84200,
   "status": "passed"
 });
 formatter.scenario({
@@ -1736,7 +1736,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 75600,
+  "duration": 75700,
   "status": "passed"
 });
 formatter.match({
@@ -1749,14 +1749,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 72499,
+  "duration": 1948901,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 22999,
+  "duration": 30200,
   "status": "passed"
 });
 formatter.match({
@@ -1769,7 +1769,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 139299,
+  "duration": 85800,
   "status": "passed"
 });
 formatter.background({
@@ -1794,7 +1794,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 91600,
+  "duration": 92200,
   "status": "passed"
 });
 formatter.scenario({
@@ -1835,7 +1835,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 99500,
+  "duration": 80199,
   "status": "passed"
 });
 formatter.match({
@@ -1848,14 +1848,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 88400,
+  "duration": 134299,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 22999,
+  "duration": 15000,
   "status": "passed"
 });
 formatter.match({
@@ -1868,7 +1868,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 386400,
+  "duration": 175700,
   "status": "passed"
 });
 formatter.background({
@@ -1893,7 +1893,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 109300,
+  "duration": 84501,
   "status": "passed"
 });
 formatter.scenario({
@@ -1934,7 +1934,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 118400,
+  "duration": 103401,
   "status": "passed"
 });
 formatter.match({
@@ -1947,14 +1947,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 90700,
+  "duration": 67500,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 273600,
+  "duration": 18400,
   "status": "passed"
 });
 formatter.match({
@@ -1967,7 +1967,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 105001,
+  "duration": 286001,
   "status": "passed"
 });
 });

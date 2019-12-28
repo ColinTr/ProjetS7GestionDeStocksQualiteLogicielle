@@ -18,17 +18,17 @@ public class calculatorSteps {
     }
 
     @Given("^I have a calculator$")
-    public void initializeCalculator() throws Throwable {
+    public void initializeCalculator() {
         calculator = new Calculator();
     }
 
     @When("^I add (-?\\d+) and (-?\\d+)$")
-    public void testAdd(int num1, int num2) throws Throwable {
+    public void testAdd(int num1, int num2) {
         total = calculator.add(num1, num2);
     }
 
     @Then("^the result should be (-?\\d+)$")
-    public void validateResult(int result) throws Throwable {
+    public void validateResult(int result) {
         Assert.assertEquals(total, result);
     }
 }
