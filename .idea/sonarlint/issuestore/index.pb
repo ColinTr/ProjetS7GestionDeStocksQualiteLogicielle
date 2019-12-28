@@ -11,11 +11,61 @@ L
 .idea/dictionaries/Colin.xml,f\6\f668c13fb5f36f1bef13d5e387c9d4af186fc577
 K
 src/main/java/vue/Main.java,f\b\fb1faa908bd280c2f0f8f118c5ad722666518176
-K
-Test Results - AppTest.html,2\1\213785216696d1e8508b25efec36b5f023e10a4b
-R
-"Test Results - Feature__testf.html,d\4\d4a261029280111ba8af31e88e83f51b73de6471
 V
 &src/test/ressources/calculator.feature,c\2\c24da17c091b74e0f1b73a8e7aa7b61d5734d107
-r
-Bsrc/test/java/GestionDeStocksQualiteLogicielle/CalculatorTest.java,d\e\debc1b699c21fc26f284ded68e126b8981c2a985
+j
+:target/surefire-reports/2019-12-27T23-36-45_851.dumpstream,5\8\5816ecefdddc210880b2676a79d9874b4a450690
+[
++src/test/java/stepdefs/calculatorSteps.java,7\e\7e6ed380bf6346308afe08adf6b8dc3c85b1dad5
+M
+target/site/dependencies.html,f\2\f2e669c4038706898da7bf4694c1426e8b41ca69
+P
+ target/site/dependency-info.html,4\3\43a37e936ceffc316ae36f5321faeded4915c5cd
+X
+(target/cucumber-html-report/formatter.js,d\6\d6933575298cc3d45a8dba101af46080c08523c0
+{
+Ktarget/surefire-reports/GestionDeStocksQualiteLogicielle.CalculatorTest.txt,d\9\d941a9c9dc718bdbf5269e5ca99bec09baf17c65
+V
+&target/cucumber-html-report/index.html,c\0\c03028d9b66f148376099d4412afeca92c961805
+F
+target/site/index.html,b\5\b52e44c8cd0ebfdfbaf62d6bf4db0646ae61dfd1
+€
+Ptarget/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst,3\d\3da01db98b88a8057c03354880f06dba49d3e795
+ˆ
+Xtarget/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst,4\0\4032e4ef0f8712e43ff2a568e798808b0d0cb7e9
+_
+/target/cucumber-html-report/jquery-1.8.2.min.js,c\6\c6d3e7377fe6e58b2222d73663e1337c2c7594c4
+N
+target/site/css/maven-base.css,a\d\adc35b1044830a4c693958f434c204263652f532
+O
+target/site/css/maven-theme.css,8\a\8af23dc26446b193ea8febecf117af8657a8542e
+R
+"target/site/plugin-management.html,8\c\8c737737cd25f1d70bd08b909bb4f9cb5cc84378
+H
+target/site/plugins.html,1\2\120e7b2f864c8f57302d7a62adf8214be8986917
+I
+target/site/css/print.css,9\4\945b6db6b5869deffedc7a4431e1e0f9fb25bebd
+M
+target/site/project-info.html,5\e\5ecf4543055e480abb8047893f0c8fad6403dfc2
+P
+ target/site/project-reports.html,2\e\2eeacf9b6d758d629bdf2533367dd7d3c8b82f8b
+U
+%target/cucumber-html-report/report.js,8\3\83b6259ed5e38d9b7cf779c07d932befc731fd49
+b
+2target/surefire-reports/runners.CalculatorTest.txt,5\4\541a4cd1b9c767b6bb8089a4a51b85566faa180d
+H
+target/site/css/site.css,8\8\88ff71ec36c778d8ca58348941e6219c3e8c340e
+U
+%target/cucumber-html-report/style.css,a\b\ab181185923601b234a7ef8ccb88c0ce47a1c2bf
+H
+target/site/summary.html,1\4\142725083ed749111fe8454ae4fefd7e5957bc0f
+P
+ target/site/surefire-report.html,b\b\bbeb05fc1b965988dfd667f3ab011ade99af418f
+R
+"Test Results - CalculatorTest.html,7\3\735443ff3a50a26b804d4a322bf07f74a4eee74a
+€
+Ptarget/surefire-reports/TEST-GestionDeStocksQualiteLogicielle.CalculatorTest.xml,7\4\74156a6bfd82bbe8d24e17ea23b82cd2d52afbc9
+g
+7target/surefire-reports/TEST-runners.CalculatorTest.xml,e\9\e94369a1dc68cd994fe82bbbf6d08e580dacfd92
+Y
+)src/test/java/runners/CalculatorTest.java,0\0\001c2bf7fa1fa789a115e1f1c9d69fd266322980
