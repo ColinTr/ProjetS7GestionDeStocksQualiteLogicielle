@@ -1,6 +1,7 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Magasin {
@@ -16,10 +17,60 @@ public class Magasin {
     @OneToOne(mappedBy = "magasinDirige", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Utilisateur chefDeMagasin;
 
+    @OneToMany(mappedBy = "magasin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Rayon> listeRayons;
+
+    @OneToMany(mappedBy = "magasin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Utilisateur> listeEmployes;
+
     //============================= Constructeurs =============================
 
-
+    public Magasin(String nomMagasin, Utilisateur chefDeMagasin, List<Rayon> listeRayons, List<Utilisateur> listeEmployes) {
+        this.nomMagasin = nomMagasin;
+        this.chefDeMagasin = chefDeMagasin;
+        this.listeRayons = listeRayons;
+        this.listeEmployes = listeEmployes;
+    }
 
     //============================= Getters et Setters =============================
 
+    public int getIdMagasin() {
+        return idMagasin;
+    }
+
+    public void setIdMagasin(int idMagasin) {
+        this.idMagasin = idMagasin;
+    }
+
+    public String getNomMagasin() {
+        return nomMagasin;
+    }
+
+    public void setNomMagasin(String nomMagasin) {
+        this.nomMagasin = nomMagasin;
+    }
+
+    public Utilisateur getChefDeMagasin() {
+        return chefDeMagasin;
+    }
+
+    public void setChefDeMagasin(Utilisateur chefDeMagasin) {
+        this.chefDeMagasin = chefDeMagasin;
+    }
+
+    public List<Rayon> getListeRayons() {
+        return listeRayons;
+    }
+
+    public void setListeRayons(List<Rayon> listeRayons) {
+        this.listeRayons = listeRayons;
+    }
+
+    public List<Utilisateur> getListeEmployes() {
+        return listeEmployes;
+    }
+
+    public void setListeEmployes(List<Utilisateur> listeEmployes) {
+        this.listeEmployes = listeEmployes;
+    }
 }

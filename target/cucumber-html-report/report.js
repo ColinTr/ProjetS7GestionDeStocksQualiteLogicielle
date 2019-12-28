@@ -1243,7 +1243,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 306981800,
+  "duration": 282628400,
   "status": "passed"
 });
 formatter.scenario({
@@ -1284,7 +1284,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 80300,
+  "duration": 78100,
   "status": "passed"
 });
 formatter.match({
@@ -1297,14 +1297,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 79200,
+  "duration": 497300,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 26400,
+  "duration": 33000,
   "status": "passed"
 });
 formatter.match({
@@ -1317,7 +1317,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 85000,
+  "duration": 79300,
   "status": "passed"
 });
 formatter.background({
@@ -1342,7 +1342,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 84000,
+  "duration": 87200,
   "status": "passed"
 });
 formatter.scenario({
@@ -1383,7 +1383,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 72800,
+  "duration": 82900,
   "status": "passed"
 });
 formatter.match({
@@ -1396,14 +1396,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 6989900,
+  "duration": 72800,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 27500,
+  "duration": 25400,
   "status": "passed"
 });
 formatter.match({
@@ -1416,7 +1416,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 78500,
+  "duration": 177100,
   "status": "passed"
 });
 formatter.background({
@@ -1441,7 +1441,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 249900,
+  "duration": 164800,
   "status": "passed"
 });
 formatter.scenario({
@@ -1482,7 +1482,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 73300,
+  "duration": 75400,
   "status": "passed"
 });
 formatter.match({
@@ -1495,14 +1495,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 207400,
+  "duration": 149000,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 18600,
+  "duration": 19400,
   "status": "passed"
 });
 formatter.match({
@@ -1515,7 +1515,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 74500,
+  "duration": 81400,
   "status": "passed"
 });
 formatter.background({
@@ -1540,7 +1540,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 676600,
+  "duration": 820000,
   "status": "passed"
 });
 formatter.scenario({
@@ -1581,7 +1581,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 84700,
+  "duration": 79500,
   "status": "passed"
 });
 formatter.match({
@@ -1594,14 +1594,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 92900,
+  "duration": 71700,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 20500,
+  "duration": 22300,
   "status": "passed"
 });
 formatter.match({
@@ -1614,7 +1614,7 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 77000,
+  "duration": 69900,
   "status": "passed"
 });
 });
