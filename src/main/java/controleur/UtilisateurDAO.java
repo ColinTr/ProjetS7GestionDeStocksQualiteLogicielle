@@ -15,7 +15,7 @@ public class UtilisateurDAO {
     public static List<Utilisateur> tousLesUtilisateurs(){
         List<Utilisateur> listeARetourner = new ArrayList<Utilisateur>();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("classique");
         EntityManager em = emf.createEntityManager();
 
         Query query = em.createQuery("SELECT u FROM Utilisateur u");
@@ -25,6 +25,8 @@ public class UtilisateurDAO {
         for(Object o : results){
             listeARetourner.add( ((Utilisateur) o) );
         }
+
+        em.close();
 
         return listeARetourner;
     }

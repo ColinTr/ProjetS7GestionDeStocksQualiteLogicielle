@@ -6,9 +6,10 @@ import modele.Utilisateur;
 import javax.persistence.*;
 
 public class Main {
+
     public static void main( String[] args ) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("classique");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -24,4 +25,5 @@ public class Main {
 
         System.out.println((UtilisateurDAO.tousLesUtilisateurs()).get(0));
     }
+
 }

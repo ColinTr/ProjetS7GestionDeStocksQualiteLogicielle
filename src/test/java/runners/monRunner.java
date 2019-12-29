@@ -10,9 +10,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features="src/test/ressources",
+        strict=false,
+        features= "src/test/resources",
         glue="stepdefs",
-        plugin = {"pretty", "html:target/cucumber-html-report"} )
+        plugin = {"pretty",
+                "html:target/cucumber-html-report",
+                "json:target/cucumber.json"} )
 public class monRunner {
     //Cette classe est vide.
 }

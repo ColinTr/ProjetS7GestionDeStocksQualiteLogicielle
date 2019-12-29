@@ -5,9 +5,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import modele.Produit;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.assertEquals;
 
+@DisplayName("ProduitTestClass")
 public class produitSteps {
 
     Produit produit = new Produit();

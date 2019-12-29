@@ -7,7 +7,10 @@ import cucumber.api.java.en.When;
 import static org.junit.Assert.*;
 
 import modele.Utilisateur;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
+@DisplayName("UtilisateurTestClass")
 public class utilisateurSteps {
 
     private String nomDeCompte;
