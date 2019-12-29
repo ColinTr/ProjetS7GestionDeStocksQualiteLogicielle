@@ -14,7 +14,7 @@ public class Produit {
     private String nomProduit;
     private int stock;
     private int reservations;
-    private int prix;
+    private float prix;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "rayon")
@@ -43,6 +43,14 @@ public class Produit {
     public boolean reservation(int quantite){
         if( quantite < stock - reservations ){
             reservations += quantite;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean ajout(int quantite){
+        if( quantite > stock - reservations ){
+            stock+= quantite;
             return true;
         }
         return false;
@@ -90,11 +98,11 @@ public class Produit {
         this.reservations = reservations;
     }
 
-    public int getPrix() {
+    public float getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(float prix) {
         this.prix = prix;
     }
 

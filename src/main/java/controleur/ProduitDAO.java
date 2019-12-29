@@ -43,7 +43,7 @@ public class ProduitDAO {
         List<Produit> listeARetourner = new ArrayList<Produit>();
         EntityManager em = Connexion.getEntityManager();
 
-        Rayon rayon = em.find(Rayon.class, rayonDonne.getIdRayon());
+        Rayon rayon = em.merge(rayonDonne);
 
         for (Produit p: rayon.getListeProduits()){
             listeARetourner.add(p);
@@ -70,17 +70,18 @@ public class ProduitDAO {
 
     }
 
+
     /**
      * Fonction supprimant un produit enregistré dans l'application.
-     * @param idProduit id du produit que l'on supprime.
+     * @param p produit que l'on supprime.
      */
-    public static void supprimerUnProduit(int idProduit){
+    public static void supprimerUnProduit(Produit p){
 
         EntityManager em =  Connexion.getEntityManager();
 
         try{
             em.getTransaction().begin();
-            Produit produit = em.find(Produit.class, idProduit);
+            Produit produit = em.merge(p);
             em.remove(produit);
             em.getTransaction().commit();
         } catch (Exception e){
@@ -91,6 +92,35 @@ public class ProduitDAO {
         em.close();
     }
 
+    public static void suppressionStockProduit(Produit p, int quantite){
+        EntityManager em = Connexion.getEntityManager();
 
+        em.getTransaction().begin();
+        Produit produit = em.merge(p);
+        if (!produit.suppression(quantite)) {
+            System.out.println("Quantite invalide, opération non possible");
+
+            //Do something
+        }
+        else{ em.getTransaction().commit(); }
+
+        em.close();
+    }
+
+    public static void ajoutStockProduit(Produit p, int quantite){
+        EntityManager em = Connexion.getEntityManager();
+
+        em.getTransaction().begin();
+        Produit produit = em.merge(p);
+        if (!produit.ajout(quantite)) {
+            System.out.println("Quantite invalide, opération non possible");
+
+            //Do something
+
+        }
+        else{ em.getTransaction().commit(); }
+
+        em.close();
+    }
 
 }

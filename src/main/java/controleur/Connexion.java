@@ -9,7 +9,7 @@ public class Connexion {
     private static EntityManagerFactory emf;
 
     public static void init(){
-        emf = Persistence.createEntityManagerFactory("test");
+        emf = Persistence.createEntityManagerFactory("classique");
     }
 
     public static void close(){

@@ -19,8 +19,7 @@ public final class RayonDAO {
     public static List<Rayon> tousLesRayons(){
         List<Rayon> listeARetourner = new ArrayList<Rayon>();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = Connexion.getEntityManager();
 
         Query query = em.createQuery("SELECT u FROM Rayon u");
 
