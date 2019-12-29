@@ -47,6 +47,10 @@ public class Utilisateur {
         this.magasin = magasin;
     }
 
+    public Utilisateur(){
+        restreint = false;
+    }
+
     //============================= Méthodes =============================
 
     /**
