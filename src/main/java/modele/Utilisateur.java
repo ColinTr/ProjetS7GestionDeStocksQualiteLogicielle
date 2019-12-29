@@ -69,6 +69,16 @@ public class Utilisateur {
         return !(mdpasse.length()<8);
     }
 
+    /**
+     * On override cette méthode pour afficher correctement le prenom et le nom de la personne lorsque l'on print(Utilisateur) par exemple.
+     * Notamment utilisé dans les tables.
+     * @return le prenom suivi du nom de l'utilisateur.
+     */
+    @Override
+    public String toString() {
+        return prenom + " " + nom;
+    }
+
     //============================= Getters et Setters =============================
 
     public int getIdUtilisateur() {

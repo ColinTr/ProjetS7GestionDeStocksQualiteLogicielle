@@ -7,8 +7,6 @@ import javax.persistence.*;
 public class Main {
     public static void main( String[] args ) {
 
-        //System.out.println(Utilisateur.estCeUnNomDeCompteAcceptable(""));
-
         /*EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
 
