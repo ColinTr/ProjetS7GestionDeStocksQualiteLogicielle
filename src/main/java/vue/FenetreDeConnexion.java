@@ -124,7 +124,7 @@ public class FenetreDeConnexion {
         settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("settings.png")));
         settingsButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //SettingWindow.main(null);
+                FenetreDeParametres.main(null);
             }
         });
         settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
