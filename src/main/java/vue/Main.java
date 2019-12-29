@@ -1,31 +1,16 @@
 package vue;
 
-import controleur.UtilisateurDAO;
-import modele.Utilisateur;
+import controleur.Connexion;
 
-import javax.persistence.*;
 
 public class Main {
-
     public static void main( String[] args ) {
+        Connexion.init();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("classique");
-        EntityManager em = emf.createEntityManager();
+        //Do something
 
-        em.getTransaction().begin();
-
-        Utilisateur a = new Utilisateur();
-        a.setPrenom("Colin");
-        a.setNom("Troisemaine");
-        a.setMotDePasse("root");
-        a.setNomDeCompte("root");
-        em.persist(a);
-
-        em.getTransaction().commit();
-
-        em.close();
-
-        System.out.println((UtilisateurDAO.tousLesUtilisateurs()).get(0));
+        Connexion.close();
     }
+
 
 }

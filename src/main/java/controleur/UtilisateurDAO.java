@@ -15,8 +15,7 @@ public final class UtilisateurDAO {
     public static List<Utilisateur> tousLesUtilisateurs(){
         List<Utilisateur> listeARetourner = new ArrayList<Utilisateur>();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("classique");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = Connexion.getEntityManager();
 
         Query query = em.createQuery("SELECT u FROM Utilisateur u");
 
@@ -34,8 +33,7 @@ public final class UtilisateurDAO {
     public static boolean testerParametresDeConnexion(String ndCompte, String mdPasse){
         boolean resultat = false;
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("classique");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = Connexion.getEntityManager();
 
         Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.motDePasse = '" + mdPasse + "' AND u.nomDeCompte = '" + ndCompte + "'");
 

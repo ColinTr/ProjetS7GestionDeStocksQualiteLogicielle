@@ -31,7 +31,6 @@ public class Produit {
     }
 
     public Produit() {
-        idProduit = -1;
         nomProduit = "";
         stock = 0;
         reservations = 0;

@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ProduitDAO {
+public class ProduitDAO {
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits enregistrés dans l'application.
@@ -19,8 +19,7 @@ public final class ProduitDAO {
     public static List<Produit> tousLesProduits(){
         List<Produit> listeARetourner = new ArrayList<Produit>();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em =  Connexion.getEntityManager();
 
         Query query = em.createQuery("SELECT u FROM Produit u");
 
@@ -31,7 +30,6 @@ public final class ProduitDAO {
         }
 
         em.close();
-        emf.close();
 
         return listeARetourner;
     }
@@ -43,11 +41,9 @@ public final class ProduitDAO {
      */
     public static List<Produit> tousLesProduits(Rayon rayonDonne){
         List<Produit> listeARetourner = new ArrayList<Produit>();
+        EntityManager em = Connexion.getEntityManager();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-
-        Rayon rayon = em.find(Rayon.class, rayonDonne);
+        Rayon rayon = em.find(Rayon.class, rayonDonne.getIdRayon());
 
         for (Produit p: rayon.getListeProduits()){
             listeARetourner.add(p);
@@ -64,38 +60,37 @@ public final class ProduitDAO {
      */
     public static void ajouterUnProduit(Produit produit){
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em =  Connexion.getEntityManager();
 
         em.getTransaction().begin();
-
         em.persist(produit);
-
         em.getTransaction().commit();
 
         em.close();
-        emf.close();
+
     }
 
     /**
      * Fonction supprimant un produit enregistré dans l'application.
-     * @param produit produit que l'on supprime.
+     * @param idProduit id du produit que l'on supprime.
      */
-    public static void supprimerUnProduit(Produit produit){
+    public static void supprimerUnProduit(int idProduit){
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em =  Connexion.getEntityManager();
 
         try{
             em.getTransaction().begin();
+            Produit produit = em.find(Produit.class, idProduit);
             em.remove(produit);
             em.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();
         }
 
+
         em.close();
-        emf.close();
     }
+
+
 
 }
