@@ -77,7 +77,7 @@ public class FenetreDeConnexion {
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
         ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file-explorer-icon.png"));
         frameLoginWindow.setIconImage(logo.getImage());
-        frameLoginWindow.setTitle("Login");
+        frameLoginWindow.setTitle("Connexion");
         frameLoginWindow.setBounds(dim.width/2-530/2, dim.height/2-250/2, 530, 250);
         frameLoginWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon img = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("user_icon.png"));
@@ -149,20 +149,6 @@ public class FenetreDeConnexion {
         gbc_user_icon_image.gridy = 1;
         leftPanel.add(user_icon_image, gbc_user_icon_image);
 
-        JButton btnRegister = new JButton("Register");
-        btnRegister.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                //RegisterWindow.main(null);
-                frameLoginWindow.dispose();
-            }
-        });
-
-        GridBagConstraints gbc_btnRegister = new GridBagConstraints();
-        gbc_btnRegister.insets = new Insets(0, 0, 10, 0);
-        gbc_btnRegister.gridx = 0;
-        gbc_btnRegister.gridy = 2;
-        leftPanel.add(btnRegister, gbc_btnRegister);
-
         JPanel rightPanel = new JPanel();
         GridBagConstraints gbc_rightPanel = new GridBagConstraints();
         gbc_rightPanel.fill = GridBagConstraints.BOTH;
@@ -177,7 +163,7 @@ public class FenetreDeConnexion {
         gbl_rightPanel.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
         rightPanel.setLayout(gbl_rightPanel);
 
-        JLabel login_label = new JLabel("LOGIN");
+        JLabel login_label = new JLabel("CONNEXION");
         login_label.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
         login_label.setHorizontalAlignment(SwingConstants.CENTER);
         login_label.setForeground(Color.WHITE);
@@ -241,8 +227,8 @@ public class FenetreDeConnexion {
         gbc_errorMessageLabel.gridy = 3;
         rightPanel.add(errorMessageLabel, gbc_errorMessageLabel);
 
-        JButton connectionButton = new JButton("Connection");
-        connectionButton.addActionListener(new ActionListener() {
+        JButton boutonConnexion = new JButton("Connexion");
+        boutonConnexion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
@@ -261,6 +247,6 @@ public class FenetreDeConnexion {
         GridBagConstraints gbc_connectionButton = new GridBagConstraints();
         gbc_connectionButton.gridx = 0;
         gbc_connectionButton.gridy = 4;
-        rightPanel.add(connectionButton, gbc_connectionButton);
+        rightPanel.add(boutonConnexion, gbc_connectionButton);
     }
 }
