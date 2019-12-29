@@ -30,6 +30,8 @@ public class RayonDAO {
             listeARetourner.add( ((Rayon) o) );
         }
 
+        em.close();
+
         return listeARetourner;
     }
 

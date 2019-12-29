@@ -53,6 +53,8 @@ public class ProduitDAO {
             listeARetourner.add(p);
         }
 
+        em.close();
+
         return listeARetourner;
     }
 
@@ -73,7 +75,6 @@ public class ProduitDAO {
 
         em.close();
         emf.close();
-
     }
 
     /**
@@ -93,11 +94,8 @@ public class ProduitDAO {
             e.printStackTrace();
         }
 
-
         em.close();
         emf.close();
     }
-
-
 
 }
