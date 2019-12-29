@@ -56,12 +56,7 @@ public class Utilisateur {
      * @return vrai si il est acceptable, faux sinon.
      */
     public static boolean estCeUnNomDeCompteAcceptable(String ndcompte){
-        if(ndcompte.contains(" ") || ndcompte.length()<4){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(ndcompte.contains(" ") || ndcompte.length()<4);
     }
 
     /**
@@ -71,12 +66,7 @@ public class Utilisateur {
      * @return vrai si il est acceptable, faux sinon.
      */
     public static boolean estCeUnMotDePasseAcceptable(String mdpasse){
-        if(mdpasse.length()<8){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(mdpasse.length()<8);
     }
 
     //============================= Getters et Setters =============================

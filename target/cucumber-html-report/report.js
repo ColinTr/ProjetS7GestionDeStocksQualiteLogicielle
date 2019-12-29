@@ -160,7 +160,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 210272800,
+  "duration": 183397800,
   "status": "passed"
 });
 formatter.match({
@@ -173,7 +173,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 730000,
+  "duration": 798100,
   "status": "passed"
 });
 formatter.match({
@@ -186,7 +186,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 1715500,
+  "duration": 2047200,
   "status": "passed"
 });
 formatter.scenario({
@@ -231,7 +231,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 65500,
+  "duration": 68100,
   "status": "passed"
 });
 formatter.match({
@@ -244,7 +244,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 45700,
+  "duration": 56100,
   "status": "passed"
 });
 formatter.match({
@@ -257,7 +257,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 56200,
+  "duration": 60900,
   "status": "passed"
 });
 formatter.scenario({
@@ -302,7 +302,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 72600,
+  "duration": 90500,
   "status": "passed"
 });
 formatter.match({
@@ -315,7 +315,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 112700,
+  "duration": 6491000,
   "status": "passed"
 });
 formatter.match({
@@ -328,7 +328,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 47100,
+  "duration": 50700,
   "status": "passed"
 });
 formatter.scenario({
@@ -373,7 +373,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 93900,
+  "duration": 98400,
   "status": "passed"
 });
 formatter.match({
@@ -386,7 +386,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 251200,
+  "duration": 56000,
   "status": "passed"
 });
 formatter.match({
@@ -444,7 +444,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 63500,
+  "duration": 68500,
   "status": "passed"
 });
 formatter.match({
@@ -457,7 +457,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 47900,
+  "duration": 45600,
   "status": "passed"
 });
 formatter.match({
@@ -470,7 +470,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 62300,
+  "duration": 56200,
   "status": "passed"
 });
 formatter.scenario({
@@ -515,7 +515,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 63900,
+  "duration": 64600,
   "status": "passed"
 });
 formatter.match({
@@ -528,7 +528,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 129200,
+  "duration": 49900,
   "status": "passed"
 });
 formatter.match({
@@ -541,7 +541,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 51100,
+  "duration": 54600,
   "status": "passed"
 });
 formatter.scenario({
@@ -586,7 +586,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 83300,
+  "duration": 64800,
   "status": "passed"
 });
 formatter.match({
@@ -599,7 +599,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 47300,
+  "duration": 51300,
   "status": "passed"
 });
 formatter.match({
@@ -612,7 +612,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 203100,
+  "duration": 55800,
   "status": "passed"
 });
 formatter.scenario({
@@ -657,7 +657,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 62800,
+  "duration": 66400,
   "status": "passed"
 });
 formatter.match({
@@ -670,7 +670,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 72100,
+  "duration": 76500,
   "status": "passed"
 });
 formatter.match({
@@ -683,7 +683,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 63100,
+  "duration": 78300,
   "status": "passed"
 });
 formatter.scenario({
@@ -728,7 +728,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeMotDePasse(String)"
 });
 formatter.result({
-  "duration": 62200,
+  "duration": 63100,
   "status": "passed"
 });
 formatter.match({
@@ -741,7 +741,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnMotDePasseAcceptable(String)"
 });
 formatter.result({
-  "duration": 212200,
+  "duration": 47700,
   "status": "passed"
 });
 formatter.match({
@@ -754,7 +754,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourMotDePasseATester(String)"
 });
 formatter.result({
-  "duration": 147300,
+  "duration": 49000,
   "status": "passed"
 });
 formatter.uri("nomDeCompte.feature");
@@ -935,7 +935,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 76700,
+  "duration": 69700,
   "status": "passed"
 });
 formatter.match({
@@ -948,7 +948,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 69100,
+  "duration": 73700,
   "status": "passed"
 });
 formatter.match({
@@ -961,7 +961,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 51500,
+  "duration": 64000,
   "status": "passed"
 });
 formatter.scenario({
@@ -1006,7 +1006,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 61200,
+  "duration": 99000,
   "status": "passed"
 });
 formatter.match({
@@ -1019,7 +1019,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 80500,
+  "duration": 66500,
   "status": "passed"
 });
 formatter.match({
@@ -1032,7 +1032,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 60800,
+  "duration": 49900,
   "status": "passed"
 });
 formatter.scenario({
@@ -1077,7 +1077,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 85100,
+  "duration": 76400,
   "status": "passed"
 });
 formatter.match({
@@ -1090,7 +1090,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 67500,
+  "duration": 53700,
   "status": "passed"
 });
 formatter.match({
@@ -1103,7 +1103,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 73600,
+  "duration": 48600,
   "status": "passed"
 });
 formatter.scenario({
@@ -1148,7 +1148,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 65800,
+  "duration": 64100,
   "status": "passed"
 });
 formatter.match({
@@ -1161,7 +1161,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 1224800,
+  "duration": 50000,
   "status": "passed"
 });
 formatter.match({
@@ -1174,7 +1174,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 297200,
+  "duration": 53200,
   "status": "passed"
 });
 formatter.scenario({
@@ -1219,7 +1219,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 101200,
+  "duration": 69800,
   "status": "passed"
 });
 formatter.match({
@@ -1232,7 +1232,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 638600,
+  "duration": 60200,
   "status": "passed"
 });
 formatter.match({
@@ -1245,7 +1245,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 414900,
+  "duration": 54000,
   "status": "passed"
 });
 formatter.scenario({
@@ -1290,7 +1290,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 1255400,
+  "duration": 128900,
   "status": "passed"
 });
 formatter.match({
@@ -1303,7 +1303,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 385700,
+  "duration": 51700,
   "status": "passed"
 });
 formatter.match({
@@ -1316,7 +1316,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 50800,
+  "duration": 51200,
   "status": "passed"
 });
 formatter.scenario({
@@ -1361,7 +1361,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 494000,
+  "duration": 768900,
   "status": "passed"
 });
 formatter.match({
@@ -1374,7 +1374,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 58000,
+  "duration": 56800,
   "status": "passed"
 });
 formatter.match({
@@ -1387,7 +1387,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 84500,
+  "duration": 51400,
   "status": "passed"
 });
 formatter.scenario({
@@ -1432,7 +1432,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 3324200,
+  "duration": 71700,
   "status": "passed"
 });
 formatter.match({
@@ -1445,7 +1445,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 90700,
+  "duration": 57000,
   "status": "passed"
 });
 formatter.match({
@@ -1458,7 +1458,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 68900,
+  "duration": 53900,
   "status": "passed"
 });
 formatter.scenario({
@@ -1503,7 +1503,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 74500,
+  "duration": 58900,
   "status": "passed"
 });
 formatter.match({
@@ -1516,7 +1516,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 68300,
+  "duration": 58500,
   "status": "passed"
 });
 formatter.match({
@@ -1529,7 +1529,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 506100,
+  "duration": 42500,
   "status": "passed"
 });
 formatter.scenario({
@@ -1574,7 +1574,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 63800,
+  "duration": 65700,
   "status": "passed"
 });
 formatter.match({
@@ -1587,7 +1587,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 81000,
+  "duration": 69700,
   "status": "passed"
 });
 formatter.match({
@@ -1600,7 +1600,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 51100,
+  "duration": 45400,
   "status": "passed"
 });
 formatter.scenario({
@@ -1645,7 +1645,7 @@ formatter.match({
   "location": "utilisateurSteps.jAiEntreCeNomDeCompte(String)"
 });
 formatter.result({
-  "duration": 742900,
+  "duration": 66200,
   "status": "passed"
 });
 formatter.match({
@@ -1658,7 +1658,7 @@ formatter.match({
   "location": "utilisateurSteps.jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String)"
 });
 formatter.result({
-  "duration": 59000,
+  "duration": 46200,
   "status": "passed"
 });
 formatter.match({
@@ -1671,7 +1671,7 @@ formatter.match({
   "location": "utilisateurSteps.leResultatDevraitEtrePourNomDeCompteATester(String)"
 });
 formatter.result({
-  "duration": 77800,
+  "duration": 51000,
   "status": "passed"
 });
 formatter.uri("suppressionReservation.feature");
@@ -1704,7 +1704,7 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 723900,
+  "duration": 5343100,
   "status": "passed"
 });
 formatter.scenario({
@@ -1735,6 +1735,11 @@ formatter.step({
   "name": "il en reste 7",
   "keyword": "And "
 });
+formatter.step({
+  "line": 12,
+  "name": "5 sont réservés",
+  "keyword": "And "
+});
 formatter.match({
   "arguments": [
     {
@@ -1745,7 +1750,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 1760200,
+  "duration": 574100,
   "status": "passed"
 });
 formatter.match({
@@ -1758,14 +1763,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 81700,
+  "duration": 86800,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 33300,
+  "duration": 42300,
   "status": "passed"
 });
 formatter.match({
@@ -1778,7 +1783,20 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 503500,
+  "duration": 387200,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "5",
+      "offset": 0
+    }
+  ],
+  "location": "produitSteps.sontRéservés(int)"
+});
+formatter.result({
+  "duration": 77800,
   "status": "passed"
 });
 formatter.background({
@@ -1803,11 +1821,11 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 89400,
+  "duration": 182500,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 13,
+  "line": 14,
   "name": "Je veux enlever 3 alors que 8 sont réservés",
   "description": "",
   "id": "puis-je-enlever-ou-réserver-des-articles-au-stock;je-veux-enlever-3-alors-que-8-sont-réservés",
@@ -1815,23 +1833,28 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 14,
+  "line": 15,
   "name": "8 sont réservés",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 15,
+  "line": 16,
   "name": "j\u0027essaie d\u0027en enlever 3",
   "keyword": "When "
 });
 formatter.step({
-  "line": 16,
+  "line": 17,
   "name": "c\u0027est impossible",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 17,
+  "line": 18,
   "name": "il en reste 10",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 19,
+  "name": "5 sont réservés",
   "keyword": "And "
 });
 formatter.match({
@@ -1844,7 +1867,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 75100,
+  "duration": 68000,
   "status": "passed"
 });
 formatter.match({
@@ -1857,14 +1880,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnEnlever(int)"
 });
 formatter.result({
-  "duration": 309800,
+  "duration": 171600,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 27200,
+  "duration": 28100,
   "status": "passed"
 });
 formatter.match({
@@ -1877,7 +1900,20 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 85500,
+  "duration": 79700,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "5",
+      "offset": 0
+    }
+  ],
+  "location": "produitSteps.sontRéservés(int)"
+});
+formatter.result({
+  "duration": 180700,
   "status": "passed"
 });
 formatter.background({
@@ -1902,11 +1938,11 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 542000,
+  "duration": 92600,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 19,
+  "line": 21,
   "name": "Je veux en réserver 3 alors que 5 sont réservés",
   "description": "",
   "id": "puis-je-enlever-ou-réserver-des-articles-au-stock;je-veux-en-réserver-3-alors-que-5-sont-réservés",
@@ -1914,23 +1950,28 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 20,
+  "line": 22,
   "name": "5 sont réservés",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 21,
+  "line": 23,
   "name": "j\u0027essaie d\u0027en réserver 3",
   "keyword": "When "
 });
 formatter.step({
-  "line": 22,
+  "line": 24,
   "name": "c\u0027est possible",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 23,
-  "name": "il en reste 7",
+  "line": 25,
+  "name": "il en reste 10",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 26,
+  "name": "8 sont réservés",
   "keyword": "And "
 });
 formatter.match({
@@ -1943,7 +1984,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 66200,
+  "duration": 71300,
   "status": "passed"
 });
 formatter.match({
@@ -1956,27 +1997,40 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 288800,
+  "duration": 92300,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstPossible()"
 });
 formatter.result({
-  "duration": 89100,
+  "duration": 18400,
   "status": "passed"
 });
 formatter.match({
   "arguments": [
     {
-      "val": "7",
+      "val": "10",
       "offset": 12
     }
   ],
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 2439400,
+  "duration": 105100,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "8",
+      "offset": 0
+    }
+  ],
+  "location": "produitSteps.sontRéservés(int)"
+});
+formatter.result({
+  "duration": 166900,
   "status": "passed"
 });
 formatter.background({
@@ -2001,11 +2055,11 @@ formatter.match({
   "location": "produitSteps.jAiPommesDansMonStockDePommes(int)"
 });
 formatter.result({
-  "duration": 80000,
+  "duration": 96600,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 25,
+  "line": 28,
   "name": "Je veux en réserver 3 alors que 8 sont réservés",
   "description": "",
   "id": "puis-je-enlever-ou-réserver-des-articles-au-stock;je-veux-en-réserver-3-alors-que-8-sont-réservés",
@@ -2013,23 +2067,28 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "line": 26,
+  "line": 29,
   "name": "8 sont réservés",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 27,
+  "line": 30,
   "name": "j\u0027essaie d\u0027en réserver 3",
   "keyword": "When "
 });
 formatter.step({
-  "line": 28,
+  "line": 31,
   "name": "c\u0027est impossible",
   "keyword": "Then "
 });
 formatter.step({
-  "line": 29,
+  "line": 32,
   "name": "il en reste 10",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 33,
+  "name": "8 sont réservés",
   "keyword": "And "
 });
 formatter.match({
@@ -2042,7 +2101,7 @@ formatter.match({
   "location": "produitSteps.sontRéservés(int)"
 });
 formatter.result({
-  "duration": 98000,
+  "duration": 67600,
   "status": "passed"
 });
 formatter.match({
@@ -2055,14 +2114,14 @@ formatter.match({
   "location": "produitSteps.jEssaieDEnRéserver(int)"
 });
 formatter.result({
-  "duration": 371300,
+  "duration": 75700,
   "status": "passed"
 });
 formatter.match({
   "location": "produitSteps.cEstImpossible()"
 });
 formatter.result({
-  "duration": 22400,
+  "duration": 16700,
   "status": "passed"
 });
 formatter.match({
@@ -2075,7 +2134,20 @@ formatter.match({
   "location": "produitSteps.ilEnReste(int)"
 });
 formatter.result({
-  "duration": 73200,
+  "duration": 69400,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "8",
+      "offset": 0
+    }
+  ],
+  "location": "produitSteps.sontRéservés(int)"
+});
+formatter.result({
+  "duration": 51100,
   "status": "passed"
 });
 });

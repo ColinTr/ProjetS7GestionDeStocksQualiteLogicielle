@@ -9,21 +9,25 @@ On peut enlever ou réserver des produits si le nombre d'articles à enlever est
     When j'essaie d'en enlever 3
     Then c'est possible
     And il en reste 7
+    And 5 sont réservés
 
    Scenario: Je veux enlever 3 alors que 8 sont réservés
      Given 8 sont réservés
      When j'essaie d'en enlever 3
      Then c'est impossible
      And il en reste 10
+     And 5 sont réservés
 
    Scenario: Je veux en réserver 3 alors que 5 sont réservés
      Given 5 sont réservés
      When j'essaie d'en réserver 3
      Then c'est possible
-     And il en reste 7
+     And il en reste 10
+     And 8 sont réservés
 
    Scenario: Je veux en réserver 3 alors que 8 sont réservés
      Given 8 sont réservés
      When j'essaie d'en réserver 3
      Then c'est impossible
      And il en reste 10
+     And 8 sont réservés

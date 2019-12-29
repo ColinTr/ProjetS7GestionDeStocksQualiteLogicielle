@@ -30,9 +30,32 @@ public class Produit {
         this.rayon = rayon;
     }
 
+    public Produit() {
+        idProduit = -1;
+        nomProduit = "";
+        stock = 0;
+        reservations = 0;
+        prix = 0;
+        rayon = null;
+    }
+
     //============================= Méthodes ============================
 
+    public boolean reservation(int quantite){
+        if( quantite < stock - reservations ){
+            reservations += quantite;
+            return true;
+        }
+        return false;
+    }
 
+    public boolean suppression(int quantite){
+        if( quantite < stock - reservations ){
+            stock -= quantite;
+            return true;
+        }
+        return false;
+    }
 
     //============================= Getters et Setters =============================
 
