@@ -2,7 +2,7 @@ Feature: Puis-je enlever ou réserver des articles au stock
 On peut enlever ou réserver des produits si le nombre d'articles à enlever est inférieur ou égal au nombre d'article présents moins le nombre d'articles réservés.
 
   Background:
-    Given j'ai 10 pommes dans mon stock de pommes
+    Given j'ai 10 articles dans mon stock d'articles
 
   Scenario: Je veux enlever 3 alors que 5 sont réservés
     Given 5 sont réservés

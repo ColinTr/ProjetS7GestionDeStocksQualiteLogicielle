@@ -6,7 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class produitSteps {
-    @Given("^j'ai (\\d+) pommes dans mon stock de pommes$")
+    @Given("^j'ai (\\d+) articles dans mon stock d'articles$")
     public void jAiPommesDansMonStockDePommes(int arg0) {
     }
 

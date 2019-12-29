@@ -47,6 +47,38 @@ public class Utilisateur {
         this.magasin = magasin;
     }
 
+    //============================= Méthodes =============================
+
+    /**
+     * Cette fonction détermine si un String correspond aux restrictions imposées sur les noms de compte.
+     * Un nom de compte est acceptable si il contient au moins 4 caracteres et aucun caractère espace.
+     * @param ndcompte : Un String
+     * @return vrai si il est acceptable, faux sinon.
+     */
+    public static boolean estCeUnNomDeCompteAcceptable(String ndcompte){
+        if(ndcompte.contains(" ") || ndcompte.length()<4){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    /**
+     * Cette fonction détermine si un String correspond aux restrictions imposées sur les mots de passe.
+     * Un mot de passe est acceptable si il contient au moins 8 caracteres.
+     * @param mdpasse : Un String
+     * @return vrai si il est acceptable, faux sinon.
+     */
+    public static boolean estCeUnMotDePasseAcceptable(String mdpasse){
+        if(mdpasse.length()<8){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     //============================= Getters et Setters =============================
 
     public int getIdUtilisateur() {

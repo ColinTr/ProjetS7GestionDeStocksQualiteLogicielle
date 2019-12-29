@@ -1,7 +1,2 @@
 
-Jsquid:S1068"'Remove this unused "nom" private field.(À³õåùÿÿÿÿ8èë¤ğô-
-Psquid:S1068"-Remove this unused "restreint" private field.(ä˜øòıÿÿÿÿ8èë¤ğô-
-Msquid:S1068"0Remove this unused "typeDeCompte" private field.(‚µç{8èë¤ğô-
-Lsquid:S1068".Remove this unused "motDePasse" private field.(ªŠ”8èë¤ğô-
-Hsquid:S1068"*Remove this unused "prenom" private field.(Í¤™ì8èë¤ğô-
-Rsquid:S1068"/Remove this unused "nomDeCompte" private field.(Àú¤Éûÿÿÿÿ8èë¤ğô-
+`squid:S00107&"AConstructor has 9 parameters, which is greater than 7 authorized.(öïı8ïÃğóô-

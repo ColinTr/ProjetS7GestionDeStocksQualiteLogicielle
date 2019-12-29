@@ -30,6 +30,10 @@ public class Produit {
         this.rayon = rayon;
     }
 
+    //============================= Méthodes ============================
+
+
+
     //============================= Getters et Setters =============================
 
     public int getIdProduit() {
