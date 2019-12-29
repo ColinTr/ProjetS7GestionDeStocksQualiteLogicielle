@@ -13,7 +13,7 @@ public class RayonsTable extends AbstractTableModel {
     private static final int COLUMN_NOM_CHEF_RAYON = 1;
     private static final int COLUMN_NB_ARTICLES = 2;
 
-    private String[] columnNames = { "Nom rayon", "Chef de rayon", "Nombre d'articles" };
+    private final String[] columnNames = { "Nom rayon", "Chef de rayon", "Nombre d'articles" };
     private List<Rayon> rayonsList;
 
     public void setFilesList(List<Rayon> fList) {
@@ -44,7 +44,7 @@ public class RayonsTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if(rayonsList==null || rayonsList.size()==0){
+        if(rayonsList==null || rayonsList.isEmpty()){
             return null;
         }
 

@@ -1,4 +1,4 @@
 package controleur;
 
-public class MagasinDAO {
+public final class MagasinDAO {
 }

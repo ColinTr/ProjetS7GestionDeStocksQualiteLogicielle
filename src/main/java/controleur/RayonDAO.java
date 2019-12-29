@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RayonDAO {
+public final class RayonDAO {
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les rayons enregistrés dans l'application.

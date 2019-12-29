@@ -31,7 +31,7 @@ public class FenetreDeConnexion {
 
     private final Color blueColor = new Color(50, 100, 150);
     private final Color colorHover = new Color(169, 171, 184);
-    private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
     private JFrame frameLoginWindow;
 

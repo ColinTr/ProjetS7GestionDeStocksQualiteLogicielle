@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilisateurDAO {
+public final class UtilisateurDAO {
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les utilisateurs enregistrés dans l'application.
@@ -41,7 +41,7 @@ public class UtilisateurDAO {
 
         List results = query.getResultList();
 
-        if(results.size() > 0){
+        if(!results.isEmpty()){
             resultat = true;
         }
 

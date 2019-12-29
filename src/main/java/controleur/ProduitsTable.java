@@ -14,7 +14,7 @@ public class ProduitsTable extends AbstractTableModel {
     private static final int COLUMN_STOCK = 2;
     private static final int COLUMN_QTE_RESERVEE = 3;
 
-    private String[] columnNames = { "Nom produit", "Prix", "Stock", "Quantité réservée" };
+    private final String[] columnNames = { "Nom produit", "Prix", "Stock", "Quantité réservée" };
     private List<Produit> produitsList;
 
     public void setFilesList(List<Produit> fList) {
@@ -45,7 +45,7 @@ public class ProduitsTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if(produitsList==null || produitsList.size()==0){
+        if(produitsList==null || produitsList.isEmpty()){
             return null;
         }
 
