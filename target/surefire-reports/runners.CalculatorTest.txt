@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: runners.CalculatorTest
--------------------------------------------------------------------------------
-Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.637 s - in runners.CalculatorTest
