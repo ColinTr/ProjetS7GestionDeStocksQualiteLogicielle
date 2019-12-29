@@ -1,46 +1,47 @@
 package stepdefs;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import static org.junit.Assert.*;
+
+import modele.Utilisateur;
 
 public class utilisateurSteps {
 
-    @Given("^a$")
-    public void a() {
+    private String nomDeCompte;
+    private String motDePasse;
+
+    private boolean resultat;
+
+    @Given("^j'ai entre ce nom de compte \"([^\"]*)\"$")
+    public void jAiEntreCeNomDeCompte(String arg0) throws Throwable {
+        nomDeCompte = arg0;
     }
 
-    @When("^b$")
-    public void b() {
+    @When("^je teste \"([^\"]*)\" pour voir si c'est un nom de compte acceptable$")
+    public void jeTestePourVoirSiCEstUnNomDeCompteAcceptable(String arg0) throws Throwable {
+        resultat = Utilisateur.estCeUnNomDeCompteAcceptable(nomDeCompte);
     }
 
-    @Then("^c$")
-    public void c() {
+    @Then("^le resultat devrait etre \"([^\"]*)\" pour nomDeCompteATester$")
+    public void leResultatDevraitEtrePourNomDeCompteATester(String arg0) throws Throwable {
+        assertEquals(Boolean.parseBoolean(arg0), resultat);
     }
 
-    @Given("^j'ai entre ce nom de compte <nomDeCompteATester>$")
-    public void jAiEntreCeNomDeCompteNomDeCompteATester() {
+    @Given("^j'ai entre ce mot de passe \"([^\"]*)\"$")
+    public void jAiEntreCeMotDePasse(String arg0) throws Throwable {
+        motDePasse = arg0;
     }
 
-    @When("^je test <nomDeCompteATester> pour voir s'il est acceptable$")
-    public void jeTestNomDeCompteATesterPourVoirSIlEstAcceptable() {
+    @When("^je teste \"([^\"]*)\" pour voir si c'est un mot de passe acceptable$")
+    public void jeTestePourVoirSiCEstUnMotDePasseAcceptable(String arg0) throws Throwable {
+        resultat = Utilisateur.estCeUnMotDePasseAcceptable(motDePasse);
     }
 
-    @Then("^le resultat devrait etre <valeurRetour> pour <nomDeCompteATester>$")
-    public void leResultatDevraitEtreValeurRetourPourNomDeCompteATester() {
+    @Then("^le resultat devrait etre \"([^\"]*)\" pour motDePasseATester$")
+    public void leResultatDevraitEtrePourMotDePasseATester(String arg0) throws Throwable {
+        assertEquals(Boolean.parseBoolean(arg0), resultat);
     }
-
-    @Given("^j'ai entre ce mot de passe <motDePasseATester>$")
-    public void jAiEntreCeMotDePasseMotDePasseATester() {
-    }
-
-    @When("^je test <motDePasseATester> pour voir s'il est acceptable$")
-    public void jeTestMotDePasseATesterPourVoirSIlEstAcceptable() {
-    }
-
-
-    @Then("^le resultat devrait etre <valeurRetour> pour <motDePasseATester>$")
-    public void leResultatDevraitEtreValeurRetourPourMotDePasseATester() {
-    }
-
 }

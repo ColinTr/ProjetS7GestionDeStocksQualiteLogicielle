@@ -1,10 +1,15 @@
 package vue;
 
+import modele.Utilisateur;
+
 import javax.persistence.*;
 
 public class Main {
     public static void main( String[] args ) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+
+        //System.out.println(Utilisateur.estCeUnNomDeCompteAcceptable(""));
+
+        /*EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -13,6 +18,6 @@ public class Main {
 
         em.getTransaction().commit();
 
-        em.close();
+        em.close();*/
     }
 }
