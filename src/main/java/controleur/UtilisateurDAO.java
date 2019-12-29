@@ -31,4 +31,22 @@ public class UtilisateurDAO {
         return listeARetourner;
     }
 
+    public static boolean testerParametresDeConnexion(String ndCompte, String mdPasse){
+        boolean resultat = false;
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("classique");
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.motDePasse = '" + mdPasse + "' AND u.nomDeCompte = '" + ndCompte + "'");
+
+        List results = query.getResultList();
+
+        if(results.size() > 0){
+            resultat = true;
+        }
+
+        em.close();
+        return resultat;
+    }
+
 }

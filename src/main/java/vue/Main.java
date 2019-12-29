@@ -17,6 +17,8 @@ public class Main {
         Utilisateur a = new Utilisateur();
         a.setPrenom("Colin");
         a.setNom("Troisemaine");
+        a.setMotDePasse("root");
+        a.setNomDeCompte("root");
         em.persist(a);
 
         em.getTransaction().commit();
