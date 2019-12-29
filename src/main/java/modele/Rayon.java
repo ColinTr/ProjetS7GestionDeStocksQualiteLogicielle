@@ -24,6 +24,16 @@ public class Rayon {
     @JoinColumn(name = "magasin")
     private Magasin magasin;
 
+    //============================= Méthodes =============================
+
+    /**
+     * Méthode qui renvoie le nombre de produits différents dans le rayon.
+     * @return le nombre de produits.
+     */
+    public int getNbProduits(){
+        return listeProduits.size();
+    }
+
     //============================= Constructeurs =============================
 
     public Rayon(String nomRayon, Utilisateur chefDeRayon, List<Produit> listeProduits, Magasin magasin) {

@@ -47,6 +47,10 @@ public class Utilisateur {
         this.magasin = magasin;
     }
 
+    public Utilisateur(){
+        restreint = false;
+    }
+
     //============================= Méthodes =============================
 
     /**
@@ -56,12 +60,7 @@ public class Utilisateur {
      * @return vrai si il est acceptable, faux sinon.
      */
     public static boolean estCeUnNomDeCompteAcceptable(String ndcompte){
-        if(ndcompte.contains(" ") || ndcompte.length()<4){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(ndcompte.contains(" ") || ndcompte.length()<4);
     }
 
     /**
@@ -71,12 +70,17 @@ public class Utilisateur {
      * @return vrai si il est acceptable, faux sinon.
      */
     public static boolean estCeUnMotDePasseAcceptable(String mdpasse){
-        if(mdpasse.length()<8){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(mdpasse.length()<8);
+    }
+
+    /**
+     * On override cette méthode pour afficher correctement le prenom et le nom de la personne lorsque l'on print(Utilisateur) par exemple.
+     * Notamment utilisé dans les tables.
+     * @return le prenom suivi du nom de l'utilisateur.
+     */
+    @Override
+    public String toString() {
+        return prenom + " " + nom;
     }
 
     //============================= Getters et Setters =============================
