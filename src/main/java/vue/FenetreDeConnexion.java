@@ -1,5 +1,6 @@
 package vue;
 
+import controleur.Connexion;
 import controleur.UtilisateurDAO;
 
 import java.awt.EventQueue;
@@ -72,6 +73,8 @@ public class FenetreDeConnexion {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Connexion.init("classique");
 
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);

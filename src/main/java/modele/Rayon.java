@@ -1,6 +1,7 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,6 +33,17 @@ public class Rayon {
      */
     public int getNbProduits(){
         return listeProduits.size();
+    }
+
+    /**
+     * Méthode permettant d'ajouter un nouveau produit au rayon.
+     * @param p : un produit.
+     */
+    public void ajouterProduit(Produit p){
+        if(listeProduits == null){
+            listeProduits = new ArrayList<Produit>();
+        }
+        listeProduits.add(p);
     }
 
     //============================= Constructeurs =============================
