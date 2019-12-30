@@ -41,7 +41,7 @@ public class Produit {
     //============================= Méthodes ============================
 
     public boolean reservation(int quantite){
-        if( stock - reservations - quantite > 0 ){
+        if( stock - reservations - quantite >= 0 ){
             reservations += quantite;
             return true;
         }
@@ -49,7 +49,7 @@ public class Produit {
     }
 
     public boolean ajout(int quantite){
-        if( stock - reservations + quantite > 0 ){
+        if( stock - reservations + quantite >= 0 ){
             stock+= quantite;
             return true;
         }
@@ -57,7 +57,7 @@ public class Produit {
     }
 
     public boolean suppression(int quantite){
-        if( quantite < stock - reservations ){
+        if( stock - reservations - quantite >= 0 ){
             stock -= quantite;
             return true;
         }

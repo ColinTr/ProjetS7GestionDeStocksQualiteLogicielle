@@ -92,35 +92,34 @@ public class ProduitDAO {
         em.close();
     }
 
-    public static void suppressionStockProduit(Produit p, int quantite){
+    public static boolean suppressionStockProduit(Produit p, int quantite){
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
         Produit produit = em.merge(p);
-        if (!produit.suppression(quantite)) {
-            System.out.println("Quantite invalide, opération non possible");
-
-            //Do something
+        if (produit.suppression(quantite)) {
+            em.getTransaction().commit();
+            em.close();
+            return true;
         }
-        else{ em.getTransaction().commit(); }
-
+        System.out.println("Quantite invalide, opération non possible");
         em.close();
+        return false;
     }
 
-    public static void ajoutStockProduit(Produit p, int quantite){
+    public static boolean ajoutStockProduit(Produit p, int quantite){
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
         Produit produit = em.merge(p);
-        if (!produit.ajout(quantite)) {
-            System.out.println("Quantite invalide, opération non possible");
-
-            //Do something
-
+        if (produit.ajout(quantite)) {
+            em.getTransaction().commit();
+            em.close();
+            return true;
         }
-        else{ em.getTransaction().commit(); }
-
+        System.out.println("Quantite invalide, opération non possible");
         em.close();
+        return false;
     }
 
 }
