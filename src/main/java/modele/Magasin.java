@@ -44,6 +44,9 @@ public class Magasin {
         this.listeEmployes = listeEmployes;
     }
 
+    public Magasin(){
+    }
+
     //============================= Getters et Setters =============================
 
     public int getIdMagasin() {

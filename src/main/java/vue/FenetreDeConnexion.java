@@ -239,8 +239,8 @@ public class FenetreDeConnexion {
                 if(UtilisateurDAO.testerParametresDeConnexion(username, password)) {
                     String [] args = new String[2];
                     args[0] = username;
-                    //FolderExplorerWindow.main(args);
                     frameLoginWindow.dispose();
+                    FenetrePrincipale.main(null);
                 }
                 else {
                     errorMessageLabel.setText("Error : User doesn't exist in database.");

@@ -55,6 +55,10 @@ public class Rayon {
         this.magasin = magasin;
     }
 
+    public Rayon(){
+
+    }
+
     //============================= Getters et Setters =============================
 
     public int getIdRayon() {
