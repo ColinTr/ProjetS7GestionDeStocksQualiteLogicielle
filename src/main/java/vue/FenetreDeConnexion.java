@@ -75,7 +75,7 @@ public class FenetreDeConnexion {
 
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
-        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file-explorer-icon.png"));
+        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file_icon.png"));
         frameLoginWindow.setIconImage(logo.getImage());
         frameLoginWindow.setTitle("Connexion");
         frameLoginWindow.setBounds(dim.width/2-530/2, dim.height/2-250/2, 530, 250);
@@ -121,7 +121,7 @@ public class FenetreDeConnexion {
         settingsButton.setOpaque(true);
         settingsButton.setBorder(null);
         settingsButton.setBackground(blueColor);
-        settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("settings.png")));
+        settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("settings_icon.png")));
         settingsButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 FenetreDeParametres.main(null);
