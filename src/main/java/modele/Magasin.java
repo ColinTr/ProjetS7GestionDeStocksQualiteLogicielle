@@ -1,6 +1,7 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,18 @@ public class Magasin {
 
     @OneToMany(mappedBy = "magasin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Utilisateur> listeEmployes;
+    //============================= Méthodes =============================
 
+    /**
+     * Méthode permettant d'ajouter un nouveau rayon au magasin.
+     * @param r : un rayon.
+     */
+    public void ajouterRayon(Rayon r){
+        if(listeRayons == null){
+            listeRayons = new ArrayList<Rayon>();
+        }
+        listeRayons.add(r);
+    }
     //============================= Constructeurs =============================
 
     public Magasin(String nomMagasin, Utilisateur chefDeMagasin, List<Rayon> listeRayons, List<Utilisateur> listeEmployes) {
@@ -30,6 +42,9 @@ public class Magasin {
         this.chefDeMagasin = chefDeMagasin;
         this.listeRayons = listeRayons;
         this.listeEmployes = listeEmployes;
+    }
+
+    public Magasin(){
     }
 
     //============================= Getters et Setters =============================

@@ -1,6 +1,8 @@
 package vue;
 
+import controleur.Connexion;
 import controleur.UtilisateurDAO;
+import modele.Utilisateur;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -73,9 +75,11 @@ public class FenetreDeConnexion {
             e.printStackTrace();
         }
 
+        Connexion.init("classique");
+
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
-        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file-explorer-icon.png"));
+        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file_icon.png"));
         frameLoginWindow.setIconImage(logo.getImage());
         frameLoginWindow.setTitle("Connexion");
         frameLoginWindow.setBounds(dim.width/2-530/2, dim.height/2-250/2, 530, 250);
@@ -121,7 +125,7 @@ public class FenetreDeConnexion {
         settingsButton.setOpaque(true);
         settingsButton.setBorder(null);
         settingsButton.setBackground(blueColor);
-        settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("settings.png")));
+        settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("settings_icon.png")));
         settingsButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 FenetreDeParametres.main(null);
@@ -233,14 +237,15 @@ public class FenetreDeConnexion {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 //if(username.equals("root") && password.equals("root")) { //FolderExplorerWindow.main(null); frameLoginWindow.dispose(); }
-                if(UtilisateurDAO.testerParametresDeConnexion(username, password)) {
-                    String [] args = new String[2];
-                    args[0] = username;
-                    //FolderExplorerWindow.main(args);
-                    frameLoginWindow.dispose();
+                Utilisateur utilisateurCorrespondant = UtilisateurDAO.getUtilisateur(username, password);
+                if(utilisateurCorrespondant == null){
+                    errorMessageLabel.setText("Error : User doesn't exist in database.");
                 }
                 else {
-                    errorMessageLabel.setText("Error : User doesn't exist in database.");
+                    String [] args = new String[2];
+                    args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
+                    frameLoginWindow.dispose();
+                    FenetrePrincipale.main(args);
                 }
             }
         });

@@ -8,8 +8,8 @@ public class Connexion {
 
     private static EntityManagerFactory emf;
 
-    public static void init(){
-        emf = Persistence.createEntityManagerFactory("classique");
+    public static void init(String mode){
+        emf = Persistence.createEntityManagerFactory(mode);
     }
 
     public static void close(){

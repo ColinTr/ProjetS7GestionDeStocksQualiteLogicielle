@@ -1,6 +1,7 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,6 +35,17 @@ public class Rayon {
         return listeProduits.size();
     }
 
+    /**
+     * Méthode permettant d'ajouter un nouveau produit au rayon.
+     * @param p : un produit.
+     */
+    public void ajouterProduit(Produit p){
+        if(listeProduits == null){
+            listeProduits = new ArrayList<Produit>();
+        }
+        listeProduits.add(p);
+    }
+
     //============================= Constructeurs =============================
 
     public Rayon(String nomRayon, Utilisateur chefDeRayon, List<Produit> listeProduits, Magasin magasin) {
@@ -41,6 +53,10 @@ public class Rayon {
         this.chefDeRayon = chefDeRayon;
         this.listeProduits = listeProduits;
         this.magasin = magasin;
+    }
+
+    public Rayon(){
+
     }
 
     //============================= Getters et Setters =============================

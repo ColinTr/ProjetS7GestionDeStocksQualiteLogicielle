@@ -21,7 +21,7 @@ public final class RayonDAO {
 
         EntityManager em = Connexion.getEntityManager();
 
-        Query query = em.createQuery("SELECT u FROM Rayon u");
+        Query query = em.createQuery("SELECT r FROM Rayon r");
 
         List results = query.getResultList();
 

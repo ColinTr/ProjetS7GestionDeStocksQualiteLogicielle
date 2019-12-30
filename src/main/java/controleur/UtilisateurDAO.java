@@ -30,8 +30,8 @@ public final class UtilisateurDAO {
         return listeARetourner;
     }
 
-    public static boolean testerParametresDeConnexion(String ndCompte, String mdPasse){
-        boolean resultat = false;
+    public static Utilisateur getUtilisateur(String ndCompte, String mdPasse){
+        Utilisateur utilisateur = null;
 
         EntityManager em = Connexion.getEntityManager();
 
@@ -40,11 +40,28 @@ public final class UtilisateurDAO {
         List results = query.getResultList();
 
         if(!results.isEmpty()){
-            resultat = true;
+            utilisateur = (Utilisateur) results.get(0);
         }
 
         em.close();
-        return resultat;
+        return utilisateur;
+    }
+
+    public static Utilisateur getUtilisateur(int id){
+        Utilisateur utilisateur = null;
+
+        EntityManager em = Connexion.getEntityManager();
+
+        Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.idUtilisateur = '" + id + "'");
+
+        List results = query.getResultList();
+
+        if(!results.isEmpty()){
+            utilisateur = (Utilisateur) results.get(0);
+        }
+
+        em.close();
+        return utilisateur;
     }
 
 }

@@ -74,7 +74,7 @@ public class FenetreDeParametres {
         }
 
         frameSettingWindow = new JFrame();
-        ImageIcon logo = new ImageIcon(FenetreDeParametres.class.getClassLoader().getResource("file-explorer-icon.png"));
+        ImageIcon logo = new ImageIcon(FenetreDeParametres.class.getClassLoader().getResource("file_icon.png"));
         frameSettingWindow.setIconImage(logo.getImage());
         frameSettingWindow.setBackground(Color.WHITE);
         frameSettingWindow.setTitle("Paramètres de connection à la BDD");
