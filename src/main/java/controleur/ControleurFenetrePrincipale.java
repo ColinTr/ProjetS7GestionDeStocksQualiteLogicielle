@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class controleurFenetrePrincipale implements Initializable {
+public class ControleurFenetrePrincipale implements Initializable {
 
     //La table et les colonnes
     @FXML private TableView<MagasinTableClass> itemTbl;
@@ -28,19 +28,19 @@ public class controleurFenetrePrincipale implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         colonneNom.setCellValueFactory( new PropertyValueFactory<MagasinTableClass, Long>("nom") );
         colonneChefDeRayon.setCellValueFactory( new PropertyValueFactory<MagasinTableClass,String>("chef") );
         colonneNbArticles.setCellValueFactory( new PropertyValueFactory<MagasinTableClass,Integer>("nombre") );
 
         data = FXCollections.observableArrayList();
         itemTbl.setItems(data);
-
-        MagasinTableClass item = new MagasinTableClass("Pêche","Colin Troisemaine",42);
-        data.add(item);
     }
 
     public void setContenuTable(Magasin magasin){
         List<Rayon> rayons = MagasinDAO.tousLesRayons(magasin);
+
+        data.clear();
 
         for(Rayon r : rayons){
             data.add(new MagasinTableClass(r.getNomRayon(), r.getChefDeRayon().toString(), r.getNbProduits()));

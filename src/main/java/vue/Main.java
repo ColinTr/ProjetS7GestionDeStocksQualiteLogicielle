@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.Connexion;
+import controleur.MagasinDAO;
 import modele.*;
 
 import javax.persistence.EntityManager;
@@ -32,6 +33,14 @@ public class Main {
 
         em.getTransaction().commit();
         em.close();
+
+
+
+
+        System.out.println(MagasinDAO.tousLesRayons(m1).size());
+
+
+
 
         Connexion.close();
     }

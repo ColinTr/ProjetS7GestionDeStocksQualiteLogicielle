@@ -18,7 +18,7 @@ public class Rayon {
     @OneToOne(mappedBy = "rayonDirige", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Utilisateur chefDeRayon;
 
-    @OneToMany(mappedBy = "rayon", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "rayon", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Produit> listeProduits;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

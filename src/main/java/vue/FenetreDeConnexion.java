@@ -2,6 +2,7 @@ package vue;
 
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
+import modele.Utilisateur;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -236,14 +237,15 @@ public class FenetreDeConnexion {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 //if(username.equals("root") && password.equals("root")) { //FolderExplorerWindow.main(null); frameLoginWindow.dispose(); }
-                if(UtilisateurDAO.testerParametresDeConnexion(username, password)) {
-                    String [] args = new String[2];
-                    args[0] = username;
-                    frameLoginWindow.dispose();
-                    FenetrePrincipale.main(null);
+                Utilisateur utilisateurCorrespondant = UtilisateurDAO.getUtilisateur(username, password);
+                if(utilisateurCorrespondant == null){
+                    errorMessageLabel.setText("Error : User doesn't exist in database.");
                 }
                 else {
-                    errorMessageLabel.setText("Error : User doesn't exist in database.");
+                    String [] args = new String[2];
+                    args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
+                    frameLoginWindow.dispose();
+                    FenetrePrincipale.main(args);
                 }
             }
         });
