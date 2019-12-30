@@ -31,6 +31,17 @@ public class produitSteps {
         resultat = produit.suppression(arg0);
     }
 
+    @When("^j'essaie d'en enlever -(\\d+)$")
+    public void jEssaieDEnEnleverNeg(int arg1) { resultat = produit.suppression(-arg1); }
+
+    @When("^j'essaie d'en ajouter (\\d+)$")
+    public void jEssaieDEnAjouter(int arg0) {
+        resultat = produit.ajout(arg0);
+    }
+
+    @When("^j'essaie d'en ajouter -(\\d+)$")
+    public void jEssaieDEnAjouterNeg(int arg1) { resultat = produit.ajout(-arg1); }
+
     @Then("^c'est possible$")
     public void cEstPossible() {
         assertEquals(true, resultat);
