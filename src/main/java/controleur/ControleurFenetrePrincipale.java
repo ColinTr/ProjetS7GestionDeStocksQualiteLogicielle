@@ -2,11 +2,15 @@ package controleur;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import modele.Magasin;
 import modele.MagasinTableClass;
 import modele.Rayon;
@@ -29,6 +33,22 @@ public class ControleurFenetrePrincipale implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        itemTbl.setRowFactory(new Callback<TableView<MagasinTableClass>, TableRow<MagasinTableClass>>() {
+            @Override
+            public TableRow<MagasinTableClass> call(TableView<MagasinTableClass> tv) {
+                final TableRow<MagasinTableClass> row = new TableRow<>();
+                row.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                            MagasinTableClass rowData = row.getItem();
+                            System.out.println("Double click on: " + rowData.getNom());
+                        }
+                    }
+                });
+                return row;
+            }
+        });
 
         colonneNom.setCellValueFactory( new PropertyValueFactory<MagasinTableClass, Long>("nom") );
         colonneChefDeRayon.setCellValueFactory( new PropertyValueFactory<MagasinTableClass,String>("chef") );
