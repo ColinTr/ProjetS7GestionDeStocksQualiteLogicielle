@@ -2,6 +2,7 @@ package controleur;
 
 import modele.Produit;
 import modele.Rayon;
+import org.hibernate.PersistentObjectException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +21,6 @@ public abstract class ProduitDAO {
         List<Produit> listeARetourner = new ArrayList<Produit>();
 
         EntityManager em =  Connexion.getEntityManager();
-
         Query query = em.createQuery("SELECT u FROM Produit u");
 
         List results = query.getResultList();
@@ -43,7 +43,7 @@ public abstract class ProduitDAO {
         List<Produit> listeARetourner = new ArrayList<Produit>();
         EntityManager em = Connexion.getEntityManager();
 
-        Rayon rayon = em.merge(rayonDonne);
+        Rayon rayon = em.find(Rayon.class, rayonDonne.getIdRayon());
 
         for (Produit p: rayon.getListeProduits()){
             listeARetourner.add(p);
@@ -58,16 +58,23 @@ public abstract class ProduitDAO {
      * Fonction ajoutant un nouveau produit dans l'application.
      * @param produit produit que l'on ajoute.
      */
-    public static void ajouterUnProduit(Produit produit){
+    public static boolean ajouterUnProduit(Produit produit){
 
         EntityManager em =  Connexion.getEntityManager();
 
         em.getTransaction().begin();
-        em.persist(produit);
+
+        try{
+            em.persist(produit);
+        } catch (Exception e){
+            e.printStackTrace();
+            em.close();
+            return false;
+        }
+
         em.getTransaction().commit();
-
         em.close();
-
+        return true;
     }
 
 
@@ -75,29 +82,29 @@ public abstract class ProduitDAO {
      * Fonction supprimant un produit enregistré dans l'application.
      * @param p produit que l'on supprime.
      */
-    public static void supprimerUnProduit(Produit p){
+    public static boolean supprimerUnProduit(Produit p){
 
         EntityManager em =  Connexion.getEntityManager();
-
         em.getTransaction().begin();
-        Produit produit = em.merge(p);
-        if(em.contains(produit)){
+        Produit produit = em.find(Produit.class, p.getIdProduit());
+        try{
             em.remove(produit);
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+            em.close();
+            return false;
         }
-        else {
-            System.out.println("La base de donnée ne contient pas cette objet");
-            //DO SOMETHING
-        }
-        em.getTransaction().commit();
 
+        em.getTransaction().commit();
         em.close();
+        return true;
     }
 
     public static boolean suppressionStockProduit(Produit p, int quantite){
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
-        Produit produit = em.merge(p);
+        Produit produit = em.find(Produit.class, p.getIdProduit());
         if (produit.suppression(quantite)) {
             em.getTransaction().commit();
             em.close();
@@ -112,7 +119,7 @@ public abstract class ProduitDAO {
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
-        Produit produit = em.merge(p);
+        Produit produit = em.find(Produit.class, p.getIdProduit());
         if (produit.ajout(quantite)) {
             em.getTransaction().commit();
             em.close();

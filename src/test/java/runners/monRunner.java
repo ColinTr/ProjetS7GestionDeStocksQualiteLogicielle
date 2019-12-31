@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
         strict=false,
         features= "src/test/resources",
         glue="stepdefs",
+        tags = {}, //"~@done"
         plugin = {"pretty",
                 "html:target/cucumber-html-report",
                 "json:target/cucumber.json"} )

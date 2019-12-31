@@ -11,6 +11,7 @@ import cucumber.api.java.en.When;
 import modele.Produit;
 import modele.Rayon;
 import org.apache.commons.lang.RandomStringUtils;
+import org.hibernate.PersistentObjectException;
 import org.junit.jupiter.api.DisplayName;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -30,6 +31,7 @@ public class produitDAOSteps {
     List<Produit> listProduit = new ArrayList<Produit>();
     List<Produit> listProduitBDD = new ArrayList<Produit>();
 
+    boolean resultat = true;
 
     @Before("@bdd")
     public void connectionBDD() {
@@ -75,7 +77,7 @@ public class produitDAOSteps {
         EntityManager em = Connexion.getEntityManager();
         for (int i = 0; i < arg0; i++) {
             Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null);
-            ProduitDAO.ajouterUnProduit(p);
+            if (resultat) { resultat = ProduitDAO.ajouterUnProduit(p); }
             listProduit.add(p);
         }
         em.close();
@@ -93,7 +95,7 @@ public class produitDAOSteps {
         EntityManager em = Connexion.getEntityManager();
         for (int i = 0; i < arg0; i++) {
             listProduit.add(listProduitBDD.get(i));
-            ProduitDAO.supprimerUnProduit(listProduitBDD.get(i));
+            if (resultat) { resultat = ProduitDAO.supprimerUnProduit(listProduitBDD.get(i)); }
         }
         em.close();
     }
@@ -111,5 +113,25 @@ public class produitDAOSteps {
         for (int i = 0; i < arg0; i++) {
             listProduitBDD.add(new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), null));
         }
+    }
+
+    @When("^On reinsere les produits de la liste bdd dans la bdd$")
+    public void onReinsereLesProduitsDeLaListeBddDansLaBdd() {
+        EntityManager em = Connexion.getEntityManager();
+        for (Produit produit : listProduitBDD) {
+            if (resultat) { resultat = ProduitDAO.ajouterUnProduit(produit) ;}
+        }
+        em.close();
+    }
+
+
+    @Then("^Cela fonctionne$")
+    public void celaFonctionne() {
+        assert (resultat);
+    }
+
+    @Then("^Cela ne fonctionne pas$")
+    public void celaNeFonctionnePas() {
+        assert (!resultat);
     }
 }

@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
  */
 public class ControleurFenetrePrincipale implements Initializable {
 
+
     //Table et colonnes de la table des rayons d'un magasin :
     @FXML private BorderPane pane_rayons;
     @FXML private TableView<RayonsTableClass> rayonsTable;
@@ -36,7 +37,7 @@ public class ControleurFenetrePrincipale implements Initializable {
 
     //Table et colonnes de la table des produits d'un rayon :
     @FXML private BorderPane pane_produits;
-    @FXML private TableView<ProduitsTableClass> produitsTable;
+//    @FXML private TableView<ProduitsTableClass> produitsTable;
     @FXML private TableColumn colonneNomp;
     @FXML private TableColumn colonnePrix;
     @FXML private TableColumn colonneStock;
@@ -52,7 +53,7 @@ public class ControleurFenetrePrincipale implements Initializable {
 
     //Les données de la table
     private ObservableList<RayonsTableClass> dataTableRayons;
-    private ObservableList<ProduitsTableClass> dataTableProduits;
+//    private ObservableList<ProduitsTableClass> dataTableProduits;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,13 +96,13 @@ public class ControleurFenetrePrincipale implements Initializable {
         rayonsTable.setItems(dataTableRayons);
 
 
-        colonneNomp.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("nom") );
-        colonnePrix.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Float>("prix") );
-        colonneStock.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("stock") );
-        colonneReservations.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("reservations") );
+//        colonneNomp.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("nom") );
+//        colonnePrix.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Float>("prix") );
+//        colonneStock.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("stock") );
+//        colonneReservations.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("reservations") );
 
-        dataTableProduits = FXCollections.observableArrayList();
-        produitsTable.setItems(dataTableProduits);
+//        dataTableProduits = FXCollections.observableArrayList();
+//        produitsTable.setItems(dataTableProduits);
 
         //On affiche d'abord la table des rayons
         pane_rayons.toFront();
@@ -139,14 +140,14 @@ public class ControleurFenetrePrincipale implements Initializable {
     public void setContenuTableProduits(int idRayon){
         List<Produit> produits = RayonDAO.tousLesProduits(idRayon);
 
-        dataTableProduits.clear();
+//        dataTableProduits.clear();
 
         EntityManager em = Connexion.getEntityManager();
 
         for(Produit p : produits){
             p = em.merge(p);
 
-            dataTableProduits.add( new ProduitsTableClass(p.getNomProduit(), p.getPrix(), p.getStock(), p.getReservations()) );
+//            dataTableProduits.add( new ProduitsTableClass(p.getNomProduit(), p.getPrix(), p.getStock(), p.getReservations()) );
         }
 
         em.close();
