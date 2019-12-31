@@ -1,21 +1,20 @@
 package vue;
 
-import controleur.Connexion;
 import controleur.ControleurFenetrePrincipale;
 import controleur.UtilisateurDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import modele.Magasin;
 import modele.Utilisateur;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
 
+/**
+ * Cette classe fait le lien entre le fichier .fxml et son contrôleur.
+ * Elle initialise également les éléments de l'application (utilisateur, magasin à afficher, etc...).
+ */
 public class FenetrePrincipale extends Application {
 
     private static Utilisateur utilisateurConnecte;
@@ -28,7 +27,6 @@ public class FenetrePrincipale extends Application {
             utilisateurConnecte = null;
         }
 
-
         launch(args);
     }
 
@@ -37,13 +35,13 @@ public class FenetrePrincipale extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetrePrincipaleFXML.fxml"));
         Pane root = loader.load();
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Polystocker");
         primaryStage.setScene(new Scene(root, 1080, 720));
 
         ControleurFenetrePrincipale c = loader.getController();
 
         if(utilisateurConnecte != null){
-            c.setContenuTable(utilisateurConnecte.getMagasin());
+            c.setContenuTableRayons(utilisateurConnecte.getMagasin());
         }
 
         primaryStage.show();
