@@ -12,19 +12,23 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetrePrincipale">
    <top>
-      <GridPane style="-fx-background-color: #056496;">
+      <GridPane style="-fx-background-color: #326496;">
          <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints hgrow="NEVER" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="20.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="0.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="0.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="20.0" />
+            <ColumnConstraints hgrow="NEVER" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Button fx:id="home_button" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.halignment="LEFT" GridPane.hgrow="NEVER">
@@ -36,7 +40,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="settings_button" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
+            <Button fx:id="settings_button" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,13 +49,34 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <ImageView fitHeight="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                <image>
                   <Image url="@polytech_logo.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
+            </ImageView>
+            <Text fx:id="label_chemin" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Magasin &gt; Rayon" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Gadugi Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_utilisateur" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur connecté" GridPane.columnIndex="5">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Gadugi Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+               <image>
+                  <Image url="@user_icon.png" />
+               </image>
             </ImageView>
          </children>
       </GridPane>
@@ -75,12 +100,12 @@
             </BorderPane>
             <BorderPane fx:id="pane_articles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="produitsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Nom du produit" />
-                      <TableColumn prefWidth="75.0" text="Prix" />
-                        <TableColumn prefWidth="75.0" text="Stock" />
-                        <TableColumn prefWidth="75.0" text="Quantité réservée" />
+                      <TableColumn fx:id="colonneNomp" prefWidth="75.0" text="Nom du produit" />
+                      <TableColumn fx:id="colonnePrix" prefWidth="75.0" text="Prix" />
+                        <TableColumn fx:id="colonneStock" prefWidth="75.0" text="Stock" />
+                        <TableColumn fx:id="colonneReservations" prefWidth="75.0" text="Quantité réservée" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

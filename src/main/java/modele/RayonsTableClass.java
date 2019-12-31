@@ -5,9 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class RayonsTableClass {
 
-    public SimpleStringProperty nom;
-    public SimpleStringProperty chef;
-    public SimpleIntegerProperty nombre;
+    private SimpleStringProperty nom;
+    private SimpleStringProperty chef;
+    private SimpleIntegerProperty nombre;
+    private int idRayon;
 
     public String getNom() {
         return nom.get();
@@ -21,9 +22,12 @@ public class RayonsTableClass {
         return nombre.get();
     }
 
-    public RayonsTableClass(String nom, String chef, int nombre) {
+    public int getIdRayon(){ return idRayon; }
+
+    public RayonsTableClass(String nom, String chef, int nombre, int idRayon) {
         this.nom = new SimpleStringProperty(nom);
         this.chef = new SimpleStringProperty(chef);
         this.nombre = new SimpleIntegerProperty(nombre);
+        this.idRayon = idRayon;
     }
 }

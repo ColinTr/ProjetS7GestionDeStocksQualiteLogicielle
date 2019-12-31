@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class MagasinDAO {
+
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les rayons de ce magasin
      * @param magasin : le magasin dont il faut lister les rayons
@@ -33,4 +34,5 @@ public final class MagasinDAO {
 
         return listeARetourner;
     }
+
 }
