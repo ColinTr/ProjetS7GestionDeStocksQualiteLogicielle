@@ -53,7 +53,6 @@ public abstract class ProduitDAO {
         }
 
         em.close();
-
         return listeARetourner;
     }
 
@@ -73,7 +72,6 @@ public abstract class ProduitDAO {
         }
 
         em.close();
-
         return listeARetourner;
     }
 
@@ -93,6 +91,7 @@ public abstract class ProduitDAO {
             em.persist(produit);
         } catch (Exception e){
             e.printStackTrace();
+            em.getTransaction().rollback();
             em.close();
             return false;
         }
@@ -116,6 +115,7 @@ public abstract class ProduitDAO {
             em.remove(produit);
         } catch (IllegalArgumentException e){
             e.printStackTrace();
+            em.getTransaction().rollback();
             em.close();
             return false;
         }
@@ -129,13 +129,17 @@ public abstract class ProduitDAO {
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
+
         Produit produit = em.find(Produit.class, p.getIdProduit());
-        if (produit.suppression(quantite)) {
+
+        if (produit != null && produit.suppression(quantite)) {
             em.getTransaction().commit();
             em.close();
             return true;
         }
+
         System.out.println("Quantite invalide, opération non possible");
+        em.getTransaction().rollback();
         em.close();
         return false;
     }
@@ -145,12 +149,14 @@ public abstract class ProduitDAO {
 
         em.getTransaction().begin();
         Produit produit = em.find(Produit.class, p.getIdProduit());
-        if (produit.ajout(quantite)) {
+
+        if (produit != null && produit.ajout(quantite)) {
             em.getTransaction().commit();
             em.close();
             return true;
         }
         System.out.println("Quantite invalide, opération non possible");
+        em.getTransaction().rollback();
         em.close();
         return false;
     }

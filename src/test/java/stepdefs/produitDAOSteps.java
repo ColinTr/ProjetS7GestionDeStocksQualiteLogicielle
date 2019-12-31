@@ -45,21 +45,12 @@ public class produitDAOSteps {
     }
 
 
+    // -----------------------------------------------------------------------
 
-    @Given("^(\\d+) produits dans la bdd$")
-    public void setNbProduitsDansBdd(int arg0) {
-        EntityManager em = Connexion.getEntityManager();
-        em.getTransaction().begin();
-        for (int i = 0; i < arg0; i++) {
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
-            em.persist(p);
-        }
-        em.getTransaction().commit();
-        em.close();
-    }
+    /* === Récupération de la Base de donnée === */
 
-    @Given("^(\\d+) produits dans la bdd et on stock$")
-    public void setNbProduitsDansBddEtStock(int arg0) {
+    @Given("^On met (\\d+) produits dans la bdd et on stock dans la liste locale$")
+    public void onMetXProduitsDansLaBddEtOnStockDansLaListeLocal(int arg0){
         EntityManager em = Connexion.getEntityManager();
         em.getTransaction().begin();
         for (int i = 0; i < arg0; i++) {
@@ -71,89 +62,172 @@ public class produitDAOSteps {
         em.close();
     }
 
-    @When("^Quand on récupère la bdd et on stock la liste$")
-    @Then("^Alors on récupère la bdd et on stock la liste$")
-    @And("^Et on récupère la bdd et on stock la liste$")
-    public void recupProduitsBDD() {
+    @When("^On récupère la bdd et on la stock dans la liste bdd$")
+    @Then("^Alors on récupère la bdd et on la stock dans la liste bdd$")
+    public void onRecupereLaBddEtOnLaStockDansLaListeBdd(){
         listProduitBDD = ProduitDAO.tousLesProduits();
     }
 
-    @Then("^Alors notre liste BDD contient (\\d+) produits$")
-    @And("^Et notre liste BDD contient (\\d+) produits$")
-    public void checkNbBDD(int arg0) {
+    @Then("^La liste bdd fait la taille (\\d+)$")
+    public void laListeBddFaitLaTailleX(int arg0){
         assertEquals(arg0, listProduitBDD.size());
     }
 
-
-    @When("^On insère (\\d+) produits à la BDD et on les stocks dans une liste$")
-    public void onInsereNumberProduitsALaBDDEtOnLesStocksDansUneListe(int arg0) {
-        EntityManager em = Connexion.getEntityManager();
-        for (int i = 0; i < arg0; i++) {
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
-            if (resultat) { resultat = ProduitDAO.ajouterUnProduit(p); }
-            listProduit.add(p);
-        }
-        em.close();
-    }
-
-    @And("^La liste BDD contient les produits de la liste locale$")
-    public void coherenceProduitInsereEtBDD() {
-        for (Produit pInsere : listProduit) {
-            assertThat(listProduitBDD, hasItem(pInsere));
+    @Then("^La liste bdd contient les produits de la liste locale$")
+    public void laListeBddContientLesProduitsDeLaListeLocale(){
+        for (Produit p : listProduit) {
+            assertThat(listProduitBDD, hasItem(p));
         }
     }
 
-    @When("^Quand on supprime (\\d+) produits et qu'on les stocks$")
-    public void quandOnSupprimeNumProduitsEtQuOnLesStocks(int arg0) {
-        EntityManager em = Connexion.getEntityManager();
-        for (int i = 0; i < arg0; i++) {
-            listProduit.add(listProduitBDD.get(i));
-            if (resultat) { resultat = ProduitDAO.supprimerUnProduit(listProduitBDD.get(i)); }
-        }
-        em.close();
-    }
+    /* === Récupération de la Base de donnée avec id === */
 
-    @And("^La liste BDD ne contient pas les produits de la liste locale$")
-    public void laListeBDDNeContientPasLesProduitsDeLaListeLocale() {
-        for (Produit pInsere : listProduit) {
-            assertThat(listProduitBDD, not(hasItem(pInsere)));
+    //Given : On met (\d+) produits dans la bdd et on stock dans la liste locale
+
+    @When("^On récupère la bdd et on la stock dans la liste bdd avec l'id$")
+    public void onRecupereLaBddEtOnLaStockDansLaListeBddAvecLId(){
+        for (Produit p : listProduit) {
+            listProduitBDD.add(ProduitDAO.trouverProduit(p.getIdProduit()));
         }
     }
 
+    //Then : La liste bdd fait la taille (\d+)
+    //Then : La liste bdd contient les produits de la liste locale
 
-    @And("^On remplie la liste BDD avec (\\d+) produits qui ne sont pas sur la BDD$")
-    public void onRemplieLaListeBDDAvecProduitsQuiNeSontPasSurLaBDD(int arg0) {
-        for (int i = 0; i < arg0; i++) {
-            listProduitBDD.add(new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), null, "", ""));
+    /* === Ajout produit BDD valide === */
+
+    //Given : On met (\d+) produits dans la bdd et on stock dans la liste locale
+
+    @Given("^On génère (\\d+) produits dans la liste locale$")
+    public void onGenereXProduitsDansLaListeLocale(int arg0){
+        listProduit.clear();
+        for (int i = 0; i < arg0; i++){
+            listProduit.add(new Produit());
         }
     }
 
-    @When("^On reinsere les produits de la liste bdd dans la bdd$")
-    public void onReinsereLesProduitsDeLaListeBddDansLaBdd() {
-        EntityManager em = Connexion.getEntityManager();
-        for (Produit produit : listProduitBDD) {
-            if (resultat) { resultat = ProduitDAO.ajouterUnProduit(produit) ;}
-        }
-        em.close();
-    }
-
-
-    @Then("^Cela fonctionne$")
-    public void celaFonctionne() {
-        assert (resultat);
-    }
-
-    @Then("^Cela ne fonctionne pas$")
-    public void celaNeFonctionnePas() {
-        assert (!resultat);
-    }
-
-
-
-    @When("^Quand on récupère la bdd par id et on stock dans la liste bdd$")
-    public void quandOnRecupereLaBddParIdEtOnStockDansLaListeBdd() {
-        for (Produit pLocal: listProduit) {
-            listProduitBDD.add(ProduitDAO.trouverProduit(pLocal.getIdProduit()));
+    @When("^On insère les produits de la liste locale dans la bdd VALIDE$")
+    public void onInsereLesProduitsDeLaListeLocaleDansLaBddValide() {
+        for (Produit p : listProduit){
+            assert (ProduitDAO.ajouterUnProduit(p));
         }
     }
+
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+    //Then : La liste bdd fait la taille (\d+)
+    //Then : La liste bdd contient les produits de la liste locale
+
+
+    /* === Ajout produit BDD non valide === */
+
+    //Given : On met (\d+) produits dans la bdd et on stock dans la liste locale
+
+
+    @When("^On insère les produits de la liste locale dans la bdd NON VALIDE$")
+    public void onInsereLesProduitsDeLaListeLocaleDansLaBddNonValide() {
+        for (Produit p : listProduit){
+            assert (!ProduitDAO.ajouterUnProduit(p));
+        }
+    }
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+    //Then : La liste bdd fait la taille (\d+)
+    //Then : La liste bdd contient les produits de la liste locale
+
+
+    /* === Suppression produit BDD valide === */
+
+    //Given : On met (\d+) produits dans la bdd et on stock dans la liste locale
+
+    @When("^On supprime dans la bdd les produits de la liste locale VALIDE$")
+    public void onSupprimeDansLaBddLesProduitsDeLaListeLocaleValide(){
+        for (Produit p : listProduit){
+            assert(ProduitDAO.supprimerUnProduit(p));
+        }
+    }
+
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+    //Then : La liste bdd fait la taille (\d+)
+
+    @Then("^La liste bdd ne contient pas les produits de la liste locale$")
+    public void laListeBddNeContientPasLesProduitsDeLaListeLocale(){
+        for (Produit p : listProduit) {
+            assertThat(listProduitBDD, not(hasItem(p)));
+        }
+    }
+
+    /* === Suppression produit BDD non valide === */
+
+    //Given : On met (\d+) produits dans la bdd et on stock dans la liste locale
+    //Given : On génère (\d+) produits dans la liste locale
+
+    @When("^On supprime dans la bdd les produits de la liste locale NON VALIDE$")
+    public void onSupprimeDansLaBddLesProduitsDeLaListeLocaleNonValide(){
+        for (Produit p : listProduit){
+            assert(!ProduitDAO.supprimerUnProduit(p));
+        }
+    }
+
+
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+    //Then : La liste bdd fait la taille (\d+)
+    //Then : La liste bdd ne contient pas les produits de la liste locale
+
+    /* === Suppression de stock d'un produit de la BDD valide === */
+
+    //Given : On génère (\d+) produits dans la liste locale
+
+    @Given("^On met le stock des produits aléatoirement avec comme minimum (\\d+)$")
+    public void onMetLeStockDesProduitsAleaAvecCommeMinX(int arg0){
+        for (Produit p : listProduit) {
+            p.setStock(new Random().nextInt(1000 + 1) + arg0);
+        }
+    }
+
+    //Given : On insère les produits de la liste locale dans la bdd VALIDE
+
+    @When("^On supprime (\\d+) au stock de tout les produits de la liste locale sur la bdd VALIDE$")
+    public void onSupprimeXAuStockDeToutLesProduitsDeLaListeLocaleSurLaBddValide(int arg0){
+        for (Produit p : listProduit) {
+            assert (ProduitDAO.suppressionStockProduit(p, arg0));
+        }
+    }
+
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+
+    @Then("^Tous les produits ont leurs stock initial moins (\\d+)$")
+    public void tousLesProduitsOntLeursStockInitialMoinsX(int arg0){
+        for (int i = 0; i < listProduitBDD.size(); i++) {
+            assertEquals(listProduitBDD.get(i).getStock(), listProduit.get(i).getStock()-arg0);
+        }
+    }
+
+    /* === Suppression de stock d'un produit de la BDD non valide === */
+
+    //Given : On génère (\d+) produits dans la liste locale
+
+    @Given("^On met le stock des produits aléatoirement avec comme maximum (\\d+)$")
+    public void onMetLeStockDesProduitsAleatoirementAvecCommeMaximumMax(int arg0) {
+        for (Produit p : listProduit) {
+            p.setStock(new Random().nextInt(arg0));
+        }
+    }
+
+    //Given : On insère les produits de la liste locale dans la bdd VALIDE
+
+    @When("^On supprime (\\d+) au stock de tout les produits de la liste locale sur la bdd NON VALIDE$")
+    public void onSupprimeXAuStockDeToutLesProduitsDeLaListeLocaleSurLaBddNonValide(int arg0){
+        for (Produit p : listProduit) {
+            assert (!ProduitDAO.suppressionStockProduit(p, arg0));
+        }
+    }
+
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+
+    @Then("^Tous les produits ont leurs stock initial$")
+    public void tousLesProduitsOntLeursStockInitial(){
+        for (int i = 0; i < listProduitBDD.size(); i++) {
+            assertEquals(listProduitBDD.get(i).getStock(), listProduit.get(i).getStock());
+        }
+    }
+
 }
