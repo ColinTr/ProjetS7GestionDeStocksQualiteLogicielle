@@ -104,8 +104,8 @@
                     <columns>
                       <TableColumn fx:id="colonneNomp" prefWidth="75.0" text="Nom du produit" />
                       <TableColumn fx:id="colonnePrix" prefWidth="75.0" text="Prix" />
-                        <TableColumn prefWidth="75.0" text="Description" />
-                        <TableColumn prefWidth="75.0" text="Référence" />
+                        <TableColumn fx:id="colonneDescription" prefWidth="75.0" text="Description" />
+                        <TableColumn fx:id="colonneReference" prefWidth="75.0" text="Référence" />
                         <TableColumn fx:id="colonneStock" prefWidth="75.0" text="Stock" />
                         <TableColumn fx:id="colonneReservations" prefWidth="75.0" text="Quantité réservée" />
                     </columns>

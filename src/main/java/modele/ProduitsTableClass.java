@@ -10,6 +10,8 @@ public class ProduitsTableClass {
     private SimpleFloatProperty prix;
     private SimpleIntegerProperty stock;
     private SimpleIntegerProperty reservations;
+    private SimpleStringProperty description;
+    private SimpleStringProperty reference;
     private int idArticle;
 
     public String getNom() {
@@ -28,13 +30,21 @@ public class ProduitsTableClass {
         return reservations.get();
     }
 
+    public String getDescription() { return description.get(); }
+
+    public String getReference() { return reference.get(); }
+
     public int getIdArticle(){ return idArticle; }
 
-    public ProduitsTableClass(String nom, float prix, int stock, int reservations, int idArticle) {
+
+    public ProduitsTableClass(String nom, float prix, int stock, int reservations, int idArticle, String description, String reference) {
         this.nom = new SimpleStringProperty(nom);
         this.prix = new SimpleFloatProperty(prix);
         this.stock = new SimpleIntegerProperty(stock);
         this.reservations = new SimpleIntegerProperty(reservations);
+        this.description = new SimpleStringProperty(description);
+        this.reference = new SimpleStringProperty(reference);
         this.idArticle = idArticle;
+
     }
 }

@@ -50,6 +50,8 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private TableView<ProduitsTableClass> produitsTable;
     @FXML private TableColumn colonneNomp;
     @FXML private TableColumn colonnePrix;
+    @FXML private TableColumn colonneDescription;
+    @FXML private TableColumn colonneReference;
     @FXML private TableColumn colonneStock;
     @FXML private TableColumn colonneReservations;
 
@@ -231,6 +233,8 @@ public class ControleurFenetrePrincipale implements Initializable {
 
         colonneNomp.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("nom") );
         colonnePrix.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Float>("prix") );
+        colonneDescription.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("description") );
+        colonneReference.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("reference") );
         colonneStock.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("stock") );
         colonneReservations.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("reservations") );
 
@@ -279,9 +283,9 @@ public class ControleurFenetrePrincipale implements Initializable {
         EntityManager em = Connexion.getEntityManager();
 
         for(Produit p : produits){
-            p = em.merge(p);
+            p = em.find(Produit.class, p.getIdProduit());
 
-            dataTableProduits.add( new ProduitsTableClass(p.getNomProduit(), p.getPrix(), p.getStock(), p.getReservations(), p.getIdProduit()) );
+            dataTableProduits.add( new ProduitsTableClass(p.getNomProduit(), p.getPrix(), p.getStock(), p.getReservations(), p.getIdProduit(), p.getDescription(), p.getReference()) );
         }
 
         em.close();

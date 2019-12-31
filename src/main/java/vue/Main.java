@@ -41,10 +41,6 @@ public class Main {
         em.close();
 
 
-        em = Connexion.getEntityManager();
-        em.merge(m1);
-
-        em.close();
 
         Connexion.close();
     }
