@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -26,6 +23,7 @@ import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -134,8 +132,8 @@ public class ControleurFenetrePrincipale implements Initializable {
                     catch (IOException e) {
                         e.printStackTrace();
                     }
-                    event.consume();
                 }
+                event.consume();
             }
         });
 
@@ -161,17 +159,14 @@ public class ControleurFenetrePrincipale implements Initializable {
         bouton_supprimerArticle.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreSupprimerArticle.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.setTitle("Supprimer article");
-                    stage.setScene(new Scene(root, 450, 450));
-                    stage.show();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
+                ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
+                if(articleSelectionne != null){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer " + articleSelectionne.getNom() + " ?");
+                    Optional<ButtonType> choose = alert.showAndWait();
+                    if(choose.get() == ButtonType.OK){
+                        ProduitDAO.supprimerUnProduit(articleSelectionne.getIdArticle());
+                        miseAJourDesTables();
+                    }
                 }
                 event.consume();
             }
@@ -208,7 +203,8 @@ public class ControleurFenetrePrincipale implements Initializable {
                     public void handle(MouseEvent event) {
                         if (event.getClickCount() == 2 && (!row.isEmpty())) {
                             RayonsTableClass rowData = row.getItem();
-                            setContenuTableProduits(rowData.getIdRayon());
+                            idRayon = rowData.getIdRayon();
+                            miseAJourDesTables();
                             pane_articles.toFront();
                             label_chemin.setText("azer");
                         }
