@@ -12,17 +12,15 @@ public final class MagasinDAO {
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les rayons de ce magasin
-     * @param magasin : le magasin dont il faut lister les rayons
+     * @param idMagasin : le magasin dont il faut lister les rayons
      * @return liste de tous les rayons.
      */
-    public static List<Rayon> tousLesRayons(Magasin magasin){
+    public static List<Rayon> tousLesRayons(int idMagasin){
         List<Rayon> listeARetourner = new ArrayList<>();
 
         EntityManager em =  Connexion.getEntityManager();
 
-        Magasin m = em.merge(magasin);
-
-        Query query = em.createQuery("SELECT r FROM Rayon r WHERE magasin = '" + m.getIdMagasin() + "'");
+        Query query = em.createQuery("SELECT r FROM Rayon r WHERE magasin = '" + idMagasin + "'");
 
         List results = query.getResultList();
 

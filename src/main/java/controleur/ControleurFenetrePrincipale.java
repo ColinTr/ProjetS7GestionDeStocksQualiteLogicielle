@@ -34,6 +34,8 @@ import java.util.ResourceBundle;
 public class ControleurFenetrePrincipale implements Initializable {
 
     private static Utilisateur utilisateurConnecte;
+    private static int idMagasin;
+    private static int idRayon;
 
     //Table et colonnes de la table des rayons d'un magasin :
     @FXML private BorderPane pane_rayons;
@@ -65,8 +67,8 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private BorderPane pane_articles;
 
     //Les données de la table
-    private ObservableList<RayonsTableClass> dataTableRayons;
-    private ObservableList<ProduitsTableClass> dataTableProduits;
+    private static ObservableList<RayonsTableClass> dataTableRayons;
+    private static ObservableList<ProduitsTableClass> dataTableProduits;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -239,10 +241,11 @@ public class ControleurFenetrePrincipale implements Initializable {
 
     /**
      * Permet d'afficher la liste des rayons d'un magasin donné.
-     * @param magasin : le magasin dont on veut afficher les rayons.
+     * @param idM : le magasin dont on veut afficher les rayons.
      */
-    public void setContenuTableRayons(Magasin magasin){
-        List<Rayon> rayons = MagasinDAO.tousLesRayons(magasin);
+    public static void setContenuTableRayons(int idM){
+        List<Rayon> rayons = MagasinDAO.tousLesRayons(idM);
+        idMagasin = idM;
 
         dataTableRayons.clear();
 
@@ -264,10 +267,11 @@ public class ControleurFenetrePrincipale implements Initializable {
 
     /**
      * Permet d'afficher la liste des produits d'un rayon donné.
-     * @param idRayon : le rayon dont on veut afficher les produits.
+     * @param idR : le rayon dont on veut afficher les produits.
      */
-    public void setContenuTableProduits(int idRayon){
-        List<Produit> produits = RayonDAO.tousLesProduits(idRayon);
+    public static void setContenuTableProduits(int idR){
+        List<Produit> produits = RayonDAO.tousLesProduits(idR);
+        idRayon = idR;
 
         dataTableProduits.clear();
 
@@ -284,5 +288,10 @@ public class ControleurFenetrePrincipale implements Initializable {
 
     public static void setUtilisateurConnecte(Utilisateur utilisateur){
         utilisateurConnecte = utilisateur;
+    }
+
+    public static void miseAJourDesTables(){
+        setContenuTableRayons(idRayon);
+        setContenuTableProduits(idMagasin);
     }
 }
