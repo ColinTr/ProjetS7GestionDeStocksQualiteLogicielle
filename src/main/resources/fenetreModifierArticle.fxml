@@ -33,12 +33,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Confirmer">
+            <Button fx:id="boutonModifier" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Confirmer">
                <GridPane.margin>
                   <Insets bottom="5.0" right="15.0" top="5.0" />
                </GridPane.margin>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Annuler" GridPane.columnIndex="1">
+            <Button fx:id="boutonAnnuler" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Annuler" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" left="15.0" top="5.0" />
                </GridPane.margin>

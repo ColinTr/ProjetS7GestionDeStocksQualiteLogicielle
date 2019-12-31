@@ -2,6 +2,7 @@ package controleur;
 
 import modele.Produit;
 import modele.Rayon;
+import modele.Utilisateur;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,6 +12,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ProduitDAO {
+
+    /**
+     * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits enregistrés dans l'application.
+     * @return liste de tous les produits.
+     */
+    public static Produit trouverProduit(int idProduit){
+        Produit produitARetourner = null;
+
+        EntityManager em =  Connexion.getEntityManager();
+
+        Query query = em.createQuery("SELECT p FROM Produit p WHERE p.idProduit = '" + idProduit + "'");
+
+        List results = query.getResultList();
+
+        if(!results.isEmpty()){
+            produitARetourner = (Produit) results.get(0);
+        }
+
+        em.close();
+
+        return produitARetourner;
+    }
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits enregistrés dans l'application.
