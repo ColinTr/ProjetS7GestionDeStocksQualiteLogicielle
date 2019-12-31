@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitDAO {
+public abstract class ProduitDAO {
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits enregistrés dans l'application.
@@ -79,15 +79,16 @@ public class ProduitDAO {
 
         EntityManager em =  Connexion.getEntityManager();
 
-        try{
-            em.getTransaction().begin();
-            Produit produit = em.merge(p);
+        em.getTransaction().begin();
+        Produit produit = em.merge(p);
+        if(em.contains(produit)){
             em.remove(produit);
-            em.getTransaction().commit();
-        } catch (Exception e){
-            e.printStackTrace();
         }
-
+        else {
+            System.out.println("La base de donnée ne contient pas cette objet");
+            //DO SOMETHING
+        }
+        em.getTransaction().commit();
 
         em.close();
     }

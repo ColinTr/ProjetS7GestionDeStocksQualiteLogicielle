@@ -2,6 +2,8 @@ package stepdefs;
 
 import controleur.Connexion;
 import controleur.ProduitDAO;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -26,62 +28,88 @@ import static org.junit.Assert.assertThat;
 public class produitDAOSteps {
 
     List<Produit> listProduit = new ArrayList<Produit>();
-    List<Produit> listProduitInsere = new ArrayList<Produit>();
     List<Produit> listProduitBDD = new ArrayList<Produit>();
 
-    @Given("^j'ai (\\d+) produits en local$")
-    public void jAiProduitsEnLocal(int arg0){
-        for (int i = 0; i < arg0; i++){
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10),new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),new Random().nextInt(101 + 1),null);
-            listProduit.add(p);
-        }
+
+    @Before("@bdd")
+    public void connectionBDD() {
+        Connexion.init("modeCreate");
+        System.out.println("TEST BEFORE");
     }
 
-    @Given("^on est connecté à la bdd$")
-    public void connectionBDD(){ Connexion.init("modeCreate"); }
+    @After("@bdd")
+    public void closeConnectionBDD() {
+        Connexion.close();
+    }
 
-    @Given("^(\\d+) dans la bdd$")
-    public void setNbProduitsDansBdd(int arg0){
+
+    /*Méthodes tests recupération BDD*/
+    @Given("^(\\d+) produits dans la bdd$")
+    public void setNbProduitsDansBdd(int arg0) {
         EntityManager em = Connexion.getEntityManager();
         em.getTransaction().begin();
-        for (int i = 0; i < arg0; i++){
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10),new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),new Random().nextInt(101 + 1),new Rayon());
+        for (int i = 0; i < arg0; i++) {
+            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null);
             em.persist(p);
         }
         em.getTransaction().commit();
         em.close();
     }
 
-    @When("^j'essaie d'en ajouter (\\d+) a la bdd$")
-    public void EssaieAjoutBDD(int arg0){
+    @When("^Quand on récupère la bdd et on stock la liste$")
+    @Then("^Alors on récupère la bdd et on stock la liste$")
+    @And("^Et on récupère la bdd et on stock la liste$")
+    public void recupProduitsBDD() {
+        listProduitBDD = ProduitDAO.tousLesProduits();
+    }
+
+    @Then("^Alors notre liste BDD contient (\\d+) produits$")
+    @And("^Et notre liste BDD contient (\\d+) produits$")
+    public void checkNbBDD(int arg0) {
+        assertEquals(arg0, listProduitBDD.size());
+    }
+
+
+    @When("^On insère (\\d+) produits à la BDD et on les stocks dans une liste$")
+    public void onInsereNumberProduitsALaBDDEtOnLesStocksDansUneListe(int arg0) {
         EntityManager em = Connexion.getEntityManager();
-        for (int i = 0; i < arg0; i++){
-            ProduitDAO.ajouterUnProduit(listProduit.get(i));
+        for (int i = 0; i < arg0; i++) {
+            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null);
+            ProduitDAO.ajouterUnProduit(p);
+            listProduit.add(p);
         }
         em.close();
     }
 
-    @Then("^on récupere la liste bdd$")
-    public void recupProduitsBDD(){
-        EntityManager em = Connexion.getEntityManager();
-        listProduitBDD = ProduitDAO.tousLesProduits();
-        em.close();
-    }
-
-    @And("^il en y a (\\d+) dans la liste bdd$")
-    public void checkNbBDD(int arg0){
-        assertEquals(arg0, listProduitBDD.size());
-    }
-
-    @And("^on retrouve les produits inséré dans la liste bdd$")
-    public void coherenceProduitInsereEtBDD(){
-        for (Produit pInsere: listProduitInsere) {
+    @And("^La liste BDD contient les produits de la liste locale$")
+    public void coherenceProduitInsereEtBDD() {
+        for (Produit pInsere : listProduit) {
             assertThat(listProduitBDD, hasItem(pInsere));
         }
     }
 
+    @When("^Quand on supprime (\\d+) produits et qu'on les stocks$")
+    public void quandOnSupprimeNumProduitsEtQuOnLesStocks(int arg0) {
+        EntityManager em = Connexion.getEntityManager();
+        for (int i = 0; i < arg0; i++) {
+            listProduit.add(listProduitBDD.get(i));
+            ProduitDAO.supprimerUnProduit(listProduitBDD.get(i));
+        }
+        em.close();
+    }
 
-    @And("^la bdd est fermée$")
-    public void closeConnectionBDD(){ Connexion.close(); }
+    @And("^La liste BDD ne contient pas les produits de la liste locale$")
+    public void laListeBDDNeContientPasLesProduitsDeLaListeLocale() {
+        for (Produit pInsere : listProduit) {
+            assertThat(listProduitBDD, not(hasItem(pInsere)));
+        }
+    }
 
+
+    @And("^On remplie la liste BDD avec (\\d+) produits qui ne sont pas sur la BDD$")
+    public void onRemplieLaListeBDDAvecProduitsQuiNeSontPasSurLaBDD(int arg0) {
+        for (int i = 0; i < arg0; i++) {
+            listProduitBDD.add(new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), null));
+        }
+    }
 }

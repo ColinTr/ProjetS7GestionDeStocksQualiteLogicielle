@@ -1,6 +1,7 @@
 package modele;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Produit {
@@ -113,4 +114,18 @@ public class Produit {
     public void setRayon(Rayon rayon) {
         this.rayon = rayon;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produit produit = (Produit) o;
+        return idProduit == produit.idProduit &&
+                stock == produit.stock &&
+                reservations == produit.reservations &&
+                Float.compare(produit.prix, prix) == 0 &&
+                Objects.equals(nomProduit, produit.nomProduit) &&
+                Objects.equals(rayon, produit.rayon);
+    }
+
 }
