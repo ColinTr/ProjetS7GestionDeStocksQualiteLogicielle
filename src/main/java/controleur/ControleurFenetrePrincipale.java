@@ -34,7 +34,6 @@ import java.util.ResourceBundle;
 public class ControleurFenetrePrincipale implements Initializable {
 
     private static Utilisateur utilisateurConnecte;
-    private static int idMagasin;
     private static int idRayon;
 
     //Table et colonnes de la table des rayons d'un magasin :
@@ -245,7 +244,6 @@ public class ControleurFenetrePrincipale implements Initializable {
      */
     public static void setContenuTableRayons(int idM){
         List<Rayon> rayons = MagasinDAO.tousLesRayons(idM);
-        idMagasin = idM;
 
         dataTableRayons.clear();
 
@@ -286,12 +284,19 @@ public class ControleurFenetrePrincipale implements Initializable {
         em.close();
     }
 
+    /**
+     * Cette fonction statique et publique permet de définir l'utilisateur connecté à l'application depuis la fenêtre de connexion.
+     * @param utilisateur : l'utilisateur connecté.
+     */
     public static void setUtilisateurConnecte(Utilisateur utilisateur){
         utilisateurConnecte = utilisateur;
     }
 
+    /**
+     * Cette fonction met à jour toutes les tables avec les dernières données de la BDD.
+     */
     public static void miseAJourDesTables(){
-        setContenuTableRayons(idRayon);
-        setContenuTableProduits(idMagasin);
+        setContenuTableRayons(utilisateurConnecte.getMagasin().getIdMagasin());
+        setContenuTableProduits(idRayon);
     }
 }
