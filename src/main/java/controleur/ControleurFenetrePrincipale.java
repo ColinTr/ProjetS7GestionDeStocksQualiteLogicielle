@@ -140,18 +140,23 @@ public class ControleurFenetrePrincipale implements Initializable {
         bouton_modifierStock.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.setTitle("Modifier stock");
-                    stage.setScene(new Scene(root, 450, 450));
-                    stage.show();
+                ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
+                if(articleSelectionne != null){
+                    ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
+                    Parent root;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
+                        root = loader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier stock");
+                        stage.setScene(new Scene(root, 250, 250));
+                        stage.show();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+
                 event.consume();
             }
         });

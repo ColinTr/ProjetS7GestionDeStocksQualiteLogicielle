@@ -1,8 +1,5 @@
 package controleur;
 
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -35,6 +32,8 @@ public class ControleurFenetreModifierArticle implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        //Pré-remplissage des données :
         articleAModifier = ProduitDAO.trouverProduit(idArticle);
 
         EntityManager em = Connexion.getEntityManager();
