@@ -45,7 +45,7 @@ public class produitDAOSteps {
     }
 
 
-    /*Méthodes tests recupération BDD*/
+
     @Given("^(\\d+) produits dans la bdd$")
     public void setNbProduitsDansBdd(int arg0) {
         EntityManager em = Connexion.getEntityManager();
@@ -53,6 +53,19 @@ public class produitDAOSteps {
         for (int i = 0; i < arg0; i++) {
             Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
             em.persist(p);
+        }
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Given("^(\\d+) produits dans la bdd et on stock$")
+    public void setNbProduitsDansBddEtStock(int arg0) {
+        EntityManager em = Connexion.getEntityManager();
+        em.getTransaction().begin();
+        for (int i = 0; i < arg0; i++) {
+            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
+            em.persist(p);
+            listProduit.add(p);
         }
         em.getTransaction().commit();
         em.close();
@@ -133,5 +146,14 @@ public class produitDAOSteps {
     @Then("^Cela ne fonctionne pas$")
     public void celaNeFonctionnePas() {
         assert (!resultat);
+    }
+
+
+
+    @When("^Quand on récupère la bdd par id et on stock dans la liste bdd$")
+    public void quandOnRecupereLaBddParIdEtOnStockDansLaListeBdd() {
+        for (Produit pLocal: listProduit) {
+            listProduitBDD.add(ProduitDAO.trouverProduit(pLocal.getIdProduit()));
+        }
     }
 }
