@@ -2,56 +2,42 @@ package vue;
 
 import modele.ParametresBDD;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.UIManager;
-
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+
+import java.awt.EventQueue;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Properties;
-
-import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import java.util.Properties;
+
+
 
 public class FenetreDeParametres {
 
     private JFrame frameSettingWindow;
-    private JPanel mainPanel;
-    private JLabel addressLabel;
-    private JTextField addressField;
-    private JLabel accountLabel;
-    private JLabel passwordLabel;
-    private JTextField passwordField;
-    private JTextField accountField;
-    private JPanel optionsPanel;
-    private JButton btnApply;
-    private JButton btnCancel;
 
-    private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
     /**
      * Launch the application.
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    FenetreDeParametres window = new FenetreDeParametres();
-                    window.frameSettingWindow.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                FenetreDeParametres window = new FenetreDeParametres();
+                window.frameSettingWindow.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -73,6 +59,18 @@ public class FenetreDeParametres {
             e.printStackTrace();
         }
 
+
+        JPanel mainPanel;
+        JLabel addressLabel;
+        JTextField addressField;
+        JLabel accountLabel;
+        JLabel passwordLabel;
+        JTextField passwordField;
+        JTextField accountField;
+        JPanel optionsPanel;
+        JButton btnApply;
+        JButton btnCancel;
+
         frameSettingWindow = new JFrame();
         ImageIcon logo = new ImageIcon(FenetreDeParametres.class.getClassLoader().getResource("file_icon.png"));
         frameSettingWindow.setIconImage(logo.getImage());
@@ -88,116 +86,110 @@ public class FenetreDeParametres {
 
         mainPanel = new JPanel();
         mainPanel.setBackground(Color.WHITE);
-        GridBagConstraints gbc_mainPanel = new GridBagConstraints();
-        gbc_mainPanel.fill = GridBagConstraints.BOTH;
-        gbc_mainPanel.gridx = 0;
-        gbc_mainPanel.gridy = 0;
-        frameSettingWindow.getContentPane().add(mainPanel, gbc_mainPanel);
-        GridBagLayout gbl_mainPanel = new GridBagLayout();
-        gbl_mainPanel.columnWidths = new int[]{0, 0};
-        gbl_mainPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-        gbl_mainPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gbl_mainPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-        mainPanel.setLayout(gbl_mainPanel);
+        GridBagConstraints gbcmainPanel = new GridBagConstraints();
+        gbcmainPanel.fill = GridBagConstraints.BOTH;
+        gbcmainPanel.gridx = 0;
+        gbcmainPanel.gridy = 0;
+        frameSettingWindow.getContentPane().add(mainPanel, gbcmainPanel);
+        GridBagLayout gblMainPanel = new GridBagLayout();
+        gblMainPanel.columnWidths = new int[]{0, 0};
+        gblMainPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+        gblMainPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gblMainPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+        mainPanel.setLayout(gblMainPanel);
 
         addressLabel = new JLabel("Addresse de connexion :");
-        GridBagConstraints gbc_addressLabel = new GridBagConstraints();
-        gbc_addressLabel.anchor = GridBagConstraints.WEST;
-        gbc_addressLabel.insets = new Insets(10, 10, 5, 10);
-        gbc_addressLabel.gridx = 0;
-        gbc_addressLabel.gridy = 0;
-        mainPanel.add(addressLabel, gbc_addressLabel);
+        GridBagConstraints gbcAddressLabel = new GridBagConstraints();
+        gbcAddressLabel.anchor = GridBagConstraints.WEST;
+        gbcAddressLabel.insets = new Insets(10, 10, 5, 10);
+        gbcAddressLabel.gridx = 0;
+        gbcAddressLabel.gridy = 0;
+        mainPanel.add(addressLabel, gbcAddressLabel);
 
         addressField = new JTextField();
-        GridBagConstraints gbc_addressField = new GridBagConstraints();
-        gbc_addressField.insets = new Insets(5, 10, 15, 10);
-        gbc_addressField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_addressField.gridx = 0;
-        gbc_addressField.gridy = 1;
-        mainPanel.add(addressField, gbc_addressField);
+        GridBagConstraints gbcAddressField = new GridBagConstraints();
+        gbcAddressField.insets = new Insets(5, 10, 15, 10);
+        gbcAddressField.fill = GridBagConstraints.HORIZONTAL;
+        gbcAddressField.gridx = 0;
+        gbcAddressField.gridy = 1;
+        mainPanel.add(addressField, gbcAddressField);
         addressField.setColumns(10);
         addressField.setText(ParametresBDD.getAdresse());
 
         accountLabel = new JLabel("Compte :");
-        GridBagConstraints gbc_accountLabel = new GridBagConstraints();
-        gbc_accountLabel.anchor = GridBagConstraints.WEST;
-        gbc_accountLabel.insets = new Insets(5, 10, 5, 10);
-        gbc_accountLabel.gridx = 0;
-        gbc_accountLabel.gridy = 2;
-        mainPanel.add(accountLabel, gbc_accountLabel);
+        GridBagConstraints gbcAccountLabel = new GridBagConstraints();
+        gbcAccountLabel.anchor = GridBagConstraints.WEST;
+        gbcAccountLabel.insets = new Insets(5, 10, 5, 10);
+        gbcAccountLabel.gridx = 0;
+        gbcAccountLabel.gridy = 2;
+        mainPanel.add(accountLabel, gbcAccountLabel);
 
         accountField = new JTextField();
-        GridBagConstraints gbc_accountField = new GridBagConstraints();
-        gbc_accountField.insets = new Insets(5, 10, 15, 10);
-        gbc_accountField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_accountField.gridx = 0;
-        gbc_accountField.gridy = 3;
-        mainPanel.add(accountField, gbc_accountField);
+        GridBagConstraints gbcAccountField = new GridBagConstraints();
+        gbcAccountField.insets = new Insets(5, 10, 15, 10);
+        gbcAccountField.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountField.gridx = 0;
+        gbcAccountField.gridy = 3;
+        mainPanel.add(accountField, gbcAccountField);
         accountField.setColumns(10);
         accountField.setText(ParametresBDD.getUtilisateur());
 
         passwordLabel = new JLabel("Mot de passe :");
-        GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
-        gbc_passwordLabel.anchor = GridBagConstraints.WEST;
-        gbc_passwordLabel.insets = new Insets(5, 10, 5, 10);
-        gbc_passwordLabel.gridx = 0;
-        gbc_passwordLabel.gridy = 4;
-        mainPanel.add(passwordLabel, gbc_passwordLabel);
+        GridBagConstraints gbcPasswordLabel = new GridBagConstraints();
+        gbcPasswordLabel.anchor = GridBagConstraints.WEST;
+        gbcPasswordLabel.insets = new Insets(5, 10, 5, 10);
+        gbcPasswordLabel.gridx = 0;
+        gbcPasswordLabel.gridy = 4;
+        mainPanel.add(passwordLabel, gbcPasswordLabel);
 
         passwordField = new JTextField();
-        GridBagConstraints gbc_passwordField = new GridBagConstraints();
-        gbc_passwordField.insets = new Insets(5, 10, 10, 10);
-        gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_passwordField.gridx = 0;
-        gbc_passwordField.gridy = 5;
-        mainPanel.add(passwordField, gbc_passwordField);
+        GridBagConstraints gbcPasswordField = new GridBagConstraints();
+        gbcPasswordField.insets = new Insets(5, 10, 10, 10);
+        gbcPasswordField.fill = GridBagConstraints.HORIZONTAL;
+        gbcPasswordField.gridx = 0;
+        gbcPasswordField.gridy = 5;
+        mainPanel.add(passwordField, gbcPasswordField);
         passwordField.setColumns(10);
         passwordField.setText(ParametresBDD.getMotDePasse());
 
         optionsPanel = new JPanel();
         optionsPanel.setBackground(Color.WHITE);
-        GridBagConstraints gbc_optionsPanel = new GridBagConstraints();
-        gbc_optionsPanel.fill = GridBagConstraints.BOTH;
-        gbc_optionsPanel.gridx = 0;
-        gbc_optionsPanel.gridy = 6;
-        mainPanel.add(optionsPanel, gbc_optionsPanel);
-        GridBagLayout gbl_optionsPanel = new GridBagLayout();
-        gbl_optionsPanel.columnWidths = new int[]{0, 0, 0};
-        gbl_optionsPanel.rowHeights = new int[]{0, 0};
-        gbl_optionsPanel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-        gbl_optionsPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-        optionsPanel.setLayout(gbl_optionsPanel);
+        GridBagConstraints gbcOptionsPanel = new GridBagConstraints();
+        gbcOptionsPanel.fill = GridBagConstraints.BOTH;
+        gbcOptionsPanel.gridx = 0;
+        gbcOptionsPanel.gridy = 6;
+        mainPanel.add(optionsPanel, gbcOptionsPanel);
+        GridBagLayout gblOptionsPanel = new GridBagLayout();
+        gblOptionsPanel.columnWidths = new int[]{0, 0, 0};
+        gblOptionsPanel.rowHeights = new int[]{0, 0};
+        gblOptionsPanel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+        gblOptionsPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+        optionsPanel.setLayout(gblOptionsPanel);
 
         btnApply = new JButton("Confirmer");
-        btnApply.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                Properties newInfos = new Properties();
-                newInfos.put("user", accountField.getText());
-                newInfos.put("password", passwordField.getText());
-                ParametresBDD.setInformationsUtilisateur(newInfos);
-                ParametresBDD.setAdresse(addressField.getText());
-                frameSettingWindow.dispose();
-            }
+        btnApply.addActionListener(e -> {
+            Properties newInfos = new Properties();
+            newInfos.put("user", accountField.getText());
+            newInfos.put("password", passwordField.getText());
+            ParametresBDD.setInformationsUtilisateur(newInfos);
+            ParametresBDD.setAdresse(addressField.getText());
+            frameSettingWindow.dispose();
         });
-        GridBagConstraints gbc_btnApply = new GridBagConstraints();
-        gbc_btnApply.anchor = GridBagConstraints.EAST;
-        gbc_btnApply.insets = new Insets(0, 0, 0, 10);
-        gbc_btnApply.gridx = 0;
-        gbc_btnApply.gridy = 0;
-        optionsPanel.add(btnApply, gbc_btnApply);
+        GridBagConstraints gbcBtnApply = new GridBagConstraints();
+        gbcBtnApply.anchor = GridBagConstraints.EAST;
+        gbcBtnApply.insets = new Insets(0, 0, 0, 10);
+        gbcBtnApply.gridx = 0;
+        gbcBtnApply.gridy = 0;
+        optionsPanel.add(btnApply, gbcBtnApply);
 
         btnCancel = new JButton("Annuler");
-        btnCancel.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                frameSettingWindow.dispose();
-            }
-        });
-        GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-        gbc_btnCancel.insets = new Insets(0, 10, 0, 0);
-        gbc_btnCancel.anchor = GridBagConstraints.WEST;
-        gbc_btnCancel.gridx = 1;
-        gbc_btnCancel.gridy = 0;
-        optionsPanel.add(btnCancel, gbc_btnCancel);
+        btnCancel.addActionListener(e -> frameSettingWindow.dispose());
+        GridBagConstraints gbcBtnCancel = new GridBagConstraints();
+        gbcBtnCancel.insets = new Insets(0, 10, 0, 0);
+        gbcBtnCancel.anchor = GridBagConstraints.WEST;
+        gbcBtnCancel.gridx = 1;
+        gbcBtnCancel.gridy = 0;
+        optionsPanel.add(btnCancel, gbcBtnCancel);
     }
 
 }

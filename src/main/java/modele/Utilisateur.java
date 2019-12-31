@@ -70,7 +70,7 @@ public class Utilisateur {
      * @return vrai si il est acceptable, faux sinon.
      */
     public static boolean estCeUnMotDePasseAcceptable(String mdpasse){
-        return !(mdpasse.length()<8);
+        return (mdpasse.length()>=8);
     }
 
     /**

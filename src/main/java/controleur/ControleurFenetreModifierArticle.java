@@ -1,8 +1,5 @@
 package controleur;
 
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -11,7 +8,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modele.Produit;
-import java.util.*;
 
 import javax.persistence.EntityManager;
 import java.net.URL;
@@ -36,6 +32,8 @@ public class ControleurFenetreModifierArticle implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        //Pré-remplissage des données :
         articleAModifier = ProduitDAO.trouverProduit(idArticle);
 
         EntityManager em = Connexion.getEntityManager();
@@ -47,52 +45,46 @@ public class ControleurFenetreModifierArticle implements Initializable {
         fieldDescription.setText(articleAModifier.getDescription());
         fieldReference.setText(articleAModifier.getReference());
 
-        boutonModifier.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try{
-                    String nouveauNom = fieldNom.getText();
-                    float nouveauPrix = Float.parseFloat(fieldPrix.getText());
-                    String nouvelleDescription = fieldDescription.getText();
-                    String nouvelleReference = fieldReference.getText();
+        boutonModifier.setOnAction(event -> {
+            try{
+                String nouveauNom = fieldNom.getText();
+                float nouveauPrix = Float.parseFloat(fieldPrix.getText());
+                String nouvelleDescription = fieldDescription.getText();
+                String nouvelleReference = fieldReference.getText();
 
-                    EntityManager em = Connexion.getEntityManager();
+                EntityManager em1 = Connexion.getEntityManager();
 
-                    em.getTransaction().begin();
+                em1.getTransaction().begin();
 
-                    if(nouveauPrix < 0){
-                        throw new NumberFormatException();
-                    }
-
-                    articleAModifier = em.find(articleAModifier.getClass(), articleAModifier.getIdProduit());
-
-                    articleAModifier.setNomProduit(nouveauNom);
-                    articleAModifier.setPrix(nouveauPrix);
-                    articleAModifier.setDescription(nouvelleDescription);
-                    articleAModifier.setReference(nouvelleReference);
-
-                    em.getTransaction().commit();
-
-                    em.close();
-
-                    Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
-                    stage.close();
-                    event.consume();
-                    ControleurFenetrePrincipale.miseAJourDesTables();
-                } catch(java.lang.NumberFormatException a){
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier l'article, prix incorrect.", ButtonType.OK);
-                    alert.show();
+                if(nouveauPrix < 0){
+                    throw new NumberFormatException();
                 }
-            }
-        });
 
-        boutonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+                articleAModifier = em1.find(articleAModifier.getClass(), articleAModifier.getIdProduit());
+
+                articleAModifier.setNomProduit(nouveauNom);
+                articleAModifier.setPrix(nouveauPrix);
+                articleAModifier.setDescription(nouvelleDescription);
+                articleAModifier.setReference(nouvelleReference);
+
+                em1.getTransaction().commit();
+
+                em1.close();
+
                 Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
                 stage.close();
                 event.consume();
+                ControleurFenetrePrincipale.miseAJourDesTables();
+            } catch(NumberFormatException a){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier l'article, prix incorrect.", ButtonType.OK);
+                alert.show();
             }
+        });
+
+        boutonAnnuler.setOnAction(event -> {
+            Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
+            stage.close();
+            event.consume();
         });
     }
 

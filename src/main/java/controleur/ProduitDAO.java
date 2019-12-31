@@ -125,6 +125,33 @@ public abstract class ProduitDAO {
         return true;
     }
 
+    /**
+     * Fonction supprimant un produit enregistré dans l'application.
+     * @param id : id du produit que l'on supprime.
+     */
+    public static boolean supprimerUnProduit(int id){
+
+        EntityManager em =  Connexion.getEntityManager();
+
+        em.getTransaction().begin();
+
+        Produit produit = em.find(Produit.class, id);
+
+        try{
+            //em.remove(produit);
+            Query query = em.createQuery("DELETE FROM Produit p WHERE p.idProduit = '" + id + "'");
+            query.executeUpdate();
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+            em.close();
+            return false;
+        }
+
+        em.getTransaction().commit();
+        em.close();
+        return true;
+    }
+
     public static boolean suppressionStockProduit(Produit p, int quantite){
         EntityManager em = Connexion.getEntityManager();
 

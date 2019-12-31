@@ -49,15 +49,15 @@ public class ControleurFenetreCreerArticle implements Initializable {
 
                     Rayon rayon = RayonDAO.trouverRayon(idRayon);
 
-                    if(!ProduitDAO.ajouterUnProduit(new Produit(nom, stock, reservations, prix, rayon, description, reference))){
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Connexion impossible. Vérifiez votre connexion internet ou l’adresse de la base.", ButtonType.OK);
-                        alert.show();
-                    }
-                    else{
+                    if(ProduitDAO.ajouterUnProduit(new Produit(nom, stock, reservations, prix, rayon, description, reference))){
                         Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
                         stage.close();
                         event.consume();
                         ControleurFenetrePrincipale.miseAJourDesTables();
+                    }
+                    else{
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Connexion impossible. Vérifiez votre connexion internet ou l’adresse de la base.", ButtonType.OK);
+                        alert.show();
                     }
                 } catch(java.lang.NumberFormatException a){
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de créer l'article, valeurs incorrectes.", ButtonType.OK);
