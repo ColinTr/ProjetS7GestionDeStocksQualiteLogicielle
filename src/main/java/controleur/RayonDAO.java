@@ -3,6 +3,7 @@ package controleur;
 import modele.Magasin;
 import modele.Produit;
 import modele.Rayon;
+import modele.Utilisateur;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -58,4 +59,20 @@ public final class RayonDAO {
         return listeARetourner;
     }
 
+    public static Rayon trouverRayon(int idRayon) {
+        Rayon rayon = null;
+
+        EntityManager em = Connexion.getEntityManager();
+
+        Query query = em.createQuery("SELECT r FROM Rayon r WHERE r.idRayon = '" + idRayon + "'");
+
+        List results = query.getResultList();
+
+        if(!results.isEmpty()){
+            rayon = (Rayon) results.get(0);
+        }
+
+        em.close();
+        return rayon;
+    }
 }

@@ -46,7 +46,7 @@ public class FenetrePrincipale extends Application {
         ControleurFenetrePrincipale c = loader.getController();
 
         if(utilisateurConnecte != null){
-            c.setContenuTableRayons(utilisateurConnecte.getMagasin());
+            c.setContenuTableRayons(utilisateurConnecte.getMagasin().getIdMagasin());
         }
 
         primaryStage.show();

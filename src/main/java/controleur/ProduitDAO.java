@@ -87,6 +87,8 @@ public abstract class ProduitDAO {
 
         em.getTransaction().begin();
 
+        if (produit.getRayon() != null) {produit.setRayon(em.find(Rayon.class, produit.getRayon().getIdRayon()));}
+
         try{
             em.persist(produit);
         } catch (Exception e){

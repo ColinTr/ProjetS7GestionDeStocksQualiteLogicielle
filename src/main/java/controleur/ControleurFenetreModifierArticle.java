@@ -1,14 +1,17 @@
 package controleur;
 
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modele.Produit;
+import java.util.*;
 
 import javax.persistence.EntityManager;
 import java.net.URL;
@@ -47,20 +50,19 @@ public class ControleurFenetreModifierArticle implements Initializable {
         boutonModifier.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String nouveauNom = null;
-                float nouveauPrix = -1;
-                String nouvelleDescription = null;
-                String nouvelleReference = null;
-
                 try{
-                    nouveauNom = fieldNom.getText();
-                    nouveauPrix = Float.parseFloat(fieldPrix.getText());
-                    nouvelleDescription = fieldDescription.getText();
-                    nouvelleReference = fieldReference.getText();
+                    String nouveauNom = fieldNom.getText();
+                    float nouveauPrix = Float.parseFloat(fieldPrix.getText());
+                    String nouvelleDescription = fieldDescription.getText();
+                    String nouvelleReference = fieldReference.getText();
 
                     EntityManager em = Connexion.getEntityManager();
 
                     em.getTransaction().begin();
+
+                    if(nouveauPrix < 0){
+                        throw new NumberFormatException();
+                    }
 
                     articleAModifier = em.find(articleAModifier.getClass(), articleAModifier.getIdProduit());
 
@@ -76,13 +78,10 @@ public class ControleurFenetreModifierArticle implements Initializable {
                     Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
                     stage.close();
                     event.consume();
+                    ControleurFenetrePrincipale.miseAJourDesTables();
                 } catch(java.lang.NumberFormatException a){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Dialog");
-                    alert.setHeaderText("Look, an Error Dialog");
-                    alert.setContentText("Ooops, there was an error!");
-
-                    //alert.showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier l'article, prix incorrect.", ButtonType.OK);
+                    alert.show();
                 }
             }
         });
