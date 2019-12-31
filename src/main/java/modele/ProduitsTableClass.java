@@ -6,13 +6,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class ProduitsTableClass {
 
-    private SimpleStringProperty nom;
-    private SimpleFloatProperty prix;
-    private SimpleIntegerProperty stock;
-    private SimpleIntegerProperty reservations;
-    private SimpleStringProperty description;
-    private SimpleStringProperty reference;
-    private int idArticle;
+    private final SimpleStringProperty nom;
+    private final SimpleFloatProperty prix;
+    private final SimpleIntegerProperty stock;
+    private final SimpleIntegerProperty reservations;
+    private final SimpleStringProperty description;
+    private final SimpleStringProperty reference;
+    private final int idArticle;
 
     public String getNom() {
         return nom.get();

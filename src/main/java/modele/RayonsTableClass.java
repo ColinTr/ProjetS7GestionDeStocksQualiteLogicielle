@@ -5,10 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class RayonsTableClass {
 
-    private SimpleStringProperty nom;
-    private SimpleStringProperty chef;
-    private SimpleIntegerProperty nombre;
-    private int idRayon;
+    private final SimpleStringProperty nom;
+    private final SimpleStringProperty chef;
+    private final SimpleIntegerProperty nombre;
+    private final int idRayon;
 
     public String getNom() {
         return nom.get();
