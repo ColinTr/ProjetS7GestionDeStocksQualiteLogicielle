@@ -20,11 +20,11 @@
       <GridPane style="-fx-background-color: #326496;">
          <columnConstraints>
             <ColumnConstraints hgrow="NEVER" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="20.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="0.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="0.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="20.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
             <ColumnConstraints hgrow="NEVER" />
          </columnConstraints>
          <rowConstraints>
@@ -65,7 +65,7 @@
                   <Font name="Gadugi Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="label_utilisateur" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur connecté" GridPane.columnIndex="5">
+            <Text fx:id="label_utilisateur" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aucun utilisateur" GridPane.columnIndex="5">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
@@ -104,6 +104,8 @@
                     <columns>
                       <TableColumn fx:id="colonneNomp" prefWidth="75.0" text="Nom du produit" />
                       <TableColumn fx:id="colonnePrix" prefWidth="75.0" text="Prix" />
+                        <TableColumn prefWidth="75.0" text="Description" />
+                        <TableColumn prefWidth="75.0" text="Référence" />
                         <TableColumn fx:id="colonneStock" prefWidth="75.0" text="Stock" />
                         <TableColumn fx:id="colonneReservations" prefWidth="75.0" text="Quantité réservée" />
                     </columns>
@@ -125,11 +127,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="Créer article" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" text="Modifier article" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" text="Modifier stock" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" text="Supprimer article" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" text="Transférer articles" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="bouton_creerArticle" mnemonicParsing="false" text="Créer article" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="bouton_modifierArticle" mnemonicParsing="false" text="Modifier article" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="bouton_modifierStock" mnemonicParsing="false" text="Modifier stock" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="bouton_supprimerArticle" mnemonicParsing="false" text="Supprimer article" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="bouton_transfererArticles" mnemonicParsing="false" text="Transférer articles" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                      <BorderPane.margin>
                         <Insets bottom="15.0" left="200.0" right="200.0" top="15.0" />

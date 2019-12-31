@@ -51,7 +51,7 @@ public class produitDAOSteps {
         EntityManager em = Connexion.getEntityManager();
         em.getTransaction().begin();
         for (int i = 0; i < arg0; i++) {
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null);
+            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
             em.persist(p);
         }
         em.getTransaction().commit();
@@ -76,7 +76,7 @@ public class produitDAOSteps {
     public void onInsereNumberProduitsALaBDDEtOnLesStocksDansUneListe(int arg0) {
         EntityManager em = Connexion.getEntityManager();
         for (int i = 0; i < arg0; i++) {
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null);
+            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
             if (resultat) { resultat = ProduitDAO.ajouterUnProduit(p); }
             listProduit.add(p);
         }
@@ -111,7 +111,7 @@ public class produitDAOSteps {
     @And("^On remplie la liste BDD avec (\\d+) produits qui ne sont pas sur la BDD$")
     public void onRemplieLaListeBDDAvecProduitsQuiNeSontPasSurLaBDD(int arg0) {
         for (int i = 0; i < arg0; i++) {
-            listProduitBDD.add(new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), null));
+            listProduitBDD.add(new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), null, "", ""));
         }
     }
 

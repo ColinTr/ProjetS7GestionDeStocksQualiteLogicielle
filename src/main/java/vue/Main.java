@@ -25,7 +25,7 @@ public class Main {
         Rayon r3 = new Rayon("Rayon 3", null, null, m1);
         Rayon r4 = new Rayon("Rayon 4", null, null, m1);
 
-        Produit p1 = new Produit("produit1", 42, 10, 99, r1);
+        Produit p1 = new Produit("produit1", 42, 10, 99, r1, "desc", "ref");
 
         colin.setMagasin(m1);
         colin.setRayonDirige(r1);
