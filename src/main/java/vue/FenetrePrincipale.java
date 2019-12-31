@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.Utilisateur;
 
@@ -32,6 +33,10 @@ public class FenetrePrincipale extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        if(utilisateurConnecte != null){
+            ControleurFenetrePrincipale.setUtilisateurConnecte(utilisateurConnecte);
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetrePrincipaleFXML.fxml"));
         Pane root = loader.load();

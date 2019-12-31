@@ -5,7 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -14,10 +17,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import modele.*;
+import vue.FenetreDeParametres;
 
 import javax.persistence.EntityManager;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +32,8 @@ import java.util.ResourceBundle;
  * Cette classe définit le contenu des tables de l'application et toutes les actions liées aux boutons et sélections de lignes.
  */
 public class ControleurFenetrePrincipale implements Initializable {
+
+    private static Utilisateur utilisateurConnecte;
 
     //Table et colonnes de la table des rayons d'un magasin :
     @FXML private BorderPane pane_rayons;
@@ -45,8 +53,14 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private Text label_chemin;
     @FXML private Text label_utilisateur;
 
+    //Définition des boutons
     @FXML private Button home_button;
     @FXML private Button settings_button;
+    @FXML private Button bouton_creerArticle;
+    @FXML private Button bouton_modifierArticle;
+    @FXML private Button bouton_modifierStock;
+    @FXML private Button bouton_supprimerArticle;
+    @FXML private Button bouton_transfererArticles;
 
     @FXML private BorderPane pane_articles;
 
@@ -57,6 +71,8 @@ public class ControleurFenetrePrincipale implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        //================================ Définition des actions des boutons ================================
+
         //Bouton qui permet de revenir à la liste des rayons
         home_button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -65,6 +81,116 @@ public class ControleurFenetrePrincipale implements Initializable {
                 event.consume();
             }
         });
+
+        //Bouton pour ouvrir la fenêtre des paramètres (À REFAIRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
+        settings_button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FenetreDeParametres.main(null);
+                event.consume();
+            }
+        });
+
+        bouton_creerArticle.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Créer article");
+                    stage.setScene(new Scene(root, 450, 450));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                event.consume();
+            }
+        });
+
+        bouton_modifierArticle.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
+                if(articleSelectionne != null){
+                    ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
+                    Parent root;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
+                        root = loader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier article");
+                        stage.setScene(new Scene(root, 350, 350));
+                        stage.show();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    event.consume();
+                }
+            }
+        });
+
+        bouton_modifierStock.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Modifier stock");
+                    stage.setScene(new Scene(root, 450, 450));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                event.consume();
+            }
+        });
+
+        bouton_supprimerArticle.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreSupprimerArticle.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Supprimer article");
+                    stage.setScene(new Scene(root, 450, 450));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                event.consume();
+            }
+        });
+
+        bouton_transfererArticles.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransfererArticles.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Transférer articles");
+                    stage.setScene(new Scene(root, 450, 450));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                event.consume();
+            }
+        });
+
+        //================================ Définition des tables ================================
 
         //Permet de détecter un double click sur une ligne de la table des rayons et d'afficher la liste des articles de celui-ci
         rayonsTable.setRowFactory(new Callback<TableView<RayonsTableClass>, TableRow<RayonsTableClass>>() {
@@ -86,6 +212,11 @@ public class ControleurFenetrePrincipale implements Initializable {
             }
         });
 
+        //On définit le nom de l'utilisateur affiché
+        if(utilisateurConnecte != null){
+            label_utilisateur.setText(utilisateurConnecte.toString());
+        }
+
         //On fait le lien entre les lignes déclarées ici et celles du fichier .fxml et les éléments du modèle TableClass :
         colonneNom.setCellValueFactory( new PropertyValueFactory<RayonsTableClass, String>("nom") );
         colonneChefDeRayon.setCellValueFactory( new PropertyValueFactory<RayonsTableClass,String>("chef") );
@@ -93,7 +224,6 @@ public class ControleurFenetrePrincipale implements Initializable {
 
         dataTableRayons = FXCollections.observableArrayList();
         rayonsTable.setItems(dataTableRayons);
-
 
         colonneNomp.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("nom") );
         colonnePrix.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Float>("prix") );
@@ -103,7 +233,7 @@ public class ControleurFenetrePrincipale implements Initializable {
         dataTableProduits = FXCollections.observableArrayList();
         produitsTable.setItems(dataTableProduits);
 
-        //On affiche d'abord la table des rayons
+        //On affiche la table des rayons au lancement de l'application
         pane_rayons.toFront();
     }
 
@@ -146,9 +276,13 @@ public class ControleurFenetrePrincipale implements Initializable {
         for(Produit p : produits){
             p = em.merge(p);
 
-            dataTableProduits.add( new ProduitsTableClass(p.getNomProduit(), p.getPrix(), p.getStock(), p.getReservations()) );
+            dataTableProduits.add( new ProduitsTableClass(p.getNomProduit(), p.getPrix(), p.getStock(), p.getReservations(), p.getIdProduit()) );
         }
 
         em.close();
+    }
+
+    public static void setUtilisateurConnecte(Utilisateur utilisateur){
+        utilisateurConnecte = utilisateur;
     }
 }
