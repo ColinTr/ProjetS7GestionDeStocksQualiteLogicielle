@@ -26,8 +26,7 @@ public class ControleurFenetreModifierArticle implements Initializable {
 
     private static Produit articleAModifier;
 
-    @FXML
-    private TextField fieldNom;
+    @FXML private TextField fieldNom;
     @FXML private TextField fieldPrix;
     @FXML private TextField fieldDescription;
     @FXML private TextField fieldReference;
@@ -51,16 +50,11 @@ public class ControleurFenetreModifierArticle implements Initializable {
         boutonModifier.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String nouveauNom = null;
-                float nouveauPrix = -1;
-                String nouvelleDescription = null;
-                String nouvelleReference = null;
-
                 try{
-                    nouveauNom = fieldNom.getText();
-                    nouveauPrix = Float.parseFloat(fieldPrix.getText());
-                    nouvelleDescription = fieldDescription.getText();
-                    nouvelleReference = fieldReference.getText();
+                    String nouveauNom = fieldNom.getText();
+                    float nouveauPrix = Float.parseFloat(fieldPrix.getText());
+                    String nouvelleDescription = fieldDescription.getText();
+                    String nouvelleReference = fieldReference.getText();
 
                     EntityManager em = Connexion.getEntityManager();
 

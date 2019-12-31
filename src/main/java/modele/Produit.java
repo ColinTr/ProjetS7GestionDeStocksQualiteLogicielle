@@ -24,7 +24,7 @@ public class Produit {
 
     //============================= Constructeurs =============================
 
-    public Produit(String nomProduit, int stock, int reservations, int prix, Rayon rayon, String description, String reference) {
+    public Produit(String nomProduit, int stock, int reservations, float prix, Rayon rayon, String description, String reference) {
         this.nomProduit = nomProduit;
         this.stock = stock;
         this.reservations = reservations;

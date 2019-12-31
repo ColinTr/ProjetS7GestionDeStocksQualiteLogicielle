@@ -81,18 +81,26 @@ public abstract class ProduitDAO {
      * Fonction ajoutant un nouveau produit dans l'application.
      * @param produit produit que l'on ajoute.
      */
-    public static void ajouterUnProduit(Produit produit){
+    public static boolean ajouterUnProduit(Produit produit){
 
         EntityManager em =  Connexion.getEntityManager();
 
         em.getTransaction().begin();
-        em.persist(produit);
+
+        produit.setRayon(em.find(Rayon.class, produit.getRayon().getIdRayon()));
+
+        try{
+            em.persist(produit);
+        } catch (Exception e){
+            e.printStackTrace();
+            em.close();
+            return false;
+        }
+
         em.getTransaction().commit();
-
         em.close();
-
+        return true;
     }
-
 
     /**
      * Fonction supprimant un produit enregistré dans l'application.

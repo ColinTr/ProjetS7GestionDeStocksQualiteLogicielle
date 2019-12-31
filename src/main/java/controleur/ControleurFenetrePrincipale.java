@@ -34,6 +34,8 @@ import java.util.ResourceBundle;
 public class ControleurFenetrePrincipale implements Initializable {
 
     private static Utilisateur utilisateurConnecte;
+
+    //L'id du rayon actuellement affiché
     private static int idRayon;
 
     //Table et colonnes de la table des rayons d'un magasin :
@@ -95,13 +97,14 @@ public class ControleurFenetrePrincipale implements Initializable {
         bouton_creerArticle.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                ControleurFenetreCreerArticle.setIdRayon(idRayon);
                 Parent root;
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
                     root = loader.load();
                     Stage stage = new Stage();
                     stage.setTitle("Créer article");
-                    stage.setScene(new Scene(root, 450, 450));
+                    stage.setScene(new Scene(root, 350, 450));
                     stage.show();
                 }
                 catch (IOException e) {
