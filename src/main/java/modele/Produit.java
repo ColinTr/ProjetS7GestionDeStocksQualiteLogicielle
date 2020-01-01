@@ -144,4 +144,8 @@ public class Produit {
                 Objects.equals(rayon, produit.rayon);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProduit, nomProduit, stock, reservations, prix, description, reference, rayon);
+    }
 }
