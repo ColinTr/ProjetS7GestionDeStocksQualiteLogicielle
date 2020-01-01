@@ -5,11 +5,13 @@ import controleur.UtilisateurDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.Utilisateur;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -40,6 +42,7 @@ public class FenetrePrincipale extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetrePrincipaleFXML.fxml"));
         Pane root = loader.load();
+        primaryStage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
         primaryStage.setTitle("Polystocker");
         primaryStage.setScene(new Scene(root, 1080, 720));
 

@@ -79,7 +79,7 @@ public class FenetreDeConnexion {
 
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
-        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file_icon.png"));
+        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("icon.png"));
         frameLoginWindow.setIconImage(logo.getImage());
         frameLoginWindow.setTitle("Connexion");
         frameLoginWindow.setBounds(dim.width/2-530/2, dim.height/2-250/2, 530, 250);

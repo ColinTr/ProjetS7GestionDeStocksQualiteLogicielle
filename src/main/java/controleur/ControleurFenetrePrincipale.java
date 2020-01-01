@@ -1,5 +1,6 @@
 package controleur;
 
+import javafx.scene.image.Image;
 import modele.*;
 
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
 import java.io.IOException;
@@ -84,6 +86,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
                 root = loader.load();
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                 stage.setTitle("Créer article");
                 stage.setScene(new Scene(root, 350, 450));
                 stage.show();
@@ -103,6 +106,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
                     root = loader.load();
                     Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                     stage.setTitle("Modifier article");
                     stage.setScene(new Scene(root, 350, 350));
                     stage.show();
@@ -123,6 +127,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
                     root = loader.load();
                     Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                     stage.setTitle("Modifier stock");
                     stage.setScene(new Scene(root, 250, 250));
                     stage.show();
@@ -153,6 +158,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransfererArticles.fxml"));
                 root = loader.load();
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                 stage.setTitle("Transférer articles");
                 stage.setScene(new Scene(root, 450, 450));
                 stage.show();
