@@ -14,6 +14,84 @@ import java.util.List;
 public final class UtilisateurDAO {
 
     /**
+     * Cette fonction remplace le chef de rayon courant par un nouveau.
+     * @param idChef l'id du nouveau chef de rayon.
+     * @param idRayon l'id du rayon.
+     * @return true si il a pu être défini comme chef, false sinon.
+     */
+    public static boolean definirChefRayon(int idChef, int idRayon){
+        EntityManager em = Connexion.getEntityManager();
+
+        em.getTransaction().begin();
+
+        Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE rayonDirige = '" + idRayon + "'");
+
+        List results = query.getResultList();
+        List<Utilisateur> userList = new ArrayList<>();
+        for(Object o : results){
+            userList.add( ((Utilisateur) o) );
+        }
+
+        //On met à null le rayon dirigé des utilisateurs trouvés
+        for(Utilisateur u : userList){
+            u = em.find(u.getClass(), u.getIdUtilisateur());
+            u.setRayonDirige(null);
+        }
+
+        //On le défini comme chef du rayon
+        Utilisateur u = em.find(Utilisateur.class, idChef);
+        Rayon r = em.find(Rayon.class, idRayon);
+
+        if(u != null){
+            u.setRayonDirige(r);
+        }
+
+        em.getTransaction().commit();
+
+        em.close();
+        return true;
+    }
+
+    /**
+     * Cette fonction remplace le chef de magasin courant par un nouveau.
+     * @param idChef l'id du nouveau chef de magasin.
+     * @param idMagasin l'id du magasin.
+     * @return true si il a pu être défini comme chef, false sinon.
+     */
+    public static boolean definirChefMagasin(int idChef, int idMagasin){
+        EntityManager em = Connexion.getEntityManager();
+
+        em.getTransaction().begin();
+
+        Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE magasinDirige = '" + idMagasin + "'");
+
+        List results = query.getResultList();
+        List<Utilisateur> userList = new ArrayList<>();
+        for(Object o : results){
+            userList.add( ((Utilisateur) o) );
+        }
+
+        //On met à null le magasin dirigé des utilisateurs trouvés
+        for(Utilisateur u : userList){
+            u = em.find(u.getClass(), u.getIdUtilisateur());
+            u.setMagasinDirige(null);
+        }
+
+        //On le défini comme chef du magasin
+        Utilisateur u = em.find(Utilisateur.class, idChef);
+        Magasin m = em.find(Magasin.class, idMagasin);
+
+        if(u != null){
+            u.setMagasinDirige(m);
+        }
+
+        em.getTransaction().commit();
+
+        em.close();
+        return true;
+    }
+
+    /**
      * Fonction permettant de hacher un String selon la fonction Sha512.
      * @param str le String à hacher.
      * @return le String haché.
@@ -37,7 +115,7 @@ public final class UtilisateurDAO {
      * Cette fonction teste si un utilisateur existe dans la base de données ou non.
      * @param ndCompte le nom de compte.
      * @param mdPasse le mot de passe (non haché).
-     * @return l'utilisateur correspondant.
+     * @return l'utilisateur correspondant (null si inexistant dans la BDD).
      */
     public static Utilisateur testerAuthentification(String ndCompte, String mdPasse){
         Utilisateur utilisateur = null;
@@ -45,6 +123,28 @@ public final class UtilisateurDAO {
         EntityManager em = Connexion.getEntityManager();
 
         Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.motDePasse = '" + SHA512(mdPasse) + "' AND u.nomDeCompte = '" + ndCompte + "'");
+
+        List results = query.getResultList();
+
+        if(!results.isEmpty()){
+            utilisateur = (Utilisateur) results.get(0);
+        }
+
+        em.close();
+        return utilisateur;
+    }
+
+    /**
+     * Cette fonction teste si un nom de compte existe déjà dans la base de données.
+     * @param ndCompte le nom de compte.
+     * @return l'utilisateur correspondant (null si inexistant dans la BDD).
+     */
+    public static Utilisateur testerNomDeCompte(String ndCompte){
+        Utilisateur utilisateur = null;
+
+        EntityManager em = Connexion.getEntityManager();
+
+        Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.nomDeCompte = '" + ndCompte + "'");
 
         List results = query.getResultList();
 

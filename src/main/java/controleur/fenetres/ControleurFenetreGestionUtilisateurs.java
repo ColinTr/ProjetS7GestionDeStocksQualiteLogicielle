@@ -62,7 +62,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                 stage.setTitle("Créer utilisateur");
-                stage.setScene(new Scene(root, 350, 525));
+                stage.setScene(new Scene(root, 350, 600));
                 stage.show();
             }
             catch (IOException e) {

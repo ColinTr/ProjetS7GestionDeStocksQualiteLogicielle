@@ -1,5 +1,6 @@
 package controleur.fenetres;
 
+import controleur.Connexion;
 import controleur.MagasinDAO;
 import controleur.UtilisateurDAO;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ import modele.Rayon;
 import modele.TypeDeCompte;
 import modele.Utilisateur;
 
+import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,6 +41,7 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     @FXML private Button boutonAnnuler;
 
     @FXML private CheckBox checkBoxRestreint;
+    @FXML private CheckBox boxDirigeMagasin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,16 +75,34 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
             String nom = fieldNom.getText();
             String prenom = fieldPrenom.getText();
 
+
             if(nomCompte.isEmpty() || nom.isEmpty() || motDePasse.isEmpty() || prenom.isEmpty()){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez renseigner tous les champs pour créer un utilisateur.", ButtonType.OK);
                 alert.show();
             }
             else{
-                UtilisateurDAO.creerUtilisateur(new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), boxTypeCompte.getValue(), checkBoxRestreint.isSelected(), boxMagasins.getValue(), boxRayons.getValue(), boxMagasins.getValue()));
-                Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
-                stage.close();
-                event.consume();
-                ControleurFenetreGestionUtilisateurs.miseAJourTable();
+                if(UtilisateurDAO.testerNomDeCompte(nomCompte) != null){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Un utilisateur avec le même nom de compte existe déjà dans la base de données.", ButtonType.OK);
+                    alert.show();
+                }
+                else{
+                    Utilisateur nouvelUtilisateur = new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), boxTypeCompte.getValue(), checkBoxRestreint.isSelected(), null, null, boxMagasins.getValue());
+
+                    UtilisateurDAO.creerUtilisateur(nouvelUtilisateur);
+
+                    UtilisateurDAO.definirChefRayon(nouvelUtilisateur.getIdUtilisateur(), boxRayons.getValue().getIdRayon());
+
+                    if(boxDirigeMagasin.isSelected()){
+                        UtilisateurDAO.definirChefMagasin(nouvelUtilisateur.getIdUtilisateur(), boxMagasins.getValue().getIdMagasin());
+                    }
+
+                    ControleurFenetreGestionUtilisateurs.miseAJourTable();
+
+                    Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
+                    stage.close();
+                    event.consume();
+                }
+
             }
         });
 
