@@ -138,3 +138,18 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 50 | 53 |
       | 100 | 44 |
 
+  @bdd @done
+  Scenario Outline: On souhaite ajouter du stock de produits sur la bdd
+    Given On génère <qte> produits dans la liste locale
+    Given On met le stock des produits aléatoirement avec comme minimum <minus>
+    Given On insère les produits de la liste locale dans la bdd VALIDE
+    When On ajoute <val> au stock de tout les produits de la liste locale sur la bdd
+    Then On récupère la bdd et on la stock dans la liste bdd
+    Then Tous les produits ont leurs stock initial plus <val>
+    Examples:
+      | qte | minus | val |
+      | 5 | 1 | 5 |
+      | 10 | 5 | 10 |
+      | 25 | 7 | 25 |
+      | 50 | 53 | 3 |
+      | 100 | 44 | 42 |

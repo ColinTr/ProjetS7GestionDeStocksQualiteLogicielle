@@ -227,4 +227,27 @@ public class produitDAOSteps {
         }
     }
 
+    /* === Ajout de stock d'un produit de la BDD === */
+
+    //Given : On génère (\d+) produits dans la liste locale
+    //Given : On met le stock des produits aléatoirement avec comme minimum (\d+)
+    //Given : On insère les produits de la liste locale dans la bdd VALIDE
+
+    @When("^On ajoute (\\d+) au stock de tout les produits de la liste locale sur la bdd$")
+    public void onAjouteXAuStockDeToutLesProduitsDeLaListeLocaleSurLaBdd(int arg0) {
+        for (Produit p : listProduit) {
+            assert (ProduitDAO.ajoutStockProduit(p, arg0));
+        }
+    }
+
+    //Then : On récupère la bdd et on la stock dans la liste bdd
+
+    @Then("^Tous les produits ont leurs stock initial plus (\\d+)$")
+    public void tousLesProduitsOntLeursStockInitialPlusX(int arg0) {
+        for (int i = 0; i < listProduitBDD.size(); i++) {
+            assertEquals(listProduitBDD.get(i).getStock(), listProduit.get(i).getStock()+arg0);
+        }
+    }
+
+
 }
