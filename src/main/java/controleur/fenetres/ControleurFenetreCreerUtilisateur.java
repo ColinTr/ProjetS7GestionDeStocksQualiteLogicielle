@@ -38,6 +38,8 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     @FXML private Button boutonModifier;
     @FXML private Button boutonAnnuler;
 
+    @FXML private CheckBox checkBoxRestreint;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -65,18 +67,17 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
         });
 
         boutonModifier.setOnAction(event -> {
-            String nomCompte, nom, motDePasse, prenom;
-            nomCompte = fieldNomCompte.getText();
-            motDePasse = fieldMotDePasse.getText();
-            nom = fieldNom.getText();
-            prenom = fieldPrenom.getText();
+            String nomCompte = fieldNomCompte.getText();
+            String motDePasse = fieldMotDePasse.getText();
+            String nom = fieldNom.getText();
+            String prenom = fieldPrenom.getText();
 
             if(nomCompte.isEmpty() || nom.isEmpty() || motDePasse.isEmpty() || prenom.isEmpty()){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez renseigner tous les champs pour créer un utilisateur.", ButtonType.OK);
                 alert.show();
             }
             else{
-                UtilisateurDAO.creerUtilisateur(new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), boxTypeCompte.getValue(), false, boxMagasins.getValue(), boxRayons.getValue(), boxMagasins.getValue()));
+                UtilisateurDAO.creerUtilisateur(new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), boxTypeCompte.getValue(), checkBoxRestreint.isSelected(), boxMagasins.getValue(), boxRayons.getValue(), boxMagasins.getValue()));
                 Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
                 stage.close();
                 event.consume();

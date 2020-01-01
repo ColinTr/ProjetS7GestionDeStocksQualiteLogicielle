@@ -62,6 +62,7 @@ public final class UtilisateurDAO {
      * @return true si il a pu être ajouté, false sinon.
      */
     public static boolean creerUtilisateur(Utilisateur utilisateur){
+
         EntityManager em =  Connexion.getEntityManager();
 
         em.getTransaction().begin();
@@ -74,6 +75,7 @@ public final class UtilisateurDAO {
             em.persist(utilisateur);
         } catch (Exception e){
             e.printStackTrace();
+            em.getTransaction().rollback();
             em.close();
             return false;
         }
