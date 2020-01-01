@@ -90,6 +90,37 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 25 | 10 |
       | 50 | 30 |
 
+  @bdd
+  Scenario Outline: On supprime des produits déjà présent sur la bdd dans la bdd par id
+    Given On met <qte> produits dans la bdd et on stock dans la liste locale
+    When On supprime par id dans la bdd les produits de la liste locale VALIDE
+    Then Alors on récupère la bdd et on la stock dans la liste bdd
+    Then La liste bdd fait la taille <zero>
+    Then La liste bdd ne contient pas les produits de la liste locale
+    Examples:
+      | qte | zero |
+      | 4 | 0 |
+      | 10 | 0 |
+      | 30 | 0 |
+      | 0 | 0 |
+      | 50 | 0 |
+
+  @bdd
+  Scenario Outline: On supprime des nouveaux produits sur la bdd par id
+    Given On met <qte> produits dans la bdd et on stock dans la liste locale
+    Given On génère <nb> produits dans la liste locale
+    When On supprime par id dans la bdd les produits de la liste locale NON VALIDE
+    Then Alors on récupère la bdd et on la stock dans la liste bdd
+    Then La liste bdd fait la taille <qte>
+    Then La liste bdd ne contient pas les produits de la liste locale
+    Examples:
+      | qte | nb |
+      | 1 | 4 |
+      | 5 | 10 |
+      | 10 | 5 |
+      | 25 | 10 |
+      | 50 | 30 |
+
   @bdd @done
   Scenario Outline: On souhaite supprimer du stock de produits sur la bdd VALIDE
     Given On génère <qte> produits dans la liste locale

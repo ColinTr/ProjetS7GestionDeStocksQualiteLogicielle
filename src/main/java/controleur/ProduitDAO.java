@@ -110,8 +110,9 @@ public abstract class ProduitDAO {
         em.getTransaction().begin();
         Produit produit = em.find(Produit.class, p.getIdProduit());
         try{
+            produit.setRayon(null);
             em.remove(produit);
-        } catch (IllegalArgumentException e){
+        } catch (Exception e){
             e.printStackTrace();
             em.getTransaction().rollback();
             em.close();
@@ -137,11 +138,11 @@ public abstract class ProduitDAO {
         Produit produit = em.find(Produit.class, id);
 
         try{
-            //em.remove(produit);
-            Query query = em.createQuery("DELETE FROM Produit p WHERE p.idProduit = '" + id + "'");
-            query.executeUpdate();
-        } catch (IllegalArgumentException e){
+            produit.setRayon(null);
+            em.remove(produit);
+        } catch (Exception e){
             e.printStackTrace();
+            em.getTransaction().rollback();
             em.close();
             return false;
         }

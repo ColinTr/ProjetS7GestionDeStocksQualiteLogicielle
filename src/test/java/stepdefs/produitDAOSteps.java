@@ -31,16 +31,6 @@ public class produitDAOSteps {
     List<Produit> listProduit = new ArrayList<Produit>();
     List<Produit> listProduitBDD = new ArrayList<Produit>();
 
-    @Before("@bdd")
-    public void connectionBDD() {
-        Connexion.init("testUnit");
-    }
-
-    @After("@bdd")
-    public void closeConnectionBDD() {
-        Connexion.close();
-    }
-
 
     // -----------------------------------------------------------------------
 
@@ -50,8 +40,9 @@ public class produitDAOSteps {
     public void onMetXProduitsDansLaBddEtOnStockDansLaListeLocal(int arg0){
         EntityManager em = Connexion.getEntityManager();
         em.getTransaction().begin();
+        Rayon r = new Rayon();
         for (int i = 0; i < arg0; i++) {
-            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),null,"","");
+            Produit p = new Produit(RandomStringUtils.randomAlphanumeric(10), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1), new Random().nextInt(101 + 1),r,"","");
             em.persist(p);
             listProduit.add(p);
         }
@@ -142,6 +133,13 @@ public class produitDAOSteps {
         }
     }
 
+    @When("^On supprime par id dans la bdd les produits de la liste locale VALIDE$")
+    public void onSupprimeParIdDansLaBddLesProduitsDeLaListeLocaleValide(){
+        for (Produit p : listProduit){
+            assert(ProduitDAO.supprimerUnProduit(p.getIdProduit()));
+        }
+    }
+
     //Then : On récupère la bdd et on la stock dans la liste bdd
     //Then : La liste bdd fait la taille (\d+)
 
@@ -161,6 +159,13 @@ public class produitDAOSteps {
     public void onSupprimeDansLaBddLesProduitsDeLaListeLocaleNonValide(){
         for (Produit p : listProduit){
             assert(!ProduitDAO.supprimerUnProduit(p));
+        }
+    }
+
+    @When("^On supprime par id dans la bdd les produits de la liste locale NON VALIDE$")
+    public void onSupprimeParIdDansLaBddLesProduitsDeLaListeLocaleNonValide(){
+        for (Produit p : listProduit){
+            assert(!ProduitDAO.supprimerUnProduit(p.getIdProduit()));
         }
     }
 
