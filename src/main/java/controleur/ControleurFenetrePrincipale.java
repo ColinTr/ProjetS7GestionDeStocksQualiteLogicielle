@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
  */
 public class ControleurFenetrePrincipale implements Initializable {
 
+    //L'utilisateur actuellement connecté
     private static Utilisateur utilisateurConnecte;
 
     //L'id du rayon actuellement affiché
@@ -38,8 +39,9 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private BorderPane paneRayons;
     @FXML private TableView<RayonsTableClass> rayonsTable;
     @FXML private TableColumn<RayonsTableClass, String> colonneNom;
-    @FXML private TableColumn<RayonsTableClass,String> colonneChefDeRayon;
-    @FXML private TableColumn<RayonsTableClass,Integer> colonneNbArticles;
+    @FXML private TableColumn<RayonsTableClass, String> colonneChefDeRayon;
+    @FXML private TableColumn<RayonsTableClass, Integer> colonneNbArticles;
+    private static ObservableList<RayonsTableClass> dataTableRayons;
 
     //Table et colonnes de la table des produits d'un rayon :
     @FXML private BorderPane paneProduits;
@@ -50,6 +52,7 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private TableColumn<ProduitsTableClass, String> colonneReference;
     @FXML private TableColumn<ProduitsTableClass, Integer> colonneStock;
     @FXML private TableColumn<ProduitsTableClass, Integer> colonneReservations;
+    private static ObservableList<ProduitsTableClass> dataTableProduits;
 
     @FXML private Text labelChemin;
     @FXML private Text labelUtilisateur;
@@ -64,10 +67,6 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private Button buttonGestionUtilisateurs;
 
     @FXML private BorderPane paneArticles;
-
-    //Les données de la table
-    private static ObservableList<RayonsTableClass> dataTableRayons;
-    private static ObservableList<ProduitsTableClass> dataTableProduits;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -202,23 +201,32 @@ public class ControleurFenetrePrincipale implements Initializable {
         });
 
         buttonGestionUtilisateurs.setOnAction(event -> {
-            Parent root;
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreGestionUtilisateurs.fxml"));
-                root = loader.load();
-                Stage stage = new Stage();
-                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                stage.setTitle("Gestion des utilisateurs");
-                stage.setScene(new Scene(root, 1080, 720));
-                stage.show();
+            //On vérifie d'abord si l'utilisateur a le droit de supprimer un article dans ce rayon :
+            if(utilisateurConnecte.getTypeDeCompte() == TypeDeCompte.UTILISATEUR){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Vous ne disposez pas des droits suffisants.", ButtonType.OK);
+                alert.show();
             }
-            catch (IOException e) {
-                e.printStackTrace();
+            else{
+                ControleurFenetreGestionUtilisateurs.setUtilisateurConnecte(utilisateurConnecte);
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreGestionUtilisateurs.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                    stage.setTitle("Gestion des utilisateurs");
+                    stage.setScene(new Scene(root, 1080, 720));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
             event.consume();
         });
 
-        //================================ Définition des tables ================================
+        //================================ Initialisation des tables ================================
 
         //Permet de détecter un double click sur une ligne de la table des rayons et d'afficher la liste des articles de celui-ci
         rayonsTable.setRowFactory(tv -> {
