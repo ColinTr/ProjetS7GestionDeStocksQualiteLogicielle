@@ -94,7 +94,7 @@ public class Produit {
     }
 
     public boolean setStock(int stock) {
-        if(stock >= reservations){
+        if(stock >= reservations && stock >= 0){
             this.stock = stock;
             return true;
         }
@@ -108,7 +108,7 @@ public class Produit {
     }
 
     public boolean setReservations(int reservations) {
-        if(reservations <= stock){
+        if(reservations <= stock && reservations >= 0){
             this.reservations = reservations;
             return true;
         }
