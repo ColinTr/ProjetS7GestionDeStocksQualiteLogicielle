@@ -103,9 +103,7 @@ public class Produit {
         }
     }
 
-    public int getReservations() {
-        return reservations;
-    }
+    public int getReservations() {  return reservations; }
 
     public boolean setReservations(int reservations) {
         if(reservations <= stock && reservations >= 0){
@@ -114,6 +112,17 @@ public class Produit {
         }
         else{
             return false;
+        }
+    }
+
+    public boolean setStockEtReservations(int stock, int reservations){
+        if(stock < reservations || stock < 0 || reservations < 0){
+            return false;
+        }
+        else{
+            this.stock = stock;
+            this.reservations = reservations;
+            return true;
         }
     }
 
