@@ -80,19 +80,26 @@ public class ControleurFenetrePrincipale implements Initializable {
         });
 
         boutonCreerArticle.setOnAction(event -> {
-            ControleurFenetreCreerArticle.setIdRayon(idRayon);
-            Parent root;
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
-                root = loader.load();
-                Stage stage = new Stage();
-                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                stage.setTitle("Créer article");
-                stage.setScene(new Scene(root, 350, 450));
-                stage.show();
+            //On vérifie d'abord si l'utilisateur a le droit de créer un article dans ce rayon :
+            if(utilisateurConnecte.getTypeDeCompte() == TypeDeCompte.UTILISATEUR && utilisateurConnecte.getRayonDirige().getIdRayon() != idRayon){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de créer un article dans un rayon que vous ne dirigez pas.", ButtonType.OK);
+                alert.show();
             }
-            catch (IOException e) {
-                e.printStackTrace();
+            else{
+                ControleurFenetreCreerArticle.setIdRayon(idRayon);
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                    stage.setTitle("Créer article");
+                    stage.setScene(new Scene(root, 350, 450));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             event.consume();
         });

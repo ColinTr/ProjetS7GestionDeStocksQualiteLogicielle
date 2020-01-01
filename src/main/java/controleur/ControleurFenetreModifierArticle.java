@@ -52,13 +52,13 @@ public class ControleurFenetreModifierArticle implements Initializable {
                 String nouvelleDescription = fieldDescription.getText();
                 String nouvelleReference = fieldReference.getText();
 
-                EntityManager em1 = Connexion.getEntityManager();
-
-                em1.getTransaction().begin();
-
                 if(nouveauPrix < 0){
                     throw new NumberFormatException();
                 }
+
+                EntityManager em1 = Connexion.getEntityManager();
+
+                em1.getTransaction().begin();
 
                 articleAModifier = em1.find(articleAModifier.getClass(), articleAModifier.getIdProduit());
 
@@ -71,10 +71,11 @@ public class ControleurFenetreModifierArticle implements Initializable {
 
                 em1.close();
 
+                ControleurFenetrePrincipale.miseAJourDesTables();
+
                 Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
                 stage.close();
                 event.consume();
-                ControleurFenetrePrincipale.miseAJourDesTables();
             } catch(NumberFormatException a){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier l'article, prix incorrect.", ButtonType.OK);
                 alert.show();
