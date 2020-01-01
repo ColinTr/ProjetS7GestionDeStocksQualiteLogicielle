@@ -59,6 +59,11 @@ public class Rayon {
 
     }
 
+    @Override
+    public String toString(){
+        return nomRayon;
+    }
+
     //============================= Getters et Setters =============================
 
     public int getIdRayon() {

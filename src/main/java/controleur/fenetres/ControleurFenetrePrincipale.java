@@ -1,5 +1,9 @@
-package controleur;
+package controleur.fenetres;
 
+import controleur.Connexion;
+import controleur.MagasinDAO;
+import controleur.ProduitDAO;
+import controleur.RayonDAO;
 import javafx.scene.image.Image;
 import modele.*;
 
@@ -15,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import modele.tables.ProduitsTableClass;
+import modele.tables.RayonsTableClass;
 import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;

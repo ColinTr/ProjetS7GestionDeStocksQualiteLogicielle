@@ -1,5 +1,7 @@
-package controleur;
+package controleur.fenetres;
 
+import controleur.Connexion;
+import controleur.ProduitDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;

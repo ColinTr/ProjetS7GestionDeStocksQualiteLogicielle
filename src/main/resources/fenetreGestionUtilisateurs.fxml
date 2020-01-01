@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreGestionUtilisateurs">
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.fenetres.ControleurFenetreGestionUtilisateurs">
    <center>
       <TableView fx:id="utilisateursTable" prefHeight="200.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <columns>

@@ -35,6 +35,12 @@ public class Magasin {
         }
         listeRayons.add(r);
     }
+
+    @Override
+    public String toString(){
+        return nomMagasin;
+    }
+
     //============================= Constructeurs =============================
 
     public Magasin(String nomMagasin, Utilisateur chefDeMagasin, List<Rayon> listeRayons, List<Utilisateur> listeEmployes) {

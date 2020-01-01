@@ -1,4 +1,4 @@
-package controleur;
+package controleur.fenetres;
 
 public class ControleurFenetreTransfererArticles {
 }

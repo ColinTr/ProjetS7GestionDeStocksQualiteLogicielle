@@ -1,16 +1,26 @@
-package controleur;
+package controleur.fenetres;
 
+import controleur.Connexion;
+import controleur.UtilisateurDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import modele.*;
+import modele.tables.UtilisateursTableClass;
+import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -44,7 +54,20 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
         //================================ Définition des actions des boutons ================================
 
         boutonCreer.setOnAction( event -> {
-
+            ControleurFenetreCreerUtilisateur.setUtilisateurConnecte(utilisateurConnecte);
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerUtilisateur.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                stage.setTitle("Créer utilisateur");
+                stage.setScene(new Scene(root, 350, 525));
+                stage.show();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         boutonModifier.setOnAction( event -> {
@@ -83,7 +106,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
     /**
      * Cette fonction met à jour la table avec les dernières données de la BDD.
      */
-    private static void miseAJourTable(){
+    public static void miseAJourTable(){
         List<Utilisateur> utilisateurs = UtilisateurDAO.tousLesUtilisateurs();
 
         dataTableUtilisateurs.clear();
@@ -128,7 +151,16 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
                     restreint = "Normal";
                 }
 
-                dataTableUtilisateurs.add( new UtilisateursTableClass(u.getNomDeCompte(), u.getNom(), u.getPrenom(), typeCompte, restreint, u.getRayonDirige().getNomRayon(), u.getMagasin().getNomMagasin(), u.getIdUtilisateur()) );
+                String nomMagasin = "Aucun";
+                if(u.getMagasin() != null){
+                    nomMagasin = u.getMagasin().getNomMagasin();
+                }
+
+                String nomRayonDirige = "Aucun";
+                if(u.getRayonDirige() != null){
+                    nomRayonDirige = u.getRayonDirige().getNomRayon();
+                }
+                dataTableUtilisateurs.add( new UtilisateursTableClass(u.getNomDeCompte(), u.getNom(), u.getPrenom(), typeCompte, restreint, nomRayonDirige, nomMagasin, u.getIdUtilisateur()) );
             }
         }
 
