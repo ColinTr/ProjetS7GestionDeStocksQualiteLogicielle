@@ -1,6 +1,6 @@
 Feature: On souhaite manipuler des produits sur la base de donnée.
 
-  @bdd
+  @bdd @done
   Scenario Outline: On récupère les produits sur la BDD
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     When On récupère la bdd et on la stock dans la liste bdd
@@ -14,7 +14,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
     | 25 |
     | 50 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On récupère les produits sur la BDD avec l'id
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     When On récupère la bdd et on la stock dans la liste bdd avec l'id
@@ -28,7 +28,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 25 |
       | 50 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On ajoute des nouveaux produits sur la bdd
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     Given On génère <nb> produits dans la liste locale
@@ -44,7 +44,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 0 | 10 | 10 |
       | 50 | 50 | 100 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On ajoute des produits déjà présent sur la bdd dans la bdd
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     When On insère les produits de la liste locale dans la bdd NON VALIDE
@@ -59,7 +59,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 25 |
       | 50 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On supprime des produits déjà présent sur la bdd dans la bdd
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     When On supprime dans la bdd les produits de la liste locale VALIDE
@@ -74,7 +74,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 0 | 0 |
       | 50 | 0 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On supprime des nouveaux produits sur la bdd
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     Given On génère <nb> produits dans la liste locale
@@ -90,7 +90,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 25 | 10 |
       | 50 | 30 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On souhaite supprimer du stock de produits sur la bdd VALIDE
     Given On génère <qte> produits dans la liste locale
     Given On met le stock des produits aléatoirement avec comme minimum <minus>
@@ -106,7 +106,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 50 | 53 |
       | 100 | 44 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On souhaite supprimer du stock de produits sur la bdd VALIDE
     Given On génère <qte> produits dans la liste locale
     Given On met le stock des produits aléatoirement avec comme minimum <minus>
@@ -122,7 +122,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 50 | 53 |
       | 100 | 44 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On souhaite supprimer du stock de produits sur la bdd NON VALIDE
     Given On génère <qte> produits dans la liste locale
     Given On met le stock des produits aléatoirement avec comme maximum <max>
@@ -137,3 +137,4 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 25 | 7 |
       | 50 | 53 |
       | 100 | 44 |
+

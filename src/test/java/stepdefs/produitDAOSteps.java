@@ -31,12 +31,9 @@ public class produitDAOSteps {
     List<Produit> listProduit = new ArrayList<Produit>();
     List<Produit> listProduitBDD = new ArrayList<Produit>();
 
-    boolean resultat = true;
-
     @Before("@bdd")
     public void connectionBDD() {
-        Connexion.init("modeCreate");
-        System.out.println("TEST BEFORE");
+        Connexion.init("testUnit");
     }
 
     @After("@bdd")
