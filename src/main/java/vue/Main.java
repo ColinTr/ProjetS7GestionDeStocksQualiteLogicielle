@@ -1,7 +1,6 @@
 package vue;
 
 import controleur.Connexion;
-import controleur.MagasinDAO;
 import controleur.UtilisateurDAO;
 import modele.*;
 
@@ -9,14 +8,13 @@ import javax.persistence.EntityManager;
 
 
 public class Main {
+
     public static void main( String[] args ) {
 
         Connexion.init("modeCreate");
         EntityManager em = Connexion.getEntityManager();
         em.getTransaction().begin();
 
-
-        //Magasin de test :
         Utilisateur colin = new Utilisateur("azer", "Colin", "Troisemaine", UtilisateurDAO.SHA512("azer"), TypeDeCompte.ADMINISTRATEUR, false, null, null, null);
 
         Magasin m1 = new Magasin("magasin1",  colin, null, null);
@@ -40,9 +38,6 @@ public class Main {
 
         em.getTransaction().commit();
         em.close();
-
-
-
         Connexion.close();
     }
 

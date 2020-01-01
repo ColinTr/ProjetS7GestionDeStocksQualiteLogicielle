@@ -239,13 +239,14 @@ public class FenetreDeConnexion {
                 //if(username.equals("root") && password.equals("root")) { //FolderExplorerWindow.main(null); frameLoginWindow.dispose(); }
                 Utilisateur utilisateurCorrespondant = UtilisateurDAO.testerAuthentification(username, password);
                 if(utilisateurCorrespondant == null){
-                    errorMessageLabel.setText("Error : User doesn't exist in database.");
-                }
-                else {
-                    String [] args = new String[2];
-                    args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
-                    frameLoginWindow.dispose();
-                    FenetrePrincipale.main(args);
+                    errorMessageLabel.setText("Login ou mot de passe incorrect.");
+                }  else if(utilisateurCorrespondant.isRestreint()) {
+                    errorMessageLabel.setText("Accès au compte restreint, contactez l’administrateur.");
+                } else{
+                        String [] args = new String[2];
+                        args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
+                        frameLoginWindow.dispose();
+                        FenetrePrincipale.main(args);
                 }
             }
         });
