@@ -72,7 +72,7 @@ public class FenetreDeParametres {
         JButton btnCancel;
 
         frameSettingWindow = new JFrame();
-        ImageIcon logo = new ImageIcon(FenetreDeParametres.class.getClassLoader().getResource("file_icon.png"));
+        ImageIcon logo = new ImageIcon(FenetreDeParametres.class.getClassLoader().getResource("icon.png"));
         frameSettingWindow.setIconImage(logo.getImage());
         frameSettingWindow.setBackground(Color.WHITE);
         frameSettingWindow.setTitle("Paramètres de connection à la BDD");

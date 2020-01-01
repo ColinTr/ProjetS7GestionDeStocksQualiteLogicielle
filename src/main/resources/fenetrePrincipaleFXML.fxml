@@ -25,26 +25,16 @@
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
             <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="0.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="NEVER" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="home_button" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.halignment="LEFT" GridPane.hgrow="NEVER">
+            <Button fx:id="homeButton" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.halignment="LEFT" GridPane.hgrow="NEVER">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@home_icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="settings_button" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@settings_icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -57,7 +47,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-            <Text fx:id="label_chemin" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Magasin &gt; Rayon" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+            <Text fx:id="labelChemin" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Magasin &gt; Rayon" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
@@ -65,7 +55,7 @@
                   <Font name="Gadugi Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="label_utilisateur" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aucun utilisateur" GridPane.columnIndex="5">
+            <Text fx:id="labelUtilisateur" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aucun utilisateur" GridPane.columnIndex="5">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
@@ -84,7 +74,7 @@
    <center>
       <StackPane fx:id="body_stackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="pane_rayons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0">
+            <BorderPane fx:id="paneRayons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0">
                <center>
                   <TableView fx:id="rayonsTable" layoutX="14.0" layoutY="14.0" prefHeight="334.0" prefWidth="470.0">
                      <columns>
@@ -98,7 +88,7 @@
                   </TableView>
                </center>
             </BorderPane>
-            <BorderPane fx:id="pane_articles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="paneArticles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <TableView fx:id="produitsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
@@ -127,11 +117,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="bouton_creerArticle" mnemonicParsing="false" text="Créer article" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button fx:id="bouton_modifierArticle" mnemonicParsing="false" text="Modifier article" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button fx:id="bouton_modifierStock" mnemonicParsing="false" text="Modifier stock" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button fx:id="bouton_supprimerArticle" mnemonicParsing="false" text="Supprimer article" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button fx:id="bouton_transfererArticles" mnemonicParsing="false" text="Transférer articles" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="boutonCreerArticle" mnemonicParsing="false" text="Créer article" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="boutonModifierArticle" mnemonicParsing="false" text="Modifier article" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="boutonModifierStock" mnemonicParsing="false" text="Modifier stock" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="boutonSupprimerArticle" mnemonicParsing="false" text="Supprimer article" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="boutonTransfererArticles" mnemonicParsing="false" text="Transférer articles" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                      <BorderPane.margin>
                         <Insets bottom="15.0" left="200.0" right="200.0" top="15.0" />

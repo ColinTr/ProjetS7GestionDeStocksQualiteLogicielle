@@ -79,7 +79,7 @@ public class FenetreDeConnexion {
 
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
-        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("file_icon.png"));
+        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("icon.png"));
         frameLoginWindow.setIconImage(logo.getImage());
         frameLoginWindow.setTitle("Connexion");
         frameLoginWindow.setBounds(dim.width/2-530/2, dim.height/2-250/2, 530, 250);
@@ -237,15 +237,16 @@ public class FenetreDeConnexion {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 //if(username.equals("root") && password.equals("root")) { //FolderExplorerWindow.main(null); frameLoginWindow.dispose(); }
-                Utilisateur utilisateurCorrespondant = UtilisateurDAO.getUtilisateur(username, password);
+                Utilisateur utilisateurCorrespondant = UtilisateurDAO.testerAuthentification(username, password);
                 if(utilisateurCorrespondant == null){
-                    errorMessageLabel.setText("Error : User doesn't exist in database.");
-                }
-                else {
-                    String [] args = new String[2];
-                    args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
-                    frameLoginWindow.dispose();
-                    FenetrePrincipale.main(args);
+                    errorMessageLabel.setText("Login ou mot de passe incorrect.");
+                }  else if(utilisateurCorrespondant.isRestreint()) {
+                    errorMessageLabel.setText("Accès au compte restreint, contactez l’administrateur.");
+                } else{
+                        String [] args = new String[2];
+                        args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
+                        frameLoginWindow.dispose();
+                        FenetrePrincipale.main(args);
                 }
             }
         });

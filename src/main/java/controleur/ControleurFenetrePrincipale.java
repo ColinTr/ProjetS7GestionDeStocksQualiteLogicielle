@@ -1,9 +1,10 @@
 package controleur;
 
+import javafx.scene.image.Image;
+import modele.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,13 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import modele.*;
-import vue.FenetreDeParametres;
+import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
 import java.io.IOException;
@@ -37,35 +35,34 @@ public class ControleurFenetrePrincipale implements Initializable {
     private static int idRayon;
 
     //Table et colonnes de la table des rayons d'un magasin :
-    @FXML private BorderPane pane_rayons;
+    @FXML private BorderPane paneRayons;
     @FXML private TableView<RayonsTableClass> rayonsTable;
-    @FXML private TableColumn colonneNom;
-    @FXML private TableColumn colonneChefDeRayon;
-    @FXML private TableColumn colonneNbArticles;
+    @FXML private TableColumn<RayonsTableClass, String> colonneNom;
+    @FXML private TableColumn<RayonsTableClass,String> colonneChefDeRayon;
+    @FXML private TableColumn<RayonsTableClass,Integer> colonneNbArticles;
 
     //Table et colonnes de la table des produits d'un rayon :
-    @FXML private BorderPane pane_produits;
+    @FXML private BorderPane paneProduits;
     @FXML private TableView<ProduitsTableClass> produitsTable;
-    @FXML private TableColumn colonneNomp;
-    @FXML private TableColumn colonnePrix;
-    @FXML private TableColumn colonneDescription;
-    @FXML private TableColumn colonneReference;
-    @FXML private TableColumn colonneStock;
-    @FXML private TableColumn colonneReservations;
+    @FXML private TableColumn<ProduitsTableClass, String> colonneNomp;
+    @FXML private TableColumn<ProduitsTableClass, Float> colonnePrix;
+    @FXML private TableColumn<ProduitsTableClass, String> colonneDescription;
+    @FXML private TableColumn<ProduitsTableClass, String> colonneReference;
+    @FXML private TableColumn<ProduitsTableClass, Integer> colonneStock;
+    @FXML private TableColumn<ProduitsTableClass, Integer> colonneReservations;
 
-    @FXML private Text label_chemin;
-    @FXML private Text label_utilisateur;
+    @FXML private Text labelChemin;
+    @FXML private Text labelUtilisateur;
 
     //Définition des boutons
-    @FXML private Button home_button;
-    @FXML private Button settings_button;
-    @FXML private Button bouton_creerArticle;
-    @FXML private Button bouton_modifierArticle;
-    @FXML private Button bouton_modifierStock;
-    @FXML private Button bouton_supprimerArticle;
-    @FXML private Button bouton_transfererArticles;
+    @FXML private Button homeButton;
+    @FXML private Button boutonCreerArticle;
+    @FXML private Button boutonModifierArticle;
+    @FXML private Button boutonModifierStock;
+    @FXML private Button boutonSupprimerArticle;
+    @FXML private Button boutonTransfererArticles;
 
-    @FXML private BorderPane pane_articles;
+    @FXML private BorderPane paneArticles;
 
     //Les données de la table
     private static ObservableList<RayonsTableClass> dataTableRayons;
@@ -77,93 +74,72 @@ public class ControleurFenetrePrincipale implements Initializable {
         //================================ Définition des actions des boutons ================================
 
         //Bouton qui permet de revenir à la liste des rayons
-        home_button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                pane_rayons.toFront();
-                event.consume();
-            }
+        homeButton.setOnAction(event -> {
+            paneRayons.toFront();
+            event.consume();
         });
 
-        //Bouton pour ouvrir la fenêtre des paramètres (À REFAIRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
-        settings_button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FenetreDeParametres.main(null);
-                event.consume();
+        boutonCreerArticle.setOnAction(event -> {
+            ControleurFenetreCreerArticle.setIdRayon(idRayon);
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                stage.setTitle("Créer article");
+                stage.setScene(new Scene(root, 350, 450));
+                stage.show();
             }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            event.consume();
         });
 
-        bouton_creerArticle.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                ControleurFenetreCreerArticle.setIdRayon(idRayon);
+        boutonModifierArticle.setOnAction(event -> {
+            ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
+            if(articleSelectionne != null){
+                ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
                 Parent root;
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
                     root = loader.load();
                     Stage stage = new Stage();
-                    stage.setTitle("Créer article");
-                    stage.setScene(new Scene(root, 350, 450));
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                    stage.setTitle("Modifier article");
+                    stage.setScene(new Scene(root, 350, 350));
                     stage.show();
                 }
                 catch (IOException e) {
                     e.printStackTrace();
                 }
-                event.consume();
             }
+            event.consume();
         });
 
-        bouton_modifierArticle.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
-                if(articleSelectionne != null){
-                    ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
-                        root = loader.load();
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier article");
-                        stage.setScene(new Scene(root, 350, 350));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        boutonModifierStock.setOnAction(event -> {
+            ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
+            if(articleSelectionne != null){
+                ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                    stage.setTitle("Modifier stock");
+                    stage.setScene(new Scene(root, 250, 250));
+                    stage.show();
                 }
-                event.consume();
-            }
-        });
-
-        bouton_modifierStock.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
-                if(articleSelectionne != null){
-                    ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
-                        root = loader.load();
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier stock");
-                        stage.setScene(new Scene(root, 250, 250));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                event.consume();
             }
+            event.consume();
         });
 
-        bouton_supprimerArticle.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        boutonSupprimerArticle.setOnAction(event -> {
                 ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
                 if(articleSelectionne != null){
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer " + articleSelectionne.getNom() + " ?");
@@ -174,76 +150,67 @@ public class ControleurFenetrePrincipale implements Initializable {
                     }
                 }
                 event.consume();
-            }
         });
 
-        bouton_transfererArticles.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransfererArticles.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.setTitle("Transférer articles");
-                    stage.setScene(new Scene(root, 450, 450));
-                    stage.show();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-                event.consume();
+        boutonTransfererArticles.setOnAction(event -> {
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransfererArticles.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                stage.setTitle("Transférer articles");
+                stage.setScene(new Scene(root, 450, 450));
+                stage.show();
             }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            event.consume();
         });
 
         //================================ Définition des tables ================================
 
         //Permet de détecter un double click sur une ligne de la table des rayons et d'afficher la liste des articles de celui-ci
-        rayonsTable.setRowFactory(new Callback<TableView<RayonsTableClass>, TableRow<RayonsTableClass>>() {
-            @Override
-            public TableRow<RayonsTableClass> call(TableView<RayonsTableClass> tv) {
-                final TableRow<RayonsTableClass> row = new TableRow<>();
-                row.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                            RayonsTableClass rowData = row.getItem();
-                            idRayon = rowData.getIdRayon();
-                            miseAJourDesTables();
-                            pane_articles.toFront();
-                            label_chemin.setText("azer");
-                        }
-                    }
-                });
-                return row;
-            }
+        rayonsTable.setRowFactory(tv -> {
+            final TableRow<RayonsTableClass> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    RayonsTableClass rowData = row.getItem();
+                    idRayon = rowData.getIdRayon();
+                    miseAJourDesTables();
+                    paneArticles.toFront();
+                    labelChemin.setText("azer");
+                }
+            });
+            return row;
         });
 
         //On définit le nom de l'utilisateur affiché
         if(utilisateurConnecte != null){
-            label_utilisateur.setText(utilisateurConnecte.toString());
+            labelUtilisateur.setText(utilisateurConnecte.toString());
         }
 
         //On fait le lien entre les lignes déclarées ici et celles du fichier .fxml et les éléments du modèle TableClass :
-        colonneNom.setCellValueFactory( new PropertyValueFactory<RayonsTableClass, String>("nom") );
-        colonneChefDeRayon.setCellValueFactory( new PropertyValueFactory<RayonsTableClass,String>("chef") );
-        colonneNbArticles.setCellValueFactory( new PropertyValueFactory<RayonsTableClass,Integer>("nombre") );
+        colonneNom.setCellValueFactory( new PropertyValueFactory<>("nom") );
+        colonneChefDeRayon.setCellValueFactory( new PropertyValueFactory<>("chef") );
+        colonneNbArticles.setCellValueFactory( new PropertyValueFactory<>("nombre") );
 
         dataTableRayons = FXCollections.observableArrayList();
         rayonsTable.setItems(dataTableRayons);
 
-        colonneNomp.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("nom") );
-        colonnePrix.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Float>("prix") );
-        colonneDescription.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("description") );
-        colonneReference.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, String>("reference") );
-        colonneStock.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("stock") );
-        colonneReservations.setCellValueFactory( new PropertyValueFactory<ProduitsTableClass, Integer>("reservations") );
+        colonneNomp.setCellValueFactory( new PropertyValueFactory<>("nom") );
+        colonnePrix.setCellValueFactory( new PropertyValueFactory<>("prix") );
+        colonneDescription.setCellValueFactory( new PropertyValueFactory<>("description") );
+        colonneReference.setCellValueFactory( new PropertyValueFactory<>("reference") );
+        colonneStock.setCellValueFactory( new PropertyValueFactory<>("stock") );
+        colonneReservations.setCellValueFactory( new PropertyValueFactory<>("reservations") );
 
         dataTableProduits = FXCollections.observableArrayList();
         produitsTable.setItems(dataTableProduits);
 
         //On affiche la table des rayons au lancement de l'application
-        pane_rayons.toFront();
+        paneRayons.toFront();
     }
 
     /**
