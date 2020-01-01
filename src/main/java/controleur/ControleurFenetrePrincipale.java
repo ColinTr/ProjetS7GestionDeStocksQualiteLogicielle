@@ -61,6 +61,7 @@ public class ControleurFenetrePrincipale implements Initializable {
     @FXML private Button boutonModifierStock;
     @FXML private Button boutonSupprimerArticle;
     @FXML private Button boutonTransfererArticles;
+    @FXML private Button buttonGestionUtilisateurs;
 
     @FXML private BorderPane paneArticles;
 
@@ -105,50 +106,73 @@ public class ControleurFenetrePrincipale implements Initializable {
         });
 
         boutonModifierArticle.setOnAction(event -> {
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
             ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
             if(articleSelectionne != null){
-                ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                    stage.setTitle("Modifier article");
-                    stage.setScene(new Scene(root, 350, 350));
-                    stage.show();
+                //Puis on vérifie si l'utilisateur a le droit de créer un article dans ce rayon :
+                if(utilisateurConnecte.getTypeDeCompte() == TypeDeCompte.UTILISATEUR && utilisateurConnecte.getRayonDirige().getIdRayon() != idRayon){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier les informations d'un article d'un rayon que vous ne dirigez pas.", ButtonType.OK);
+                    alert.show();
                 }
-                catch (IOException e) {
-                    e.printStackTrace();
+                else{
+                    ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
+                    Parent root;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
+                        root = loader.load();
+                        Stage stage = new Stage();
+                        stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                        stage.setTitle("Modifier article");
+                        stage.setScene(new Scene(root, 350, 350));
+                        stage.show();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             event.consume();
         });
 
         boutonModifierStock.setOnAction(event -> {
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
             ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
             if(articleSelectionne != null){
-                ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                    stage.setTitle("Modifier stock");
-                    stage.setScene(new Scene(root, 250, 250));
-                    stage.show();
+                //Puis on vérifie si l'utilisateur a le droit de modifier un article dans ce rayon :
+                if(utilisateurConnecte.getTypeDeCompte() == TypeDeCompte.UTILISATEUR && utilisateurConnecte.getRayonDirige().getIdRayon() != idRayon){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier le stock d'un article d'un rayon que vous ne dirigez pas.", ButtonType.OK);
+                    alert.show();
                 }
-                catch (IOException e) {
-                    e.printStackTrace();
+                else{
+                    ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
+                    Parent root;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
+                        root = loader.load();
+                        Stage stage = new Stage();
+                        stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                        stage.setTitle("Modifier stock");
+                        stage.setScene(new Scene(root, 250, 250));
+                        stage.show();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             event.consume();
         });
 
         boutonSupprimerArticle.setOnAction(event -> {
-                ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
-                if(articleSelectionne != null){
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
+            ProduitsTableClass articleSelectionne = produitsTable.getSelectionModel().getSelectedItem();
+            if(articleSelectionne != null){
+                //On vérifie d'abord si l'utilisateur a le droit de supprimer un article dans ce rayon :
+                if(utilisateurConnecte.getTypeDeCompte() == TypeDeCompte.UTILISATEUR && utilisateurConnecte.getRayonDirige().getIdRayon() != idRayon){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de supprimer un article d'un rayon que vous ne dirigez pas.", ButtonType.OK);
+                    alert.show();
+                }
+                else{
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer " + articleSelectionne.getNom() + " ?");
                     Optional<ButtonType> choose = alert.showAndWait();
                     if(choose.get() == ButtonType.OK){
@@ -156,7 +180,8 @@ public class ControleurFenetrePrincipale implements Initializable {
                         miseAJourDesTables();
                     }
                 }
-                event.consume();
+            }
+            event.consume();
         });
 
         boutonTransfererArticles.setOnAction(event -> {
@@ -168,6 +193,23 @@ public class ControleurFenetrePrincipale implements Initializable {
                 stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                 stage.setTitle("Transférer articles");
                 stage.setScene(new Scene(root, 450, 450));
+                stage.show();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            event.consume();
+        });
+
+        buttonGestionUtilisateurs.setOnAction(event -> {
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreGestionUtilisateurs.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                stage.setTitle("Gestion des utilisateurs");
+                stage.setScene(new Scene(root, 1080, 720));
                 stage.show();
             }
             catch (IOException e) {
