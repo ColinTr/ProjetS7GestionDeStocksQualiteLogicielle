@@ -2,12 +2,8 @@ package controleur;
 
 import modele.Produit;
 import modele.Rayon;
-import modele.Utilisateur;
-import org.hibernate.PersistentObjectException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +76,7 @@ public abstract class ProduitDAO {
     /**
      * Fonction ajoutant un nouveau produit dans l'application.
      * @param produit produit que l'on ajoute.
+     * @return true si il a pu être ajouté, false sinon.
      */
     public static boolean ajouterUnProduit(Produit produit){
 
@@ -106,6 +103,7 @@ public abstract class ProduitDAO {
     /**
      * Fonction supprimant un produit enregistré dans l'application.
      * @param p produit que l'on supprime.
+     * @return true si il a pu être supprimé, false sinon.
      */
     public static boolean supprimerUnProduit(Produit p){
 
@@ -128,6 +126,7 @@ public abstract class ProduitDAO {
     /**
      * Fonction supprimant un produit enregistré dans l'application.
      * @param id : id du produit que l'on supprime.
+     * @return true si il a pu être supprimé, false sinon.
      */
     public static boolean supprimerUnProduit(int id){
 

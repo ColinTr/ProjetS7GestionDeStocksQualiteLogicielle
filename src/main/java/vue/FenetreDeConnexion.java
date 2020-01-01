@@ -237,7 +237,7 @@ public class FenetreDeConnexion {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 //if(username.equals("root") && password.equals("root")) { //FolderExplorerWindow.main(null); frameLoginWindow.dispose(); }
-                Utilisateur utilisateurCorrespondant = UtilisateurDAO.getUtilisateur(username, password);
+                Utilisateur utilisateurCorrespondant = UtilisateurDAO.testerAuthentification(username, password);
                 if(utilisateurCorrespondant == null){
                     errorMessageLabel.setText("Error : User doesn't exist in database.");
                 }
