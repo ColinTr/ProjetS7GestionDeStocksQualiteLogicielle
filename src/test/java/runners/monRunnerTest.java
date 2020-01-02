@@ -17,6 +17,6 @@ import org.junit.runner.RunWith;
         plugin = {"pretty",
                 "html:target/cucumber-html-report",
                 "json:target/cucumber.json"} )
-public class monRunner {
+public class monRunnerTest {
     //Cette classe est vide.
 }

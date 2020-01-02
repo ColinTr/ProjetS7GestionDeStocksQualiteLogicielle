@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modele.*;
-import modele.tables.UtilisateursTableClass;
+import modele.UtilisateursTableClass;
 import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
