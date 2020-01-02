@@ -1,6 +1,5 @@
 package controleur.fenetres;
 
-import controleur.Connexion;
 import controleur.MagasinDAO;
 import controleur.UtilisateurDAO;
 import javafx.collections.FXCollections;
@@ -14,7 +13,6 @@ import modele.Rayon;
 import modele.TypeDeCompte;
 import modele.Utilisateur;
 
-import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,9 +27,6 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     @FXML ComboBox<Rayon> boxRayons;
     private ObservableList<Rayon> rayons= FXCollections.observableArrayList();
 
-    @FXML ComboBox<TypeDeCompte> boxTypeCompte;
-    private ObservableList<TypeDeCompte> typeComptes = FXCollections.observableArrayList();
-
     @FXML private TextField fieldNomCompte;
     @FXML private PasswordField fieldMotDePasse;
     @FXML private TextField fieldNom;
@@ -45,15 +40,6 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        if(utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
-            typeComptes = FXCollections.observableArrayList(TypeDeCompte.UTILISATEUR, TypeDeCompte.ADMINISTRATEUR);
-        }
-        else{
-            typeComptes = FXCollections.observableArrayList(TypeDeCompte.UTILISATEUR);
-        }
-        boxTypeCompte.setItems(typeComptes);
-        boxTypeCompte.getSelectionModel().select(0);
 
         magasins = FXCollections.observableArrayList(MagasinDAO.tousLesMagasins());
         boxMagasins.setItems(magasins);
@@ -86,23 +72,35 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
                     alert.show();
                 }
                 else{
-                    Utilisateur nouvelUtilisateur = new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), boxTypeCompte.getValue(), checkBoxRestreint.isSelected(), null, null, boxMagasins.getValue());
-
-                    UtilisateurDAO.creerUtilisateur(nouvelUtilisateur);
-
-                    UtilisateurDAO.definirChefRayon(nouvelUtilisateur.getIdUtilisateur(), boxRayons.getValue().getIdRayon());
-
-                    if(boxDirigeMagasin.isSelected()){
-                        UtilisateurDAO.definirChefMagasin(nouvelUtilisateur.getIdUtilisateur(), boxMagasins.getValue().getIdMagasin());
+                    if(boxDirigeMagasin.isSelected() && !utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Vous ne disposez pas des droits suffisants pour créer un chef de magasin.", ButtonType.OK);
+                        alert.show();
                     }
+                    else{
+                        TypeDeCompte type = TypeDeCompte.UTILISATEUR;
+                        if(boxDirigeMagasin.isSelected()){
+                            type = TypeDeCompte.ADMINISTRATEUR;
+                        }
 
-                    ControleurFenetreGestionUtilisateurs.miseAJourTable();
+                        Utilisateur nouvelUtilisateur = new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), type, checkBoxRestreint.isSelected(), null, null, boxMagasins.getValue());
 
-                    Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
-                    stage.close();
-                    event.consume();
+                        UtilisateurDAO.creerUtilisateur(nouvelUtilisateur);
+
+                        //Soit il dirige le magasin, soit il dirige le rayon :
+                        if(boxDirigeMagasin.isSelected()){
+                            UtilisateurDAO.definirChefMagasin(nouvelUtilisateur.getIdUtilisateur(), boxMagasins.getValue().getIdMagasin());
+                        }
+                        else{
+                            UtilisateurDAO.definirChefRayon(nouvelUtilisateur.getIdUtilisateur(), boxRayons.getValue().getIdRayon());
+                        }
+
+                        ControleurFenetreGestionUtilisateurs.miseAJourTable();
+
+                        Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
+                        stage.close();
+                        event.consume();
+                    }
                 }
-
             }
         });
 

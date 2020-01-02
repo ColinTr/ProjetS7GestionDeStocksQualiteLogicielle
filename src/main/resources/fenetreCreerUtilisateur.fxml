@@ -16,8 +16,6 @@
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,7 +33,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <GridPane GridPane.rowIndex="16">
+        <GridPane GridPane.rowIndex="14">
             <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -56,62 +54,62 @@
                 </Button>
             </children>
         </GridPane>
-        <TextField fx:id="fieldNomCompte" GridPane.rowIndex="3" GridPane.valignment="TOP">
+        <TextField fx:id="fieldNomCompte" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
                 <Insets left="15.0" right="15.0" />
             </GridPane.margin>
         </TextField>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de compte" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de compte" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </GridPane.margin>
         </Text>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </GridPane.margin>
         </Text>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </GridPane.margin>
         </Text>
-        <TextField fx:id="fieldNom" GridPane.rowIndex="7" GridPane.valignment="TOP">
+        <TextField fx:id="fieldNom" GridPane.rowIndex="5" GridPane.valignment="TOP">
             <GridPane.margin>
                 <Insets left="15.0" right="15.0" />
             </GridPane.margin>
         </TextField>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" GridPane.rowIndex="8" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </GridPane.margin>
         </Text>
-        <TextField fx:id="fieldPrenom" GridPane.rowIndex="9" GridPane.valignment="TOP">
+        <TextField fx:id="fieldPrenom" GridPane.rowIndex="7" GridPane.valignment="TOP">
             <GridPane.margin>
                 <Insets left="15.0" right="15.0" />
             </GridPane.margin>
         </TextField>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Magasin" GridPane.rowIndex="11" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Magasin" GridPane.rowIndex="9" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </GridPane.margin>
         </Text>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rayon" GridPane.rowIndex="14" GridPane.valignment="BOTTOM">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rayon" GridPane.rowIndex="12" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </GridPane.margin>
         </Text>
-      <ComboBox fx:id="boxMagasins" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="TOP">
+      <ComboBox fx:id="boxMagasins" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="15.0" right="15.0" />
          </GridPane.margin>
       </ComboBox>
-      <ComboBox fx:id="boxRayons" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="TOP">
+      <ComboBox fx:id="boxRayons" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="15.0" right="15.0" />
          </GridPane.margin>
       </ComboBox>
-      <PasswordField fx:id="fieldMotDePasse" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
+      <PasswordField fx:id="fieldMotDePasse" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -119,22 +117,12 @@
             <Insets left="15.0" right="15.0" />
          </GridPane.margin>
       </PasswordField>
-      <ComboBox fx:id="boxTypeCompte" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="15.0" right="15.0" />
-         </GridPane.margin>
-      </ComboBox>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type de compte" GridPane.valignment="BOTTOM">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-         </GridPane.margin>
-      </Text>
-      <CheckBox fx:id="checkBoxRestreint" mnemonicParsing="false" text="Compte restreint" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+      <CheckBox fx:id="checkBoxRestreint" mnemonicParsing="false" text="Compte restreint" GridPane.rowIndex="8" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="5.0" left="15.0" right="5.0" top="15.0" />
          </GridPane.margin>
       </CheckBox>
-      <CheckBox fx:id="boxDirigeMagasin" mnemonicParsing="false" text="Dirige le magasin" GridPane.rowIndex="13">
+      <CheckBox fx:id="boxDirigeMagasin" mnemonicParsing="false" text="Dirige le magasin" GridPane.rowIndex="11">
          <padding>
             <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
          </padding>
