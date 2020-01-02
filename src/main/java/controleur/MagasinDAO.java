@@ -11,8 +11,8 @@ import java.util.List;
 public final class MagasinDAO {
 
     /**
-     * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les rayons de ce magasin
-     * @param idMagasin : le magasin dont il faut lister les rayons
+     * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les rayons de ce magasin.
+     * @param idMagasin : le magasin dont il faut lister les rayons.
      * @return liste de tous les rayons.
      */
     public static List<Rayon> tousLesRayons(int idMagasin){
@@ -33,4 +33,25 @@ public final class MagasinDAO {
         return listeARetourner;
     }
 
+    /**
+     * Fonction renvoyant la liste de tous les magasins de l'application.
+     * @return la liste de tous les magasins.
+     */
+    public static List<Magasin> tousLesMagasins(){
+        List<Magasin> listeARetourner = new ArrayList<>();
+
+        EntityManager em =  Connexion.getEntityManager();
+
+        Query query = em.createQuery("SELECT m FROM Magasin m");
+
+        List results = query.getResultList();
+
+        for(Object o : results){
+            listeARetourner.add( ((Magasin) o) );
+        }
+
+        em.close();
+
+        return listeARetourner;
+    }
 }

@@ -1,5 +1,7 @@
-package controleur;
+package controleur.fenetres;
 
+import controleur.Connexion;
+import controleur.ProduitDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -13,16 +15,21 @@ import javax.persistence.EntityManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControleurFenetreModifierStock implements Initializable {
+/**
+ *
+ */
+public class ControleurFenetreModifierArticle implements Initializable {
 
     private static int idArticle;
 
     private static Produit articleAModifier;
 
-    @FXML private TextField fieldStock;
-    @FXML private TextField fieldReservations;
+    @FXML private TextField fieldNom;
+    @FXML private TextField fieldPrix;
+    @FXML private TextField fieldDescription;
+    @FXML private TextField fieldReference;
 
-    @FXML private Button boutonConfirmer;
+    @FXML private Button boutonModifier;
     @FXML private Button boutonAnnuler;
 
     @Override
@@ -35,37 +42,44 @@ public class ControleurFenetreModifierStock implements Initializable {
         articleAModifier = em.merge(articleAModifier);
         em.close();
 
-        fieldStock.setText(String.valueOf(articleAModifier.getStock()));
-        fieldReservations.setText(String.valueOf(articleAModifier.getReservations()));
+        fieldNom.setText(articleAModifier.getNomProduit());
+        fieldPrix.setText(String.valueOf(articleAModifier.getPrix()));
+        fieldDescription.setText(articleAModifier.getDescription());
+        fieldReference.setText(articleAModifier.getReference());
 
-        boutonConfirmer.setOnAction(event -> {
+        boutonModifier.setOnAction(event -> {
             try{
-                int nouveauStock = Integer.parseInt(fieldStock.getText());
-                int nouvellesReservations = Integer.parseInt(fieldReservations.getText());
+                String nouveauNom = fieldNom.getText();
+                float nouveauPrix = Float.parseFloat(fieldPrix.getText());
+                String nouvelleDescription = fieldDescription.getText();
+                String nouvelleReference = fieldReference.getText();
+
+                if(nouveauPrix < 0){
+                    throw new NumberFormatException();
+                }
 
                 EntityManager em1 = Connexion.getEntityManager();
 
                 em1.getTransaction().begin();
 
-                if(nouveauStock < 0 || nouvellesReservations < 0){
-                    throw new NumberFormatException();
-                }
-
                 articleAModifier = em1.find(articleAModifier.getClass(), articleAModifier.getIdProduit());
 
-                articleAModifier.setStock(nouveauStock);
-                articleAModifier.setReservations(nouvellesReservations);
+                articleAModifier.setNomProduit(nouveauNom);
+                articleAModifier.setPrix(nouveauPrix);
+                articleAModifier.setDescription(nouvelleDescription);
+                articleAModifier.setReference(nouvelleReference);
 
                 em1.getTransaction().commit();
 
                 em1.close();
 
+                ControleurFenetrePrincipale.miseAJourDesTables();
+
                 Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
                 stage.close();
                 event.consume();
-                ControleurFenetrePrincipale.miseAJourDesTables();
             } catch(NumberFormatException a){
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier l'article, stock ou réservations incorrect.", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Impossible de modifier l'article, prix incorrect.", ButtonType.OK);
                 alert.show();
             }
         });

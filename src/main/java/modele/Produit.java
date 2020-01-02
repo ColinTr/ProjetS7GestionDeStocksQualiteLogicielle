@@ -93,16 +93,37 @@ public class Produit {
         return stock;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public boolean setStock(int stock) {
+        if(stock >= reservations && stock >= 0){
+            this.stock = stock;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public int getReservations() {
-        return reservations;
+    public int getReservations() {  return reservations; }
+
+    public boolean setReservations(int reservations) {
+        if(reservations <= stock && reservations >= 0){
+            this.reservations = reservations;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public void setReservations(int reservations) {
-        this.reservations = reservations;
+    public boolean setStockEtReservations(int stock, int reservations){
+        if(stock < reservations || stock < 0 || reservations < 0){
+            return false;
+        }
+        else{
+            this.stock = stock;
+            this.reservations = reservations;
+            return true;
+        }
     }
 
     public float getPrix() {
