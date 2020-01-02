@@ -1,6 +1,7 @@
 package controleur;
 
 import modele.Magasin;
+import modele.Produit;
 import modele.Rayon;
 import modele.Utilisateur;
 
@@ -12,6 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class UtilisateurDAO {
+
+    public static boolean supprimerUtilisateur(int idUtilisateur){
+        EntityManager em =  Connexion.getEntityManager();
+        em.getTransaction().begin();
+        Utilisateur utilisateur = em.find(Utilisateur.class, idUtilisateur);
+        try{
+            utilisateur.setRayonDirige(null);
+            utilisateur.setMagasinDirige(null);
+            utilisateur.setMagasin(null);
+            em.remove(utilisateur);
+        } catch (Exception e){
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            em.close();
+            return false;
+        }
+        em.getTransaction().commit();
+        em.close();
+        return true;
+    }
 
     /**
      * Cette fonction remplace le chef de rayon courant par un nouveau.

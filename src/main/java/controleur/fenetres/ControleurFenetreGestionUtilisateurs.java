@@ -1,6 +1,7 @@
 package controleur.fenetres;
 
 import controleur.Connexion;
+import controleur.ProduitDAO;
 import controleur.UtilisateurDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,13 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modele.*;
+import modele.tables.ProduitsTableClass;
 import modele.tables.UtilisateursTableClass;
 import vue.FenetrePrincipale;
 
@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControleurFenetreGestionUtilisateurs implements Initializable {
@@ -71,19 +72,30 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
         });
 
         boutonModifier.setOnAction( event -> {
-
+            //TODO
         });
 
         boutonSupprimer.setOnAction( event -> {
-
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
+            UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
+            if(utilisateursTable != null){
+                //Si l'utilisateur peut voir les utilisateurs, c'est qu'il a le droit de les administrer, donc pas de vérification à faire ici :
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer " + utilisateurSelectionne.getPrenom() + " " + utilisateurSelectionne.getNom() + " ?");
+                Optional<ButtonType> choose = alert.showAndWait();
+                if(choose.get() == ButtonType.OK){
+                    UtilisateurDAO.supprimerUtilisateur(utilisateurSelectionne.getIdUtilisateur());
+                    miseAJourTable();
+                }
+            }
+            event.consume();
         });
 
         boutonRestreindre.setOnAction( event -> {
-
+            //TODO
         });
 
         boutonTransformer.setOnAction( event -> {
-
+            //TODO
         });
 
         //================================ Initialisation des tables ================================
@@ -116,17 +128,19 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
         for(Utilisateur u : utilisateurs){
             u = em.find(Utilisateur.class, u.getIdUtilisateur());
 
-            boolean ajouterUtilisateur = false;
-            if(u.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR)){
-                if(utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
-                    ajouterUtilisateur = true;
-                }
-            }
-            if(u.getTypeDeCompte().equals(TypeDeCompte.UTILISATEUR)){
-                ajouterUtilisateur = true;
+            //On ajoute pas l'utilisateur si :
+            // - C'est un super admin (personne ne peut administrer les super admin)
+            // - L'utilisateur connecté est un admin et on veut ajouter un admin.
+            // - L'utilisateur connecté est un admin et on veut ajouter un utilisateur qui n'est pas du même magasin
+            boolean ajouterUtilisateur = true;
+            if( (u.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR))
+                    || (utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR) && u.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR))
+                    || (utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR) && !u.getMagasin().equals(utilisateurConnecte.getMagasin())) ){
+                ajouterUtilisateur = false;
             }
 
             if(ajouterUtilisateur){
+
                 String typeCompte;
                 switch(u.getTypeDeCompte()){
                     case UTILISATEUR:
@@ -162,9 +176,11 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
                 }
                 dataTableUtilisateurs.add( new UtilisateursTableClass(u.getNomDeCompte(), u.getNom(), u.getPrenom(), typeCompte, restreint, nomRayonDirige, nomMagasin, u.getIdUtilisateur()) );
             }
+
         }
 
         em.close();
+
     }
 
     /**
