@@ -2,30 +2,24 @@ package stepdefs;
 
 import controleur.Connexion;
 import controleur.ProduitDAO;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import modele.Produit;
 import modele.Rayon;
-import org.apache.commons.lang.RandomStringUtils;
-import org.hibernate.PersistentObjectException;
-import org.junit.jupiter.api.DisplayName;
-
-import static org.hamcrest.CoreMatchers.*;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 
-@DisplayName("ProduitDAOTestClass")
 public class produitDAOSteps {
 
     List<Produit> listProduit = new ArrayList<Produit>();
