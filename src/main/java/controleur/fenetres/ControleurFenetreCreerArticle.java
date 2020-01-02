@@ -2,8 +2,6 @@ package controleur.fenetres;
 
 import controleur.ProduitDAO;
 import controleur.RayonDAO;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;

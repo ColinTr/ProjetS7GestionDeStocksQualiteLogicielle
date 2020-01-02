@@ -21,10 +21,10 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     //L'utilisateur actuellement connecté
     private static Utilisateur utilisateurConnecte;
 
-    @FXML ComboBox<Magasin> boxMagasins;
+    @FXML private ComboBox<Magasin> boxMagasins;
     private ObservableList<Magasin> magasins= FXCollections.observableArrayList();
 
-    @FXML ComboBox<Rayon> boxRayons;
+    @FXML private ComboBox<Rayon> boxRayons;
     private ObservableList<Rayon> rayons= FXCollections.observableArrayList();
 
     @FXML private TextField fieldNomCompte;
@@ -42,6 +42,12 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         magasins = FXCollections.observableArrayList(MagasinDAO.tousLesMagasins());
+
+        //Un administrateur ne peut pas gérer les autres magasins, donc on les enlève
+        if(!utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
+            magasins.removeIf(m -> m.getIdMagasin() != utilisateurConnecte.getMagasin().getIdMagasin());
+        }
+
         boxMagasins.setItems(magasins);
         boxMagasins.getSelectionModel().select(0);
 

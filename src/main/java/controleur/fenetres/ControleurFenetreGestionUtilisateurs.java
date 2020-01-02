@@ -1,7 +1,6 @@
 package controleur.fenetres;
 
 import controleur.Connexion;
-import controleur.ProduitDAO;
 import controleur.UtilisateurDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modele.*;
-import modele.tables.ProduitsTableClass;
 import modele.tables.UtilisateursTableClass;
 import vue.FenetrePrincipale;
 
@@ -29,11 +27,11 @@ import java.util.ResourceBundle;
 public class ControleurFenetreGestionUtilisateurs implements Initializable {
 
     //Défintion des boutons
-    @FXML Button boutonCreer;
-    @FXML Button boutonModifier;
-    @FXML Button boutonSupprimer;
-    @FXML Button boutonRestreindre;
-    @FXML Button boutonTransformer;
+    @FXML private Button boutonCreer;
+    @FXML private Button boutonModifier;
+    @FXML private Button boutonSupprimer;
+    @FXML private Button boutonRestreindre;
+    @FXML private Button boutonTransformer;
 
     //L'utilisateur actuellement connecté
     private static Utilisateur utilisateurConnecte;
@@ -78,11 +76,11 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
         boutonSupprimer.setOnAction( event -> {
             //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
             UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
-            if(utilisateursTable != null){
+            if(utilisateurSelectionne != null){
                 //Si l'utilisateur peut voir les utilisateurs, c'est qu'il a le droit de les administrer, donc pas de vérification à faire ici :
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer " + utilisateurSelectionne.getPrenom() + " " + utilisateurSelectionne.getNom() + " ?");
-                Optional<ButtonType> choose = alert.showAndWait();
-                if(choose.get() == ButtonType.OK){
+                    Optional<ButtonType> choose = alert.showAndWait();
+                    if(choose.get() == ButtonType.OK){
                     UtilisateurDAO.supprimerUtilisateur(utilisateurSelectionne.getIdUtilisateur());
                     miseAJourTable();
                 }
@@ -91,11 +89,73 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
         });
 
         boutonRestreindre.setOnAction( event -> {
-            //TODO
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
+            UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
+            if(utilisateurSelectionne != null){
+                if(!utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Vous ne disposez des droits suffisants pour réaliser cette action.", ButtonType.OK);
+                    alert.show();
+                }
+                else{
+                    Utilisateur utilisateurAModifier = UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur());
+
+                    Alert alert;
+                    boolean restreindre;
+                    if(utilisateurAModifier.isRestreint()){
+                        alert= new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir réactiver le compte \"" +utilisateurAModifier.getNomDeCompte() + "\" ?");
+                        restreindre = false;
+                    }
+                    else{
+                        alert = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir restreindre l'accès au compte \"" +utilisateurAModifier.getNomDeCompte() + "\" ?");
+                        restreindre = true;
+                    }
+
+                    Optional<ButtonType> choose = alert.showAndWait();
+                    if(choose.get() == ButtonType.OK){
+                        EntityManager em = Connexion.getEntityManager();
+
+                        em.getTransaction().begin();
+
+                        utilisateurAModifier = em.find(utilisateurAModifier.getClass(), utilisateurAModifier.getIdUtilisateur());
+
+                        utilisateurAModifier.setRestreint(restreindre);
+
+                        em.getTransaction().commit();
+
+                        em.close();
+
+                        miseAJourTable();
+                    }
+                }
+            }
+            event.consume();
         });
 
         boutonTransformer.setOnAction( event -> {
-            //TODO
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
+            UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
+            if(utilisateurSelectionne != null){
+                if(!utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Vous ne disposez des droits suffisants pour réaliser cette action.", ButtonType.OK);
+                    alert.show();
+                }
+                else{
+                    ControleurFenetreTransformerUtilisateur.setUtilisateurATransformer(UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur()));
+                    Parent root;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransformerUtilisateur.fxml"));
+                        root = loader.load();
+                        Stage stage = new Stage();
+                        stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                        stage.setTitle("Transformer utilisateur");
+                        stage.setScene(new Scene(root, 200, 250));
+                        stage.show();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         });
 
         //================================ Initialisation des tables ================================
@@ -131,11 +191,13 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
             //On ajoute pas l'utilisateur si :
             // - C'est un super admin (personne ne peut administrer les super admin)
             // - L'utilisateur connecté est un admin et on veut ajouter un admin.
-            // - L'utilisateur connecté est un admin et on veut ajouter un utilisateur qui n'est pas du même magasin
+            // - L'utilisateur connecté est un admin et on veut ajouter un utilisateur qui n'est pas du même magasin.
+            // - L'utilisateur à ajouter est l'utilisateur lui-même.
             boolean ajouterUtilisateur = true;
             if( (u.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR))
                     || (utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR) && u.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR))
-                    || (utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR) && !u.getMagasin().equals(utilisateurConnecte.getMagasin())) ){
+                    || (utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.ADMINISTRATEUR) && u.getMagasin().getIdMagasin() != utilisateurConnecte.getMagasin().getIdMagasin())
+                    || utilisateurConnecte.getIdUtilisateur() == u.getIdUtilisateur() ){
                 ajouterUtilisateur = false;
             }
 
