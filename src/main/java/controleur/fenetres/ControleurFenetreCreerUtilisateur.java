@@ -54,6 +54,16 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
         boxRayons.setItems(rayons);
         boxRayons.getSelectionModel().select(0);
 
+        boxDirigeMagasin.setOnAction(event -> {
+            if(boxDirigeMagasin.isSelected()){
+                boxRayons.setItems(null);
+            }
+            else{
+                boxRayons.setItems(rayons);
+                boxRayons.getSelectionModel().select(0);
+            }
+        });
+
         boxMagasins.setOnAction(event -> {
             rayons = FXCollections.observableArrayList(MagasinDAO.tousLesRayons(boxMagasins.getValue().getIdMagasin()));
             boxRayons.setItems(rayons);

@@ -19,8 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import modele.ProduitsTableClass;
-import modele.RayonsTableClass;
+import modele.tables.ProduitsTableClass;
+import modele.tables.RayonsTableClass;
 import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
@@ -77,11 +77,20 @@ public class ControleurFenetrePrincipale implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        EntityManager em = Connexion.getEntityManager();
+
+        utilisateurConnecte = em.find(utilisateurConnecte.getClass(), utilisateurConnecte.getIdUtilisateur());
+
+        labelChemin.setText(utilisateurConnecte.getMagasin().getNomMagasin());
+
+        em.close();
+
         //================================ Définition des actions des boutons ================================
 
         //Bouton qui permet de revenir à la liste des rayons
         homeButton.setOnAction(event -> {
             paneRayons.toFront();
+            labelChemin.setText(utilisateurConnecte.getMagasin().getNomMagasin());
             event.consume();
         });
 
@@ -243,7 +252,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                     idRayon = rowData.getIdRayon();
                     miseAJourDesTables();
                     paneArticles.toFront();
-                    labelChemin.setText("azer");
+                    labelChemin.setText(utilisateurConnecte.getMagasin().getNomMagasin() + " > " + RayonDAO.trouverRayon(idRayon).getNomRayon());
                 }
             });
             return row;
