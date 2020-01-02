@@ -70,7 +70,24 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
         });
 
         boutonModifier.setOnAction( event -> {
-            //TODO
+            //On vérifie que l'utilisateur a sélectionné un ligne du tableau :
+            UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
+            if(utilisateurSelectionne != null){
+                ControleurFenetreModifierUtilisateur.setUtilisateurConnecteEtAModifier(utilisateurConnecte, UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur()));
+                Parent root;
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierUtilisateur.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
+                    stage.setTitle("Modifier utilisateur");
+                    stage.setScene(new Scene(root, 350, 600));
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
         boutonSupprimer.setOnAction( event -> {

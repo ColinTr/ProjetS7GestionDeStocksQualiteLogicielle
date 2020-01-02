@@ -197,7 +197,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
                 stage.setTitle("Transférer articles");
-                stage.setScene(new Scene(root, 450, 450));
+                stage.setScene(new Scene(root, 250, 250));
                 stage.show();
             }
             catch (IOException e) {
