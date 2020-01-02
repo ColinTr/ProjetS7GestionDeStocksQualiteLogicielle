@@ -1,4 +1,4 @@
-package controleur;
+package controleur.tables;
 
 import modele.Produit;
 

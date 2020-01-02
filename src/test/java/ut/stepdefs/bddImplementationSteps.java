@@ -1,4 +1,4 @@
-package stepdefs;
+package ut.stepdefs;
 
 import controleur.Connexion;
 import io.cucumber.java.After;

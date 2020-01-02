@@ -19,8 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import modele.tables.ProduitsTableClass;
-import modele.tables.RayonsTableClass;
+import modele.ProduitsTableClass;
+import modele.RayonsTableClass;
 import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;

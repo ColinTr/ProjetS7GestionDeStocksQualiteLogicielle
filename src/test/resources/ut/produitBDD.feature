@@ -90,7 +90,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 25 | 10 |
       | 50 | 30 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On supprime des produits déjà présent sur la bdd dans la bdd par id
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     When On supprime par id dans la bdd les produits de la liste locale VALIDE
@@ -105,7 +105,7 @@ Feature: On souhaite manipuler des produits sur la base de donnée.
       | 0 | 0 |
       | 50 | 0 |
 
-  @bdd
+  @bdd @done
   Scenario Outline: On supprime des nouveaux produits sur la bdd par id
     Given On met <qte> produits dans la bdd et on stock dans la liste locale
     Given On génère <nb> produits dans la liste locale
