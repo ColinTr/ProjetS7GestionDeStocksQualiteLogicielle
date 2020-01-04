@@ -75,8 +75,6 @@ public class FenetreDeConnexion {
             e.printStackTrace();
         }
 
-        Connexion.init("classique");
-
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
         ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("icon.png"));
@@ -232,23 +230,30 @@ public class FenetreDeConnexion {
         rightPanel.add(errorMessageLabel, gbc_errorMessageLabel);
 
         JButton boutonConnexion = new JButton("Connexion");
-        boutonConnexion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                String username = usernameField.getText();
-                String password = String.valueOf(passwordField.getPassword());
-                //if(username.equals("root") && password.equals("root")) { //FolderExplorerWindow.main(null); frameLoginWindow.dispose(); }
+        boutonConnexion.addActionListener(action -> {
+
+            String username = usernameField.getText();
+            String password = String.valueOf(passwordField.getPassword());
+
+
+            if(Connexion.init("classique")){
                 Utilisateur utilisateurCorrespondant = UtilisateurDAO.testerAuthentification(username, password);
                 if(utilisateurCorrespondant == null){
                     errorMessageLabel.setText("Login ou mot de passe incorrect.");
                 }  else if(utilisateurCorrespondant.isRestreint()) {
                     errorMessageLabel.setText("Accès au compte restreint, contactez l’administrateur.");
                 } else{
-                        String [] args = new String[2];
-                        args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
-                        frameLoginWindow.dispose();
-                        FenetrePrincipale.main(args);
+                    String [] args = new String[2];
+                    args[0] = String.valueOf(utilisateurCorrespondant.getIdUtilisateur());
+                    frameLoginWindow.dispose();
+                    FenetrePrincipale.main(args);
                 }
             }
+            else{
+                errorMessageLabel.setText("Connexion impossible.");
+            }
+
+
         });
         GridBagConstraints gbc_connectionButton = new GridBagConstraints();
         gbc_connectionButton.gridx = 0;
