@@ -5,8 +5,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controleur.fenetres.ControleurFenetreTransfererArticles">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.fenetres.ControleurFenetreTransfererArticles">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -31,17 +32,18 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Confirmer">
+                <Button fx:id="boutonConfirmer" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Confirmer">
                     <GridPane.margin>
                         <Insets right="15.0" />
                     </GridPane.margin>
                 </Button>
-                <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Annuler" GridPane.columnIndex="1">
+                <Button fx:id="boutonAnnuler" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Annuler" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets left="15.0" />
                     </GridPane.margin>
                 </Button>
             </children>
         </GridPane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fonctionnalité à implémenter dans le lot 3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
     </children>
 </GridPane>

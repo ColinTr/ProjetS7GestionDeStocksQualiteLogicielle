@@ -62,10 +62,10 @@ public class ControleurFenetreTransformerUtilisateur implements Initializable {
             utilisateurATransformer = em.find(utilisateurATransformer.getClass(), utilisateurATransformer.getIdUtilisateur());
 
             if(boxType.getValue().equals(TypeDeCompte.UTILISATEUR)){
-                message = utilisateurATransformer.getNomDeCompte() + "va devenir le nouveau chef de rayon de " + utilisateurATransformer.getMagasin().getNomMagasin() + ". Confirmer ?";
+                message = utilisateurATransformer.getNomDeCompte() + "va devenir le nouveau chef de rayon de \"" +boxRayon.getValue().getNomRayon() + "\". Confirmer ?";
             }
             if(boxType.getValue().equals(TypeDeCompte.ADMINISTRATEUR)){
-                message = utilisateurATransformer.getNomDeCompte() + "va devenir le nouveau chef magasin de " + utilisateurATransformer.getMagasin().getNomMagasin() + ". Confirmer ?";
+                message = utilisateurATransformer.getNomDeCompte() + "va devenir le nouveau chef magasin de \"" + utilisateurATransformer.getMagasin().getNomMagasin() + "\". Confirmer ?";
             }
 
             em.close();

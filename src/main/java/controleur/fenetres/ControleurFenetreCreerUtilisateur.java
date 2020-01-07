@@ -2,6 +2,7 @@ package controleur.fenetres;
 
 import controleur.MagasinDAO;
 import controleur.UtilisateurDAO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     private static Utilisateur utilisateurConnecte;
 
     @FXML private ComboBox<Magasin> boxMagasins;
-    private ObservableList<Magasin> magasins= FXCollections.observableArrayList();
+    private ObservableList<Magasin> magasins = FXCollections.observableArrayList(MagasinDAO.tousLesMagasins());
 
     @FXML private ComboBox<Rayon> boxRayons;
     private ObservableList<Rayon> rayons= FXCollections.observableArrayList();
@@ -41,8 +42,6 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        magasins = FXCollections.observableArrayList(MagasinDAO.tousLesMagasins());
-
         //Un administrateur ne peut pas gérer les autres magasins, donc on les enlève
         if(!utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
             magasins.removeIf(m -> m.getIdMagasin() != utilisateurConnecte.getMagasin().getIdMagasin());
@@ -54,6 +53,16 @@ public class ControleurFenetreCreerUtilisateur implements Initializable {
         rayons = FXCollections.observableArrayList(MagasinDAO.tousLesRayons(magasins.get(0).getIdMagasin()));
         boxRayons.setItems(rayons);
         boxRayons.getSelectionModel().select(0);
+
+        boxDirigeMagasin.setOnAction(event -> {
+            if(boxDirigeMagasin.isSelected()){
+                boxRayons.setItems(null);
+            }
+            else{
+                boxRayons.setItems(rayons);
+                boxRayons.getSelectionModel().select(0);
+            }
+        });
 
         boxMagasins.setOnAction(event -> {
             rayons = FXCollections.observableArrayList(MagasinDAO.tousLesRayons(boxMagasins.getValue().getIdMagasin()));
