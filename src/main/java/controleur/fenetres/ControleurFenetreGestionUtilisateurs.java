@@ -54,19 +54,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
 
         boutonCreer.setOnAction( event -> {
             ControleurFenetreCreerUtilisateur.setUtilisateurConnecte(utilisateurConnecte);
-            Parent root;
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerUtilisateur.fxml"));
-                root = loader.load();
-                Stage stage = new Stage();
-                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                stage.setTitle("Créer utilisateur");
-                stage.setScene(new Scene(root, 350, 600));
-                stage.show();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+            creerFenetre("/fenetreCreerUtilisateur.fxml", "/icon.png", "Créer utilisateur", 350, 600);
         });
 
         boutonModifier.setOnAction( event -> {
@@ -74,19 +62,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
             UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
             if(utilisateurSelectionne != null){
                 ControleurFenetreModifierUtilisateur.setUtilisateurConnecteEtAModifier(utilisateurConnecte, UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur()));
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierUtilisateur.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                    stage.setTitle("Modifier utilisateur");
-                    stage.setScene(new Scene(root, 350, 600));
-                    stage.show();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+                creerFenetre("/fenetreModifierUtilisateur.fxml", "/icon.png", "Modifier utilisateur", 350, 600);
             }
         });
 
@@ -158,19 +134,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
                 }
                 else{
                     ControleurFenetreTransformerUtilisateur.setUtilisateurATransformer(UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur()));
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransformerUtilisateur.fxml"));
-                        root = loader.load();
-                        Stage stage = new Stage();
-                        stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                        stage.setTitle("Transformer utilisateur");
-                        stage.setScene(new Scene(root, 200, 250));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    creerFenetre("/fenetreTransformerUtilisateur.fxml", "/icon.png", "Transformer utilisateur", 200, 250);
                 }
             }
         });
@@ -260,6 +224,30 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
 
         em.close();
 
+    }
+
+    /**
+     * Méthode permettant de créer une nouvelle fenetre à partir d'un fichier FXML
+     * @param fichierFXML le fichier FXML de la fenetre
+     * @param icone l'icone de la nouvelle fenetre
+     * @param titre le titre de la fenetre
+     * @param largeur la largeur de la fenetre
+     * @param hauteur la hauteur de la fenetre
+     */
+    private static void creerFenetre(String fichierFXML, String icone, String titre, int largeur, int hauteur){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(ControleurFenetreGestionUtilisateurs.class.getResource(fichierFXML));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream(icone)));
+            stage.setTitle(titre);
+            stage.setScene(new Scene(root, largeur, hauteur));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

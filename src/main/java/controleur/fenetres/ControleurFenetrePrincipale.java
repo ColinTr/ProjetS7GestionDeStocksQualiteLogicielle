@@ -102,19 +102,7 @@ public class ControleurFenetrePrincipale implements Initializable {
             }
             else{
                 ControleurFenetreCreerArticle.setIdRayon(idRayon);
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreCreerArticle.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                    stage.setTitle("Créer article");
-                    stage.setScene(new Scene(root, 350, 450));
-                    stage.show();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+                creerFenetre("/fenetreCreerArticle.fxml", "/icon.png", "Créer article", 350, 450);
             }
             event.consume();
         });
@@ -130,19 +118,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 }
                 else{
                     ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierArticle.fxml"));
-                        root = loader.load();
-                        Stage stage = new Stage();
-                        stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                        stage.setTitle("Modifier article");
-                        stage.setScene(new Scene(root, 350, 350));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    creerFenetre("/fenetreModifierArticle.fxml", "/icon.png", "Modifier article", 350, 350);
                 }
             }
             event.consume();
@@ -159,19 +135,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 }
                 else{
                     ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
-                    Parent root;
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreModifierStock.fxml"));
-                        root = loader.load();
-                        Stage stage = new Stage();
-                        stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                        stage.setTitle("Modifier stock");
-                        stage.setScene(new Scene(root, 250, 250));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    creerFenetre("/fenetreModifierStock.fxml", "/icon.png", "Modifier stock", 250, 250);
                 }
             }
             event.consume();
@@ -199,19 +163,7 @@ public class ControleurFenetrePrincipale implements Initializable {
         });
 
         boutonTransfererArticles.setOnAction(event -> {
-            Parent root;
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreTransfererArticles.fxml"));
-                root = loader.load();
-                Stage stage = new Stage();
-                stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                stage.setTitle("Transférer articles");
-                stage.setScene(new Scene(root, 250, 250));
-                stage.show();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+            creerFenetre("/fenetreTransfererArticles.fxml", "/icon.png", "Transférer articles", 250, 250);
             event.consume();
         });
 
@@ -223,19 +175,7 @@ public class ControleurFenetrePrincipale implements Initializable {
             }
             else{
                 ControleurFenetreGestionUtilisateurs.setUtilisateurConnecte(utilisateurConnecte);
-                Parent root;
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fenetreGestionUtilisateurs.fxml"));
-                    root = loader.load();
-                    Stage stage = new Stage();
-                    stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream( "/icon.png" )));
-                    stage.setTitle("Gestion des utilisateurs");
-                    stage.setScene(new Scene(root, 1080, 720));
-                    stage.show();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+                creerFenetre("/fenetreGestionUtilisateurs.fxml", "/icon.png", "Gestion des utilisateurs", 1080, 720);
             }
 
             event.consume();
@@ -283,6 +223,30 @@ public class ControleurFenetrePrincipale implements Initializable {
 
         //On affiche la table des rayons au lancement de l'application
         paneRayons.toFront();
+    }
+
+    /**
+     * Méthode permettant de créer une nouvelle fenetre à partir d'un fichier FXML
+     * @param fichierFXML le fichier FXML de la fenetre
+     * @param icone l'icone de la nouvelle fenetre
+     * @param titre le titre de la fenetre
+     * @param largeur la largeur de la fenetre
+     * @param hauteur la hauteur de la fenetre
+     */
+    private static void creerFenetre(String fichierFXML, String icone, String titre, int largeur, int hauteur){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(ControleurFenetrePrincipale.class.getResource(fichierFXML));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream(icone)));
+            stage.setTitle(titre);
+            stage.setScene(new Scene(root, largeur, hauteur));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

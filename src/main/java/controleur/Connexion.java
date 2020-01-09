@@ -7,7 +7,6 @@ import javax.persistence.PersistenceException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public abstract class Connexion {
 
     private static EntityManagerFactory emf;

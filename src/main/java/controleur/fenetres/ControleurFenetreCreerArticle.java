@@ -39,7 +39,10 @@ public class ControleurFenetreCreerArticle implements Initializable {
                 String description = fieldDescription.getText();
                 String reference = fieldReference.getText();
                 int stock = Integer.parseInt(fieldStocks.getText());
-                int reservations = Integer.parseInt(fieldReservations.getText());
+                int reservations = 0;
+                if(!fieldReservations.getText().isEmpty()){
+                    reservations = Integer.parseInt(fieldReservations.getText());
+                }
 
                 if(prix < 0 || stock < 0 || reservations < 0){
                     throw new NumberFormatException();
