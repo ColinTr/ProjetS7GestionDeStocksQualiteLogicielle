@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ProduitDAO {
+public final class ProduitDAO {
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits enregistrés dans l'application.
