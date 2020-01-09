@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modele.*;
 import modele.tables.UtilisateursTableClass;
+import org.apache.log4j.Logger;
 import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
@@ -25,6 +26,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControleurFenetreGestionUtilisateurs implements Initializable {
+
+    final static Logger logger = Logger.getLogger(ControleurFenetreGestionUtilisateurs.class);
 
     //Défintion des boutons
     @FXML private Button boutonCreer;
@@ -246,7 +249,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
             stage.show();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            logger.fatal("Fatal error : " + e.getStackTrace());
         }
     }
 
