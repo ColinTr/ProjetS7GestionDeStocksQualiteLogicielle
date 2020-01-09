@@ -2,8 +2,8 @@ package controleur.fenetres;
 
 import controleur.Connexion;
 import controleur.MagasinDAO;
-import controleur.UtilisateurDAO;
 
+import controleur.UtilisateurDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -127,7 +127,55 @@ public class ControleurFenetreModifierUtilisateur implements Initializable {
         });
 
         boutonModifier.setOnAction(event -> {
-            //TODO
+            String nomCompte = fieldNomCompte.getText();
+            String motDePasse = fieldMotDePasse.getText();
+            String nom = fieldNom.getText();
+            String prenom = fieldPrenom.getText();
+
+            if(nomCompte.isEmpty() || nom.isEmpty() || motDePasse.isEmpty() || prenom.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez renseigner tous les champs pour créer un utilisateur.", ButtonType.OK);
+                alert.show();
+            }
+            else{
+                if(UtilisateurDAO.testerNomDeCompte(nomCompte) != null){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Un utilisateur avec le même nom de compte existe déjà dans la base de données.", ButtonType.OK);
+                    alert.show();
+                }
+                else{
+                    if(boxDirigeMagasin.isSelected() && !utilisateurConnecte.getTypeDeCompte().equals(TypeDeCompte.SUPER_ADMINISTRATEUR)){
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Vous ne disposez pas des droits suffisants pour créer un chef de magasin.", ButtonType.OK);
+                        alert.show();
+                    }
+                    else{
+                        TypeDeCompte type = TypeDeCompte.UTILISATEUR;
+                        if(boxDirigeMagasin.isSelected()){
+                            type = TypeDeCompte.ADMINISTRATEUR;
+                        }
+
+                        if(UtilisateurDAO.supprimerUtilisateur(utilisateurAModifier.getIdUtilisateur())){
+
+                            Utilisateur nouvelUtilisateur = new Utilisateur(nomCompte, nom, prenom, UtilisateurDAO.SHA512(motDePasse), type, checkBoxRestreint.isSelected(), null, null, boxMagasins.getValue());
+
+                            if(UtilisateurDAO.creerUtilisateur(nouvelUtilisateur)){
+                                //Soit il dirige le magasin, soit il dirige le rayon :
+                                if(boxDirigeMagasin.isSelected()){
+                                    UtilisateurDAO.definirChefMagasin(nouvelUtilisateur.getIdUtilisateur(), boxMagasins.getValue().getIdMagasin());
+                                }
+                                else{
+                                    UtilisateurDAO.definirChefRayon(nouvelUtilisateur.getIdUtilisateur(), boxRayons.getValue().getIdRayon());
+                                }
+
+                                ControleurFenetreGestionUtilisateurs.miseAJourTable();
+
+                                Stage stage = (Stage) boutonAnnuler.getScene().getWindow();
+                                stage.close();
+                            }
+                        }
+
+                        event.consume();
+                    }
+                }
+            }
         });
 
         boutonAnnuler.setOnAction(event -> {
