@@ -20,15 +20,5 @@ public class bddImplementationSteps {
 
     public static List<Produit> produitsBDD;
 
-    @Before("@bdd")
-    public void connectionBDD() {
-        Connexion.init("testUnit");
-    }
-
-    @After("@bdd")
-    public void closeConnectionBDD() {
-        Connexion.close();
-    }
-
 
 }

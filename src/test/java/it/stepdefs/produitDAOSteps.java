@@ -3,7 +3,9 @@ package it.stepdefs;
 import controleur.Connexion;
 import controleur.ProduitDAO;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,8 +24,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 
 public class produitDAOSteps {
@@ -32,9 +33,39 @@ public class produitDAOSteps {
     List<Produit> listProduitBDD = new ArrayList<Produit>();
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------------------------
 
     /* === Récupération de la Base de donnée === */
+
+
+    @Before("@bdd")
+    public void connectionBDD() {
+        Connexion.init("testUnit");
+    }
+
+    @After("@bdd")
+    public void closeConnectionBDD() {
+        Connexion.close();
+    }
+
 
     @Given("^On met (\\d+) produits dans la bdd et on stock dans la liste locale$")
     public void onMetXProduitsDansLaBddEtOnStockDansLaListeLocal(int arg0){
@@ -298,4 +329,99 @@ public class produitDAOSteps {
         }
     }
 
+
+
+
+
+
+
+
+    @Given("Je me connecte à la bdd")
+    public void jeMeConnecteÀLaBdd() {
+        //Connexion.init("testUnit");
+    }
+
+    @Then("Je me deconnecte de la bdd")
+    public void jeMeDeconnecteDeLaBdd() {
+        //Connexion.close();
+    }
+
+
+    Produit produit;
+    Produit produitRecupere;
+
+    @Given("J'ai un produit")
+    public void jAiUnProduit() {
+        produit = new Produit();
+    }
+
+    @And("J'ajoute le produit à la bdd")
+    public void jeLAjouteÀLaBdd() {
+        assertTrue(ProduitDAO.ajouterUnProduit(produit));
+    }
+
+    @When("Je récupère le produit sur la base de donnée")
+    public void jeRécupèreLeProduitSurLaBaseDeDonnée() {
+        produitRecupere = ProduitDAO.trouverProduit(produit.getIdProduit());
+    }
+
+    @Then("Le produit récupéré est le même que celui ajouté")
+    public void leProduitRécupéréEstLeMêmeQueCeluiAjouté() {
+        assertEquals(produit, produitRecupere);
+    }
+
+    boolean res1;
+    boolean res2;
+
+    @When("J'ajoute le produit deux fois à la bdd")
+    public void jeLAjouteDeuxFoisÀLaBdd() {
+        res1 = ProduitDAO.ajouterUnProduit(produit);
+        res2 = ProduitDAO.ajouterUnProduit(produit);
+    }
+
+    @Then("Le premier fonctionne mais pas le deuxième")
+    public void lePremierFonctionneMaisPasLeDeuxième() {
+        assertTrue(res1);
+        assertFalse(res2);
+    }
+
+    @When("Je supprime le produit de la bdd")
+    public void jeSupprimeLeProduitDeLaBdd() {
+        assertTrue(ProduitDAO.supprimerUnProduit(produit.getIdProduit()));
+    }
+
+    @Then("Je ne trouve pas le produit sur la bdd")
+    public void jeNeTrouvePasLeProduitSurLaBdd() {
+        assertNull(ProduitDAO.trouverProduit(produit.getIdProduit()));
+    }
+
+    List<Produit> produits = new ArrayList<Produit>();
+
+    @Given("J'ai trois produits")
+    public void jAiTroisProduits() {
+        listProduit.add(new Produit());
+        listProduit.add(new Produit());
+        listProduit.add(new Produit());
+    }
+
+    @And("J'ajoute les trois produits à la base de donnée")
+    public void jAjouteLesTroisProduitsÀLaBaseDeDonnée() {
+        ProduitDAO.ajouterUnProduit(listProduit.get(0));
+        ProduitDAO.ajouterUnProduit(listProduit.get(1));
+        ProduitDAO.ajouterUnProduit(listProduit.get(2));
+    }
+
+    List<Produit> produitsBDD = new ArrayList<Produit>();
+
+    @When("Je recupere tous les produits de la base de donnée")
+    public void jeRecupereTousLesProduitsDeLaBaseDeDonnée() {
+        produitsBDD = ProduitDAO.tousLesProduits();
+    }
+
+    @Then("La liste de produit récupéré est composé des trois produits insérée au départ")
+    public void laListeDeProduitRécupéréEstComposéDesTroisProduitsInséréeAuDépart() {
+        for (Produit p : produits) {
+            assertThat(produitsBDD, hasItem(p));
+        }
+    }
 }

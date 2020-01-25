@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         strict=false,
         features= "src/test/resources/it",
         glue= "it/stepdefs",
-        tags = {}, //"not @done"
+        tags = {"not @done"}, //"not @done"
         plugin = {"html:target/cucumber-html-report"} )
 public class monRunnerIT {
     //Cette classe est vide.
