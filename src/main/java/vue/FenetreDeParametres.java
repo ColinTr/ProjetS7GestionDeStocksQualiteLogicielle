@@ -1,6 +1,7 @@
 package vue;
 
 import modele.ParametresBDD;
+import org.apache.log4j.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -18,6 +19,7 @@ import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import java.util.Objects;
 import java.util.Properties;
 
 
@@ -25,6 +27,8 @@ import java.util.Properties;
 public class FenetreDeParametres {
 
     private JFrame frameSettingWindow;
+
+    final static Logger logger = Logger.getLogger(FenetreDeParametres.class);
 
     private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -37,7 +41,7 @@ public class FenetreDeParametres {
                 FenetreDeParametres window = new FenetreDeParametres();
                 window.frameSettingWindow.setVisible(true);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.fatal(e);
             }
         });
     }
@@ -56,7 +60,7 @@ public class FenetreDeParametres {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.fatal(e);
         }
 
 
@@ -72,7 +76,7 @@ public class FenetreDeParametres {
         JButton btnCancel;
 
         frameSettingWindow = new JFrame();
-        ImageIcon logo = new ImageIcon(FenetreDeParametres.class.getClassLoader().getResource("icon.png"));
+        ImageIcon logo = new ImageIcon(Objects.requireNonNull(FenetreDeParametres.class.getClassLoader().getResource("icon.png")));
         frameSettingWindow.setIconImage(logo.getImage());
         frameSettingWindow.setBackground(Color.WHITE);
         frameSettingWindow.setTitle("Paramètres de connection à la BDD");

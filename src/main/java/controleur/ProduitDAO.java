@@ -2,6 +2,7 @@ package controleur;
 
 import modele.Produit;
 import modele.Rayon;
+import org.apache.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ProduitDAO {
+
+    final static Logger logger = Logger.getLogger(ProduitDAO.class);
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits enregistrés dans l'application.
@@ -37,7 +40,7 @@ public final class ProduitDAO {
      * @return liste de tous les produits.
      */
     public static List<Produit> tousLesProduits(){
-        List<Produit> listeARetourner = new ArrayList<Produit>();
+        List<Produit> listeARetourner = new ArrayList<>();
 
         EntityManager em =  Connexion.getEntityManager();
         Query query = em.createQuery("SELECT u FROM Produit u");
@@ -58,14 +61,11 @@ public final class ProduitDAO {
      * @return liste de tous les produits d'un rayon donné.
      */
     public static List<Produit> tousLesProduits(Rayon rayonDonne){
-        List<Produit> listeARetourner = new ArrayList<Produit>();
         EntityManager em = Connexion.getEntityManager();
 
         Rayon rayon = em.find(Rayon.class, rayonDonne.getIdRayon());
 
-        for (Produit p: rayon.getListeProduits()){
-            listeARetourner.add(p);
-        }
+        List<Produit> listeARetourner = new ArrayList<>(rayon.getListeProduits());
 
         em.close();
         return listeARetourner;
@@ -87,7 +87,7 @@ public final class ProduitDAO {
         try{
             em.persist(produit);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.fatal(e);
             em.getTransaction().rollback();
             em.close();
             return false;
@@ -113,7 +113,7 @@ public final class ProduitDAO {
             produit.setRayon(null);
             em.remove(produit);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.fatal(e);
             em.getTransaction().rollback();
             em.close();
             return false;
@@ -141,7 +141,7 @@ public final class ProduitDAO {
             produit.setRayon(null);
             em.remove(produit);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.fatal(e);
             em.getTransaction().rollback();
             em.close();
             return false;
@@ -165,7 +165,6 @@ public final class ProduitDAO {
             return true;
         }
 
-        System.out.println("Quantite invalide, opération non possible");
         em.getTransaction().rollback();
         em.close();
         return false;
@@ -182,10 +181,14 @@ public final class ProduitDAO {
             em.close();
             return true;
         }
-        System.out.println("Quantite invalide, opération non possible");
+
         em.getTransaction().rollback();
         em.close();
         return false;
     }
 
+    /**
+     * Constructeur par défaut privé pour empêcher l'instanciation d'objets ProduitDAO.
+     */
+    private ProduitDAO(){}
 }

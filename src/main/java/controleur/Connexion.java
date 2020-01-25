@@ -37,4 +37,8 @@ public abstract class Connexion {
         return emf.createEntityManager();
     }
 
+    /**
+     * Constructeur par défaut privé pour empêcher l'instanciation d'objets Connexion.
+     */
+    private Connexion(){}
 }

@@ -3,31 +3,13 @@ package vue;
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
 import modele.Utilisateur;
+import org.apache.log4j.Logger;
 
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
-import java.awt.Dimension;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JButton;
-import java.awt.Font;
+import java.util.Objects;
 
 public class FenetreDeConnexion {
 
@@ -42,18 +24,21 @@ public class FenetreDeConnexion {
     private JPasswordField passwordField;
     private JLabel errorMessageLabel;
 
+    private static final String usernameConstant = "Username";
+    private static final String passwordConstant = "********";
+
+    final static Logger logger = Logger.getLogger(FenetreDeConnexion.class);
+
     /**
      * Launch the application.
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    FenetreDeConnexion window = new FenetreDeConnexion();
-                    window.frameLoginWindow.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                FenetreDeConnexion window = new FenetreDeConnexion();
+                window.frameLoginWindow.setVisible(true);
+            } catch (Exception e) {
+                logger.fatal(e);
             }
         });
     }
@@ -72,17 +57,17 @@ public class FenetreDeConnexion {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.fatal(e);
         }
 
         frameLoginWindow = new JFrame();
         frameLoginWindow.getContentPane().setBackground(Color.BLACK);
-        ImageIcon logo = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("icon.png"));
+        ImageIcon logo = new ImageIcon(Objects.requireNonNull(FenetreDeConnexion.class.getClassLoader().getResource("icon.png")));
         frameLoginWindow.setIconImage(logo.getImage());
         frameLoginWindow.setTitle("Connexion");
         frameLoginWindow.setBounds(dim.width/2-530/2, dim.height/2-250/2, 530, 250);
-        frameLoginWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon(FenetreDeConnexion.class.getClassLoader().getResource("user_icon.png"));
+        frameLoginWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        ImageIcon img = new ImageIcon(Objects.requireNonNull(FenetreDeConnexion.class.getClassLoader().getResource("user_icon.png")));
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{485, 0};
         gridBagLayout.rowHeights = new int[]{250, 0};
@@ -92,96 +77,94 @@ public class FenetreDeConnexion {
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.BLACK);
-        GridBagConstraints gbc_mainPanel = new GridBagConstraints();
-        gbc_mainPanel.fill = GridBagConstraints.BOTH;
-        gbc_mainPanel.gridx = 0;
-        gbc_mainPanel.gridy = 0;
-        frameLoginWindow.getContentPane().add(mainPanel, gbc_mainPanel);
-        GridBagLayout gbl_mainPanel = new GridBagLayout();
-        gbl_mainPanel.columnWidths = new int[]{84, 345};
-        gbl_mainPanel.rowHeights = new int[]{250, 0};
-        gbl_mainPanel.columnWeights = new double[]{1.0, 1.0};
-        gbl_mainPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-        mainPanel.setLayout(gbl_mainPanel);
+        GridBagConstraints gbcMainPanel = new GridBagConstraints();
+        gbcMainPanel.fill = GridBagConstraints.BOTH;
+        gbcMainPanel.gridx = 0;
+        gbcMainPanel.gridy = 0;
+        frameLoginWindow.getContentPane().add(mainPanel, gbcMainPanel);
+        GridBagLayout gblMainPanel = new GridBagLayout();
+        gblMainPanel.columnWidths = new int[]{84, 345};
+        gblMainPanel.rowHeights = new int[]{250, 0};
+        gblMainPanel.columnWeights = new double[]{1.0, 1.0};
+        gblMainPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+        mainPanel.setLayout(gblMainPanel);
 
         JPanel leftPanel = new JPanel();
-        GridBagConstraints gbc_leftPanel = new GridBagConstraints();
-        gbc_leftPanel.fill = GridBagConstraints.BOTH;
-        gbc_leftPanel.gridx = 0;
-        gbc_leftPanel.gridy = 0;
-        mainPanel.add(leftPanel, gbc_leftPanel);
+        GridBagConstraints gbcLeftPanel = new GridBagConstraints();
+        gbcLeftPanel.fill = GridBagConstraints.BOTH;
+        gbcLeftPanel.gridx = 0;
+        gbcLeftPanel.gridy = 0;
+        mainPanel.add(leftPanel, gbcLeftPanel);
         leftPanel.setBackground(blueColor);
-        GridBagLayout gbl_leftPanel = new GridBagLayout();
-        gbl_leftPanel.columnWidths = new int[]{152, 0};
-        gbl_leftPanel.rowHeights = new int[]{0, 0, 0, 0};
-        gbl_leftPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gbl_leftPanel.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
-        leftPanel.setLayout(gbl_leftPanel);
+        GridBagLayout gblLeftPanel = new GridBagLayout();
+        gblLeftPanel.columnWidths = new int[]{152, 0};
+        gblLeftPanel.rowHeights = new int[]{0, 0, 0, 0};
+        gblLeftPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gblLeftPanel.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
+        leftPanel.setLayout(gblLeftPanel);
 
         settingsButton = new JButton("");
         settingsButton.setToolTipText("Open the settings window");
         settingsButton.setOpaque(true);
         settingsButton.setBorder(null);
         settingsButton.setBackground(blueColor);
-        settingsButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("settings_icon.png")));
-        settingsButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                FenetreDeParametres.main(null);
-            }
-        });
+        settingsButton.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("settings_icon.png"))));
+        settingsButton.addActionListener(e -> FenetreDeParametres.main(null));
         settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 settingsButton.setBackground(colorHover);
             }
 
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 settingsButton.setBackground(blueColor);
             }
         });
-        GridBagConstraints gbc_settingsButton = new GridBagConstraints();
-        gbc_settingsButton.anchor = GridBagConstraints.NORTHWEST;
-        gbc_settingsButton.gridx = 0;
-        gbc_settingsButton.gridy = 0;
-        leftPanel.add(settingsButton, gbc_settingsButton);
+        GridBagConstraints gbcSettingsButton = new GridBagConstraints();
+        gbcSettingsButton.anchor = GridBagConstraints.NORTHWEST;
+        gbcSettingsButton.gridx = 0;
+        gbcSettingsButton.gridy = 0;
+        leftPanel.add(settingsButton, gbcSettingsButton);
 
-        JLabel user_icon_image = new JLabel("", SwingConstants.CENTER);
-        user_icon_image.setIcon(img);
-        GridBagConstraints gbc_user_icon_image = new GridBagConstraints();
-        gbc_user_icon_image.gridx = 0;
-        gbc_user_icon_image.gridy = 1;
-        leftPanel.add(user_icon_image, gbc_user_icon_image);
+        JLabel userIconImage = new JLabel("", SwingConstants.CENTER);
+        userIconImage.setIcon(img);
+        GridBagConstraints gbcUserIconImage = new GridBagConstraints();
+        gbcUserIconImage.gridx = 0;
+        gbcUserIconImage.gridy = 1;
+        leftPanel.add(userIconImage, gbcUserIconImage);
 
         JPanel rightPanel = new JPanel();
-        GridBagConstraints gbc_rightPanel = new GridBagConstraints();
-        gbc_rightPanel.fill = GridBagConstraints.BOTH;
-        gbc_rightPanel.gridx = 1;
-        gbc_rightPanel.gridy = 0;
-        mainPanel.add(rightPanel, gbc_rightPanel);
+        GridBagConstraints gbcRightPanel = new GridBagConstraints();
+        gbcRightPanel.fill = GridBagConstraints.BOTH;
+        gbcRightPanel.gridx = 1;
+        gbcRightPanel.gridy = 0;
+        mainPanel.add(rightPanel, gbcRightPanel);
         rightPanel.setBackground(Color.BLACK);
-        GridBagLayout gbl_rightPanel = new GridBagLayout();
-        gbl_rightPanel.columnWidths = new int[]{341, 0};
-        gbl_rightPanel.rowHeights = new int[]{20, 0, 0, 0, 0, 0};
-        gbl_rightPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gbl_rightPanel.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-        rightPanel.setLayout(gbl_rightPanel);
+        GridBagLayout gblRightPanel = new GridBagLayout();
+        gblRightPanel.columnWidths = new int[]{341, 0};
+        gblRightPanel.rowHeights = new int[]{20, 0, 0, 0, 0, 0};
+        gblRightPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gblRightPanel.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+        rightPanel.setLayout(gblRightPanel);
 
-        JLabel login_label = new JLabel("CONNEXION");
-        login_label.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-        login_label.setHorizontalAlignment(SwingConstants.CENTER);
-        login_label.setForeground(Color.WHITE);
+        JLabel loginLabel = new JLabel("CONNEXION");
+        loginLabel.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
+        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        loginLabel.setForeground(Color.WHITE);
 
-        GridBagConstraints gbc_login_label = new GridBagConstraints();
-        gbc_login_label.anchor = GridBagConstraints.SOUTH;
-        gbc_login_label.insets = new Insets(10, 0, 5, 0);
-        gbc_login_label.gridx = 0;
-        gbc_login_label.gridy = 0;
-        rightPanel.add(login_label, gbc_login_label);
+        GridBagConstraints gbcLoginLabel = new GridBagConstraints();
+        gbcLoginLabel.anchor = GridBagConstraints.SOUTH;
+        gbcLoginLabel.insets = new Insets(10, 0, 5, 0);
+        gbcLoginLabel.gridx = 0;
+        gbcLoginLabel.gridy = 0;
+        rightPanel.add(loginLabel, gbcLoginLabel);
         usernameField = new JTextField(15);
-        usernameField.setText("Username");
+        usernameField.setText(usernameConstant);
         usernameField.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent arg0){
-                if(usernameField.getText().equals("Username")){
+                if(usernameField.getText().equals(usernameConstant)){
                     usernameField.setText("");
                 }
             }
@@ -189,21 +172,21 @@ public class FenetreDeConnexion {
             @Override
             public void focusLost(FocusEvent arg0){
                 if(usernameField.getText().isEmpty()){
-                    usernameField.setText("Username");
+                    usernameField.setText(usernameConstant);
                 }
             }
         });
-        GridBagConstraints gbc_usernameField = new GridBagConstraints();
-        gbc_usernameField.insets = new Insets(0, 0, 5, 0);
-        gbc_usernameField.gridx = 0;
-        gbc_usernameField.gridy = 1;
-        rightPanel.add(usernameField, gbc_usernameField);
+        GridBagConstraints gbcUsernameField = new GridBagConstraints();
+        gbcUsernameField.insets = new Insets(0, 0, 5, 0);
+        gbcUsernameField.gridx = 0;
+        gbcUsernameField.gridy = 1;
+        rightPanel.add(usernameField, gbcUsernameField);
         passwordField = new JPasswordField(15);
-        passwordField.setText("********");
+        passwordField.setText(passwordConstant);
         passwordField.addFocusListener(new FocusListener(){
             @Override
             public void focusGained(FocusEvent arg0){
-                if(String.valueOf(passwordField.getPassword()).equals("********")){
+                if(String.valueOf(passwordField.getPassword()).equals(passwordConstant)){
                     passwordField.setText("");
                 }
             }
@@ -211,23 +194,23 @@ public class FenetreDeConnexion {
             @Override
             public void focusLost(FocusEvent arg0){
                 if(String.valueOf(passwordField.getPassword()).isEmpty()){
-                    passwordField.setText("********");
+                    passwordField.setText(passwordConstant);
                 }
             }
         });
-        GridBagConstraints gbc_passwordField = new GridBagConstraints();
-        gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-        gbc_passwordField.gridx = 0;
-        gbc_passwordField.gridy = 2;
-        rightPanel.add(passwordField, gbc_passwordField);
+        GridBagConstraints gbcPasswordField = new GridBagConstraints();
+        gbcPasswordField.insets = new Insets(0, 0, 5, 0);
+        gbcPasswordField.gridx = 0;
+        gbcPasswordField.gridy = 2;
+        rightPanel.add(passwordField, gbcPasswordField);
 
         errorMessageLabel = new JLabel(" ");
         errorMessageLabel.setForeground(Color.RED);
-        GridBagConstraints gbc_errorMessageLabel = new GridBagConstraints();
-        gbc_errorMessageLabel.insets = new Insets(0, 0, 5, 0);
-        gbc_errorMessageLabel.gridx = 0;
-        gbc_errorMessageLabel.gridy = 3;
-        rightPanel.add(errorMessageLabel, gbc_errorMessageLabel);
+        GridBagConstraints gbcErrorMessageLabel = new GridBagConstraints();
+        gbcErrorMessageLabel.insets = new Insets(0, 0, 5, 0);
+        gbcErrorMessageLabel.gridx = 0;
+        gbcErrorMessageLabel.gridy = 3;
+        rightPanel.add(errorMessageLabel, gbcErrorMessageLabel);
 
         JButton boutonConnexion = new JButton("Connexion");
         boutonConnexion.addActionListener(action -> {
@@ -253,11 +236,10 @@ public class FenetreDeConnexion {
                 errorMessageLabel.setText("Connexion impossible.");
             }
 
-
         });
-        GridBagConstraints gbc_connectionButton = new GridBagConstraints();
-        gbc_connectionButton.gridx = 0;
-        gbc_connectionButton.gridy = 4;
-        rightPanel.add(boutonConnexion, gbc_connectionButton);
+        GridBagConstraints gbcConnectionButton = new GridBagConstraints();
+        gbcConnectionButton.gridx = 0;
+        gbcConnectionButton.gridy = 4;
+        rightPanel.add(boutonConnexion, gbcConnectionButton);
     }
 }

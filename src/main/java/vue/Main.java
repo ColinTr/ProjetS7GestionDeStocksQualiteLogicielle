@@ -3,11 +3,14 @@ package vue;
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
 import modele.*;
+import org.apache.log4j.Logger;
 
 import javax.persistence.EntityManager;
 
 
 public class Main {
+
+    final static Logger logger = Logger.getLogger(Main.class);
 
     public static void main( String[] args ) {
 
@@ -60,6 +63,7 @@ public class Main {
 
         Connexion.close();
 
+        logger.fatal("THIS IS A TEST ERROR");
     }
 
 }

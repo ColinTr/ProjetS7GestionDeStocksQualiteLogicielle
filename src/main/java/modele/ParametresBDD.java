@@ -46,4 +46,9 @@ public class ParametresBDD {
     public static void setInformationsUtilisateur(Properties nouvellesInformationsUtilisateur) {
         informationsUtilisateur = nouvellesInformationsUtilisateur;
     }
+
+    /**
+     * Constructeur par défaut privé pour empêcher l'instanciation d'objets ParametresBDD.
+     */
+    private ParametresBDD(){}
 }

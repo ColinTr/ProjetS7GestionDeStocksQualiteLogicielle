@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import modele.Rayon;
 import modele.TypeDeCompte;
 import modele.Utilisateur;
+import org.apache.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import java.net.URL;

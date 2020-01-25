@@ -22,7 +22,7 @@ public class FenetrePrincipale extends Application {
 
     public static void main(String[] args) {
         if(args != null && args.length > 0) {
-            utilisateurConnecte = UtilisateurDAO.getUtilisateur(Integer.valueOf(args[0]));
+            utilisateurConnecte = UtilisateurDAO.getUtilisateur(Integer.parseInt(args[0]));
         }
         else{
             utilisateurConnecte = null;

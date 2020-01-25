@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modele.tables.ProduitsTableClass;
 import modele.tables.RayonsTableClass;
+import org.apache.log4j.Logger;
 import vue.FenetrePrincipale;
 
 import javax.persistence.EntityManager;
@@ -34,6 +35,10 @@ import java.util.ResourceBundle;
  * Cette classe définit le contenu des tables de l'application et toutes les actions liées aux boutons et sélections de lignes.
  */
 public class ControleurFenetrePrincipale implements Initializable {
+
+    final static Logger logger = Logger.getLogger(ControleurFenetrePrincipale.class);
+
+    private final static String icon = "/icon.png";
 
     //L'utilisateur actuellement connecté
     private static Utilisateur utilisateurConnecte;
@@ -102,7 +107,7 @@ public class ControleurFenetrePrincipale implements Initializable {
             }
             else{
                 ControleurFenetreCreerArticle.setIdRayon(idRayon);
-                creerFenetre("/fenetreCreerArticle.fxml", "/icon.png", "Créer article", 350, 450);
+                creerFenetre("/fenetreCreerArticle.fxml", "Créer article", 350, 450);
             }
             event.consume();
         });
@@ -118,7 +123,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 }
                 else{
                     ControleurFenetreModifierArticle.setIdArticle(articleSelectionne.getIdArticle());
-                    creerFenetre("/fenetreModifierArticle.fxml", "/icon.png", "Modifier article", 350, 350);
+                    creerFenetre("/fenetreModifierArticle.fxml", "Modifier article", 350, 350);
                 }
             }
             event.consume();
@@ -135,7 +140,7 @@ public class ControleurFenetrePrincipale implements Initializable {
                 }
                 else{
                     ControleurFenetreModifierStock.setIdArticle(articleSelectionne.getIdArticle());
-                    creerFenetre("/fenetreModifierStock.fxml", "/icon.png", "Modifier stock", 250, 250);
+                    creerFenetre("/fenetreModifierStock.fxml", "Modifier stock", 250, 250);
                 }
             }
             event.consume();
@@ -163,7 +168,7 @@ public class ControleurFenetrePrincipale implements Initializable {
         });
 
         boutonTransfererArticles.setOnAction(event -> {
-            creerFenetre("/fenetreTransfererArticles.fxml", "/icon.png", "Transférer articles", 250, 250);
+            creerFenetre("/fenetreTransfererArticles.fxml", "Transférer articles", 250, 250);
             event.consume();
         });
 
@@ -175,7 +180,7 @@ public class ControleurFenetrePrincipale implements Initializable {
             }
             else{
                 ControleurFenetreGestionUtilisateurs.setUtilisateurConnecte(utilisateurConnecte);
-                creerFenetre("/fenetreGestionUtilisateurs.fxml", "/icon.png", "Gestion des utilisateurs", 1080, 720);
+                creerFenetre("/fenetreGestionUtilisateurs.fxml", "Gestion des utilisateurs", 1080, 720);
             }
 
             event.consume();
@@ -199,9 +204,7 @@ public class ControleurFenetrePrincipale implements Initializable {
         });
 
         //On définit le nom de l'utilisateur affiché
-        if(utilisateurConnecte != null){
-            labelUtilisateur.setText(utilisateurConnecte.toString());
-        }
+        labelUtilisateur.setText(utilisateurConnecte.toString());
 
         //On fait le lien entre les lignes déclarées ici et celles du fichier .fxml et les éléments du modèle TableClass :
         colonneNom.setCellValueFactory( new PropertyValueFactory<>("nom") );
@@ -228,24 +231,23 @@ public class ControleurFenetrePrincipale implements Initializable {
     /**
      * Méthode permettant de créer une nouvelle fenetre à partir d'un fichier FXML
      * @param fichierFXML le fichier FXML de la fenetre
-     * @param icone l'icone de la nouvelle fenetre
      * @param titre le titre de la fenetre
      * @param largeur la largeur de la fenetre
      * @param hauteur la hauteur de la fenetre
      */
-    private static void creerFenetre(String fichierFXML, String icone, String titre, int largeur, int hauteur){
+    private static void creerFenetre(String fichierFXML, String titre, int largeur, int hauteur){
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(ControleurFenetrePrincipale.class.getResource(fichierFXML));
             root = loader.load();
             Stage stage = new Stage();
-            stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream(icone)));
+            stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream(ControleurFenetrePrincipale.icon)));
             stage.setTitle(titre);
             stage.setScene(new Scene(root, largeur, hauteur));
             stage.show();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            logger.fatal(e);
         }
     }
 

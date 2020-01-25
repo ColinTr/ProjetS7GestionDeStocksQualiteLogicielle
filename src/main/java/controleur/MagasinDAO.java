@@ -54,4 +54,9 @@ public final class MagasinDAO {
 
         return listeARetourner;
     }
+
+    /**
+     * Constructeur par défaut privé pour empêcher l'instanciation d'objets MagasinDAO.
+     */
+    private MagasinDAO(){}
 }
