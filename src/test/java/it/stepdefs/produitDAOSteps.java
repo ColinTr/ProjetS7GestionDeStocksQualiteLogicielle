@@ -1,16 +1,22 @@
-package ut.stepdefs;
+package it.stepdefs;
 
 import controleur.Connexion;
 import controleur.ProduitDAO;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modele.Produit;
 import modele.Rayon;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.hibernate.Transaction;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -248,5 +254,48 @@ public class produitDAOSteps {
         }
     }
 
+
+
+
+
+
+
+
+
+    private List<Object> listBDD = new ArrayList<Object>();
+    private List<Produit> produitsRecup = new ArrayList<Produit>();
+
+    @Before("DAO")
+    public void mockBDD(){
+        PowerMockito.mockStatic(Connexion.class);
+
+        EntityManager em = Mockito.mock(EntityManager.class);
+        Query query = Mockito.mock(Query.class);
+        Transaction transaction = Mockito.mock(Transaction.class);
+
+        Mockito.when(em.createQuery("SELECT u FROM Produit u")).thenReturn(query);
+        Mockito.when(query.getResultList()).thenReturn(listBDD);
+
+        BDDMockito.given(Connexion.getEntityManager()).willReturn(em);
+    }
+
+
+
+    @Given("Une liste de produits sur la bdd")
+    public void uneListeDeProduitsSurLaBdd() {
+        listBDD.add(Mockito.mock(Produit.class));
+    }
+
+    @When("On récupère cette liste de produits")
+    public void onRécupèreCetteListeDeProduits() {
+        produitsRecup = ProduitDAO.tousLesProduits();
+    }
+
+    @Then("La liste récupérée correspond avec la liste de la bdd")
+    public void laListeRécupéréeCorrespondAvecLaListeDeLaBdd() {
+        for (Produit p : produitsRecup) {
+            assertThat(listBDD, hasItem(p));
+        }
+    }
 
 }

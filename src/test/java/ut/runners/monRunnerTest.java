@@ -3,12 +3,15 @@ package ut.runners;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
 /**
  * Cette classe permet d'effectuer tous les tests au sein du dossier ut.stepdefs
  */
 
-@RunWith(Cucumber.class)
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(Cucumber.class)
 @CucumberOptions(
         strict=false,
         features= "src/test/resources/ut",

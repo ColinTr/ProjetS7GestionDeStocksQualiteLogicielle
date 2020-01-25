@@ -40,8 +40,8 @@ public final class ProduitDAO {
         List<Produit> listeARetourner = new ArrayList<Produit>();
 
         EntityManager em =  Connexion.getEntityManager();
-        Query query = em.createQuery("SELECT u FROM Produit u");
 
+        Query query = em.createQuery("SELECT u FROM Produit u");
         List results = query.getResultList();
 
         for(Object o : results){
