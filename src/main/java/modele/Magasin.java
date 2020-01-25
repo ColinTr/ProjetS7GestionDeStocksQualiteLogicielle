@@ -31,7 +31,7 @@ public class Magasin {
      */
     public void ajouterRayon(Rayon r){
         if(listeRayons == null){
-            listeRayons = new ArrayList<Rayon>();
+            listeRayons = new ArrayList<>();
         }
         listeRayons.add(r);
     }

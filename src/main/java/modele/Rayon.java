@@ -41,7 +41,7 @@ public class Rayon {
      */
     public void ajouterProduit(Produit p){
         if(listeProduits == null){
-            listeProduits = new ArrayList<Produit>();
+            listeProduits = new ArrayList<>();
         }
         listeProduits.add(p);
     }

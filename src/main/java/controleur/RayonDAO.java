@@ -1,9 +1,7 @@
 package controleur;
 
-import modele.Magasin;
 import modele.Produit;
 import modele.Rayon;
-import modele.Utilisateur;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -11,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class RayonDAO {
-
-
 
     /**
      * Fonction renvoyant une nouvelle liste correspondant à la liste de tous les produits de ce rayon
@@ -42,7 +38,7 @@ public final class RayonDAO {
      * @return liste de tous les rayons.
      */
     public static List<Rayon> tousLesRayons(){
-        List<Rayon> listeARetourner = new ArrayList<Rayon>();
+        List<Rayon> listeARetourner = new ArrayList<>();
 
         EntityManager em = Connexion.getEntityManager();
 

@@ -29,6 +29,8 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
 
     final static Logger logger = Logger.getLogger(ControleurFenetreGestionUtilisateurs.class);
 
+    private final static String icon = "/icon.png";
+
     //Défintion des boutons
     @FXML private Button boutonCreer;
     @FXML private Button boutonModifier;
@@ -57,7 +59,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
 
         boutonCreer.setOnAction( event -> {
             ControleurFenetreCreerUtilisateur.setUtilisateurConnecte(utilisateurConnecte);
-            creerFenetre("/fenetreCreerUtilisateur.fxml", "/icon.png", "Créer utilisateur", 350, 600);
+            creerFenetre("/fenetreCreerUtilisateur.fxml", "Créer utilisateur", 350, 600);
         });
 
         boutonModifier.setOnAction( event -> {
@@ -65,7 +67,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
             UtilisateursTableClass utilisateurSelectionne = utilisateursTable.getSelectionModel().getSelectedItem();
             if(utilisateurSelectionne != null){
                 ControleurFenetreModifierUtilisateur.setUtilisateurConnecteEtAModifier(utilisateurConnecte, UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur()));
-                creerFenetre("/fenetreModifierUtilisateur.fxml", "/icon.png", "Modifier utilisateur", 350, 600);
+                creerFenetre("/fenetreModifierUtilisateur.fxml", "Modifier utilisateur", 350, 600);
             }
         });
 
@@ -137,7 +139,7 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
                 }
                 else{
                     ControleurFenetreTransformerUtilisateur.setUtilisateurATransformer(UtilisateurDAO.getUtilisateur(utilisateurSelectionne.getIdUtilisateur()));
-                    creerFenetre("/fenetreTransformerUtilisateur.fxml", "/icon.png", "Transformer utilisateur", 200, 250);
+                    creerFenetre("/fenetreTransformerUtilisateur.fxml", "Transformer utilisateur", 200, 250);
                 }
             }
         });
@@ -232,24 +234,23 @@ public class ControleurFenetreGestionUtilisateurs implements Initializable {
     /**
      * Méthode permettant de créer une nouvelle fenetre à partir d'un fichier FXML
      * @param fichierFXML le fichier FXML de la fenetre
-     * @param icone l'icone de la nouvelle fenetre
      * @param titre le titre de la fenetre
      * @param largeur la largeur de la fenetre
      * @param hauteur la hauteur de la fenetre
      */
-    private static void creerFenetre(String fichierFXML, String icone, String titre, int largeur, int hauteur){
+    private static void creerFenetre(String fichierFXML, String titre, int largeur, int hauteur){
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(ControleurFenetreGestionUtilisateurs.class.getResource(fichierFXML));
             root = loader.load();
             Stage stage = new Stage();
-            stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream(icone)));
+            stage.getIcons().add(new Image(FenetrePrincipale.class.getResourceAsStream(ControleurFenetreGestionUtilisateurs.icon)));
             stage.setTitle(titre);
             stage.setScene(new Scene(root, largeur, hauteur));
             stage.show();
         }
         catch (IOException e) {
-            logger.fatal("Fatal error : " + e.getStackTrace());
+            logger.fatal(e);
         }
     }
 

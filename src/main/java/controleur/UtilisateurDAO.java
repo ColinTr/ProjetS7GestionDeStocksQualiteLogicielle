@@ -1,11 +1,12 @@
 package controleur;
 
 import modele.Magasin;
-import modele.Produit;
 import modele.Rayon;
 import modele.Utilisateur;
+import org.apache.log4j.Logger;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class UtilisateurDAO {
+
+    final static Logger logger = Logger.getLogger(UtilisateurDAO.class);
 
     public static boolean supprimerUtilisateur(int idUtilisateur){
         EntityManager em =  Connexion.getEntityManager();
@@ -24,7 +27,7 @@ public final class UtilisateurDAO {
             utilisateur.setMagasin(null);
             em.remove(utilisateur);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.fatal(e);
             em.getTransaction().rollback();
             em.close();
             return false;
@@ -38,9 +41,8 @@ public final class UtilisateurDAO {
      * Cette fonction remplace le chef de rayon courant par un nouveau.
      * @param idChef l'id du nouveau chef de rayon.
      * @param idRayon l'id du rayon.
-     * @return true si il a pu être défini comme chef, false sinon.
      */
-    public static boolean definirChefRayon(int idChef, int idRayon){
+    public static void definirChefRayon(int idChef, int idRayon){
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
@@ -70,16 +72,14 @@ public final class UtilisateurDAO {
         em.getTransaction().commit();
 
         em.close();
-        return true;
     }
 
     /**
      * Cette fonction remplace le chef de magasin courant par un nouveau.
      * @param idChef l'id du nouveau chef de magasin.
      * @param idMagasin l'id du magasin.
-     * @return true si il a pu être défini comme chef, false sinon.
      */
-    public static boolean definirChefMagasin(int idChef, int idMagasin){
+    public static void definirChefMagasin(int idChef, int idMagasin){
         EntityManager em = Connexion.getEntityManager();
 
         em.getTransaction().begin();
@@ -109,7 +109,6 @@ public final class UtilisateurDAO {
         em.getTransaction().commit();
 
         em.close();
-        return true;
     }
 
     /**
@@ -195,7 +194,7 @@ public final class UtilisateurDAO {
         try{
             em.persist(utilisateur);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.fatal(e);
             em.getTransaction().rollback();
             em.close();
             return false;
@@ -211,7 +210,7 @@ public final class UtilisateurDAO {
      * @return liste de tous les utilisateurs.
      */
     public static List<Utilisateur> tousLesUtilisateurs(){
-        List<Utilisateur> listeARetourner = new ArrayList<Utilisateur>();
+        List<Utilisateur> listeARetourner = new ArrayList<>();
 
         EntityManager em = Connexion.getEntityManager();
 
@@ -244,5 +243,10 @@ public final class UtilisateurDAO {
         em.close();
         return utilisateur;
     }
+
+    /**
+     * Constructeur par défaut privé pour empêcher l'instanciation d'objets UtilisateurDAO.
+     */
+    private UtilisateurDAO(){}
 
 }
