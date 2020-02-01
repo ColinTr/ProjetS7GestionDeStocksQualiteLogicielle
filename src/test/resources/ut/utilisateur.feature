@@ -34,3 +34,12 @@ Feature: Tests des utilisateurs
       |      | false |
       |   | false |
       | ab cd | false |
+
+  Scenario: On test le constructeur et les getters
+    Given Un utilisateur avec des parametres definis
+    Then les informations recuperees par les getters de l'utilisateur correspondent
+
+  Scenario: On test les setters et les getters
+    Given Un utilisateur par defaut
+    When On change les attributs de l'utilisateur par les nouveaux
+    Then les informations recuperees par les getters de l'utilisateur correspondent
