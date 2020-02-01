@@ -103,7 +103,10 @@ public class magasinDAOSteps {
         for (Rayon r: rayonsMagasin) {
             boolean present = false;
             for (Rayon rBdd: rayonsBdd) {
-                if (r.getIdRayon() == rBdd.getIdRayon()){ present = true; break; }
+                if (r.getIdRayon() == rBdd.getIdRayon()){
+                    present = true;
+                    break;
+                }
             }
             assertTrue(present);
         }
