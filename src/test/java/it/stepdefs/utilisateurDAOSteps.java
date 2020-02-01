@@ -174,7 +174,10 @@ public class utilisateurDAOSteps {
         for (Utilisateur u: utilisateurList) {
             boolean present = false;
             for (Utilisateur uBdd:utilisateursRecup) {
-                if (u.getIdUtilisateur() == uBdd.getIdUtilisateur()){ present = true; break; }
+                if (u.getIdUtilisateur() == uBdd.getIdUtilisateur()){
+                    present = true;
+                    break;
+                }
             }
             assertTrue(present);
         }
