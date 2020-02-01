@@ -89,12 +89,12 @@ Feature: Tests des produits
 
   Scenario: On test le constructeur et les getters
     Given Un produit avec des parametres definis
-    Then les informations recuperees par les getters correspondent
+    Then les informations recuperees par les getters du produit correspondent
 
   Scenario: On test les setters et les getters
     Given Un produit par defaut
     When On change ses attributs par les nouveaux
-    Then les informations recuperees par les getters correspondent
+    Then les informations recuperees par les getters du produit correspondent
 
   Scenario: On test le equals et le hashcode
     Given Un produit avec des parametres definis

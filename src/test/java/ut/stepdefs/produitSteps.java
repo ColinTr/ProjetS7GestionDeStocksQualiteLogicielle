@@ -87,7 +87,7 @@ public class produitSteps {
         id = produit.getIdProduit(); //ici set par hibernate et non par le constructeur
     }
 
-    @Then("les informations recuperees par les getters correspondent")
+    @Then("les informations recuperees par les getters du produit correspondent")
     public void lesInformationsRecupereesParLesGettersCorrespondent() {
         assertEquals(produit.getIdProduit(), id);
         assertEquals(produit.getNomProduit(), nomProduit);
