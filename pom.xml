@@ -185,6 +185,13 @@
         <version>0.8.3</version>
         <executions>
           <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
             <id>coverage-initialize</id>
             <goals>
               <goal>prepare-agent</goal>
