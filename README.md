@@ -10,6 +10,7 @@ Cette application est un projet Maven écrit en Java et permet de gérer des sto
 ## Installation
 
 Les prérequis pour faire fonctionner l'application sont les suivants : Il faut avoir Java 11 d'installé et disposer d'une base de données MySQL. Par défaut cette base doit être accessible à l'adresse _127.0.0.1/projet_gestion_de_stocks_ mais il possible de changer l'adresse depuis la fenêtre de connexion. Le compte root (sans mot de passe) doit également exister sur la base de données.
+
 Pour mettre en place notre application, il faut donc suivre les étapes suivantes :
 1) Disposer d'un base de données à l'adresse _127.0.0.1/projet_gestion_de_stocks_ avec un compte root sans mot de passe.
 2) Pour générer un magasin avec des rayons/produits/utilisateurs de test, exécuter .jar
