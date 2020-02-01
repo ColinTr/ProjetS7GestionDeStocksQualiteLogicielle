@@ -9,7 +9,7 @@ Cette application est écrit en Java et permet de gérer les stocks de magasin. 
 
 ## Installation
 
-Le projet Maven permet de générer un exécutable JAR qui contient toutes les dépendances dont le logiciel a besoin. Le logiciel étant écrit avec java11 il faut que cette version soit installée puis il suffit de le lancer en double cliquant dessus. Néanmoins cette application a besoin d'une base de donnée MySQL qui part défaut est local et se nomme **projet_gestion_de_stocks** avec l'utilisateur root sans mot de passe. Cette application permet néanmoins de changer cette adresse à la fenêtre de connexion. 
+Le projet Maven permet de générer un exécutable JAR qui contient toutes les dépendances dont le logiciel a besoin. Le logiciel étant écrit avec java11 il faut que cette version soit installée puis il suffit de le lancer en double cliquant sur le JAR. Néanmoins cette application a besoin d'une base de donnée MySQL qui part défaut est local et se nomme **projet_gestion_de_stocks** avec l'utilisateur root sans mot de passe. Cette application permet néanmoins de changer cette adresse à la fenêtre de connexion. 
 
 Il est conseillé de changer ces paramètres directement dans le fichier ./src/main/resources/META-INF/persistence.xml dans le persistence-unit **classique** et régénérer le JAR en recompilant le projet car le programme revient toujours à ces données "par défaut" au lancement du JAR.
 
