@@ -148,7 +148,7 @@ public class produitDAOSteps {
         for (Produit p: produitRayonA) {
             boolean present = false;
             for (Produit pBdd: produitsBDD) {
-                if (p.getIdProduit() == pBdd.getIdProduit() && !present){ present = true; break; }
+                if (p.getIdProduit() == pBdd.getIdProduit()){ present = true; break; }
             }
             assertTrue(present);
         }
