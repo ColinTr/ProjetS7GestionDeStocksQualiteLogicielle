@@ -2,6 +2,7 @@ package vue;
 
 import controleur.Connexion;
 import controleur.UtilisateurDAO;
+import modele.ParametresBDD;
 import modele.Utilisateur;
 import org.apache.log4j.Logger;
 
@@ -219,7 +220,7 @@ public class FenetreDeConnexion {
             String password = String.valueOf(passwordField.getPassword());
 
 
-            if(Connexion.init("classique")){
+            if(Connexion.init("classique", ParametresBDD.getAdresse(), ParametresBDD.getUtilisateur(), ParametresBDD.getMotDePasse())){
                 Utilisateur utilisateurCorrespondant = UtilisateurDAO.testerAuthentification(username, password);
                 if(utilisateurCorrespondant == null){
                     errorMessageLabel.setText("Login ou mot de passe incorrect.");

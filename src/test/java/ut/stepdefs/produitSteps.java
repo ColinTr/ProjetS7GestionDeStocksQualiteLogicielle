@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modele.Produit;
 import modele.Rayon;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
@@ -46,7 +45,7 @@ public class produitSteps {
 
     @Then("^c'est possible$")
     public void cEstPossible() {
-        assertEquals(true, resultat);
+        assertTrue(resultat);
     }
 
     @And("^il en reste (\\d+)$")
@@ -56,7 +55,7 @@ public class produitSteps {
 
     @Then("^c'est impossible$")
     public void cEstImpossible() {
-        assertEquals(false, resultat);
+        assertFalse(resultat);
     }
 
     @When("^j'essaie d'en réserver (\\d+)$")
@@ -137,9 +136,9 @@ public class produitSteps {
     @Then("Le hashcode est le meme et le equals fonctionne")
     public void leHashcodeEstLeMemeEtLeEqualsFonctionne() {
         assertEquals(produitCopie.hashCode(), produit.hashCode());
-        assertTrue(produit.equals(produit));
-        assertTrue(produitCopie.equals(produit));
-        assertFalse(produit.equals(Mockito.mock(Rayon.class)));
-        assertFalse(produit.equals(new Produit()));
+        assertEquals(produit, produit);
+        assertEquals(produitCopie, produit);
+        assertNotEquals(produit, Mockito.mock(Rayon.class));
+        assertNotEquals(produit, new Produit());
     }
 }
