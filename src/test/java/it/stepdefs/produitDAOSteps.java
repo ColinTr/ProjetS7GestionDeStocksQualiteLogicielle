@@ -1,51 +1,24 @@
 package it.stepdefs;
 
 import controleur.Connexion;
-import controleur.MagasinDAO;
 import controleur.ProduitDAO;
 
-import controleur.RayonDAO;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.af.En;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.it.Ma;
-import modele.Magasin;
 import modele.Produit;
 import modele.Rayon;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.hibernate.Transaction;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 
 public class produitDAOSteps {
-
-
-    /* === Récupération de la Base de donnée === */
-
-    @Before("@bdd")
-    public void connectionBDD() {
-        Connexion.init("testUnit");
-    }
-
-    @After("@bdd")
-    public void closeConnectionBDD() {
-        Connexion.close();
-    }
 
 
     Produit produit;
