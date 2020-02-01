@@ -123,9 +123,14 @@ public class produitDAOSteps {
         em.getTransaction().commit();
         em.close();
 
-        produit1 = new Produit(); produit1.setRayon(A);
-        produit2 = new Produit(); produit2.setRayon(A);
-        produit3 = new Produit(); produit3.setRayon(B);
+        produit1 = new Produit();
+        produit1.setRayon(A);
+
+        produit2 = new Produit();
+        produit2.setRayon(A);
+
+        produit3 = new Produit();
+        produit3.setRayon(B);
 
         produitRayonA.add(produit1);
         produitRayonA.add(produit2);
@@ -148,7 +153,10 @@ public class produitDAOSteps {
         for (Produit p: produitRayonA) {
             boolean present = false;
             for (Produit pBdd: produitsBDD) {
-                if (p.getIdProduit() == pBdd.getIdProduit()){ present = true; break; }
+                if (p.getIdProduit() == pBdd.getIdProduit()){
+                    present = true;
+                    break;
+                }
             }
             assertTrue(present);
         }

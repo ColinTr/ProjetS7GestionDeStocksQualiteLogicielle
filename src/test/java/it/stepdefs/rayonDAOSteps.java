@@ -52,9 +52,13 @@ public class rayonDAOSteps {
         em.getTransaction().commit();
         em.close();
 
-        produit1 = new Produit(); produit1.setRayon(X);
-        produit2 = new Produit(); produit2.setRayon(X);
-        produit3 = new Produit(); produit3.setRayon(Y);
+        produit1 = new Produit();
+        produit1.setRayon(X);
+        produit2 = new Produit();
+        produit2.setRayon(X);
+
+        produit3 = new Produit();
+        produit3.setRayon(Y);
 
         produitsRayonX.add(produit1);
         produitsRayonX.add(produit2);
@@ -79,7 +83,10 @@ public class rayonDAOSteps {
         for (Produit p: produitsRayonX) {
             boolean present = false;
             for (Produit pBdd: produitsBDD) {
-                if (p.getIdProduit() == pBdd.getIdProduit()){ present = true; break; }
+                if (p.getIdProduit() == pBdd.getIdProduit()){
+                    present = true;
+                    break;
+                }
             }
             if(!present){ fail(); }
         }
@@ -115,7 +122,10 @@ public class rayonDAOSteps {
         for(Rayon r : rayons){
             boolean present = false;
             for(Rayon rbdd : rayonsBDD){
-                if (rbdd.getIdRayon() == r.getIdRayon()) { present = true; break; }
+                if (rbdd.getIdRayon() == r.getIdRayon()) {
+                    present = true;
+                    break;
+                }
             }
             if(!present){ fail(); }
         }
