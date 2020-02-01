@@ -2,8 +2,7 @@ package it.stepdefs;
 
 import controleur.Connexion;
 import controleur.ProduitDAO;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,24 +14,11 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 
 public class produitDAOSteps {
-
-
-    /* === Récupération de la Base de donnée === */
-
-    @Before("@bdd")
-    public void connectionBDD() {
-        Connexion.init("testUnit");
-    }
-
-    @After("@bdd")
-    public void closeConnectionBDD() {
-        Connexion.close();
-    }
 
 
     Produit produit;
@@ -83,7 +69,7 @@ public class produitDAOSteps {
         assertNull(ProduitDAO.trouverProduit(produit.getIdProduit()));
     }
 
-    List<Produit> produits = new ArrayList<>();
+    List<Produit> produits = new ArrayList<Produit>();
 
     @Given("J'ai trois produits")
     public void jAiTroisProduits() {
@@ -99,7 +85,7 @@ public class produitDAOSteps {
         ProduitDAO.ajouterUnProduit(produits.get(2));
     }
 
-    List<Produit> produitsBDD = new ArrayList<>();
+    List<Produit> produitsBDD = new ArrayList<Produit>();
 
     @When("Je recupere tous les produits de la base de donnée")
     public void jeRecupereTousLesProduitsDeLaBaseDeDonnée() {
@@ -120,15 +106,15 @@ public class produitDAOSteps {
     Rayon A;
     Rayon B;
 
-    List<Produit> produitRayonA = new ArrayList<>();
+    List<Produit> produitRayonA = new ArrayList<Produit>();
 
     @Given("J'ai deux produits avec un rayon A et un produit avec rayon B")
     public void jAiDeuxProduitsAvecUnRayonAEtUnProduitAvecRayonB() {
         produitsBDD.clear();
         produits.clear();
 
-        A = new Rayon("A",null, new ArrayList<>(),null);
-        B = new Rayon("B",null, new ArrayList<>(),null);
+        A = new Rayon("A",null, new ArrayList<Produit>(),null);
+        B = new Rayon("B",null, new ArrayList<Produit>(),null);
 
         EntityManager em = Connexion.getEntityManager();
         em.getTransaction().begin();
