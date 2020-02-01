@@ -13,7 +13,7 @@ Les prérequis pour faire fonctionner l'application sont les suivants : Il faut 
 
 Pour mettre en place notre application, il faut donc suivre les étapes suivantes :
 1) Disposer d'un base de données à l'adresse _127.0.0.1/projet_gestion_de_stocks_ avec un compte root sans mot de passe.
-2) Pour générer un magasin avec des rayons/produits/utilisateurs de test, exécuter .jar
+2) Pour générer un magasin avec des rayons/produits/utilisateurs de test, exécuter AppGestionDeStocks-1.0.jar
 3) Vous pouvez à présent lancer AppGestionDeStocks.jar et vous connecter avec l'un des trois comptes suivants :
 	- En tant que chef de rayon : user / user
 	- En tant que chef de magasin : admin / admin
