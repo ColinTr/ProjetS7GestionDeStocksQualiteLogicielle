@@ -9,9 +9,16 @@ Cette application est un projet Maven écrit en Java et permet de gérer des sto
 
 ## Installation
 
-Le projet Maven permet de générer un exécutable JAR qui contient toutes les dépendances dont le logiciel a besoin. Le logiciel étant écrit avec java 11, il faut que cette version soit installée puis il suffit de le lancer en double cliquant sur le JAR. Néanmoins cette application a besoin d'une base de données MySQL qui part défaut est locale et se nomme **projet_gestion_de_stocks** avec l'utilisateur root sans mot de passe. L'application permet néanmoins de changer cette adresse depuis la fenêtre de connexion. 
+Les prérequis pour faire fonctionner l'application sont les suivants : Il faut avoir Java 11 d'installé et disposer d'une base de données MySQL. Par défaut cette base doit être accessible à l'adresse _127.0.0.1/projet_gestion_de_stocks_ mais il possible de changer l'adresse depuis la fenêtre de connexion. Le compte root (sans mot de passe) doit également exister sur la base de données.
+Pour mettre en place notre application, il faut donc suivre les étapes suivantes :
+1) Disposer d'un base de données à l'adresse _127.0.0.1/projet_gestion_de_stocks_ avec un compte root sans mot de passe.
+2) Pour générer un magasin avec des rayons/produits/utilisateurs de test, exécuter .jar
+3) Vous pouvez à présent lancer AppGestionDeStocks.jar et vous connecter avec l'un des trois comptes suivants :
+	- En tant que chef de rayon : user / user
+	- En tant que chef de magasin : admin / admin
+	- En tant que PDG : azer / azer
 
-Il est conseillé de changer ces paramètres directement dans le fichier ./src/main/resources/META-INF/persistence.xml dans le persistence-unit **classique** et régénérer le JAR en recompilant le projet car le programme revient toujours à ces paramètres "par défaut" au lancement du JAR.
+Pour générer une base de données de test avec, puisque GenerationBDDDeTest.jar ne dispose pas d'interface, il faut changer l'adresse dans le fichier ./src/main/resources/META-INF/persistence.xml dans le persistence-unit **modeCreate** et régénérer le JAR.
 
 ## Tests d'intégration 
 
