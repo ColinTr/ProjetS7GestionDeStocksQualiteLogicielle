@@ -71,4 +71,9 @@ public final class RayonDAO {
         em.close();
         return rayon;
     }
+
+    /**
+     * Constructeur par défaut privé pour empêcher l'instanciation d'objets RayonDAO.
+     */
+    private RayonDAO(){}
 }

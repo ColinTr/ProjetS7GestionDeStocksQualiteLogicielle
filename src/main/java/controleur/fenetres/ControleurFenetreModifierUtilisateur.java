@@ -110,7 +110,7 @@ public class ControleurFenetreModifierUtilisateur implements Initializable {
 
         em.close();
 
-        //==================================================================================================
+        //=================================== Fin du pré-remplissage ===================================
 
         boxDirigeMagasin.setOnAction(event -> {
             if(boxDirigeMagasin.isSelected()){
